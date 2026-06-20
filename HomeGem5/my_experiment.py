@@ -1,67 +1,86 @@
-import m5
+import json
 import os
 import re
-import json
-from m5.objects import *
+
 from utility.mover import *
+
+import m5
+from m5.objects import *
 
 # ============================================================
 # デフォルト設定
 # ============================================================
-BINARY_PATH          = '/home/hiragahama/gem5/HomeGem5/binary/matrix'
-STRATEGY             = 'Scatter'
-CONCENTRATED_NODE    = 0
-NUM_NODES            = 2
-BIG_CORES_PER_NODE   = 4
+BINARY_PATH = "/home/hiragahama/gem5/HomeGem5/binary/matrix"
+STRATEGY = "Scatter"
+CONCENTRATED_NODE = 0
+NUM_NODES = 2
+BIG_CORES_PER_NODE = 4
 SMALL_CORES_PER_NODE = 4
-NUM_THREADS          = 2
-BIG_CLOCK            = '4GHz'
-SMALL_CLOCK          = '1GHz'
-MEM_PER_NODE         = '1GiB'
-MEM_STRIDE           = 0x40000000
-L1_SIZE              = '256KiB'
-L1_ASSOC             = 8
-L2_SIZE              = '2MiB'
-L2_ASSOC             = 8
-REMOTE_LATENCY       = '1000ns'
-DUMMY                = '/home/hiragahama/gem5/HomeGem5/binary/dummy_exit'
+NUM_THREADS = 2
+BIG_CLOCK = "4GHz"
+SMALL_CLOCK = "1GHz"
+MEM_PER_NODE = "1GiB"
+MEM_STRIDE = 0x40000000
+L1_SIZE = "256KiB"
+L1_ASSOC = 8
+L2_SIZE = "2MiB"
+L2_ASSOC = 8
+REMOTE_LATENCY = "1000ns"
+DUMMY = "/home/hiragahama/gem5/HomeGem5/binary/dummy_exit"
 
 # ============================================================
 # コマンドライン引数（masterからの指定で上書き）
 # ============================================================
-import argparse, sys
+import argparse
+import sys
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--strategy",    type=str, default="Scatter")
+parser.add_argument("--strategy", type=str, default="Scatter")
 parser.add_argument("--num-threads", type=int, default=2)
-parser.add_argument("--binary",      type=str, default=BINARY_PATH)
-parser.add_argument("--num-nodes",   type=int, default=NUM_NODES)
+parser.add_argument("--binary", type=str, default=BINARY_PATH)
+parser.add_argument("--num-nodes", type=int, default=NUM_NODES)
 args = parser.parse_args(sys.argv[1:])
 
-STRATEGY    = args.strategy
+STRATEGY = args.strategy
 NUM_THREADS = args.num_threads
 BINARY_PATH = args.binary
-NUM_NODES   = args.num_nodes
+NUM_NODES = args.num_nodes
 
 CORES_PER_NODE = BIG_CORES_PER_NODE + SMALL_CORES_PER_NODE
+
 
 # ============================================================
 # キャッシュ定義
 # ============================================================
 class L1ICache(Cache):
-    size = L1_SIZE; assoc = L1_ASSOC
-    tag_latency = 1; data_latency = 1; response_latency = 1
-    mshrs = 4; tgts_per_mshr = 20
+    size = L1_SIZE
+    assoc = L1_ASSOC
+    tag_latency = 1
+    data_latency = 1
+    response_latency = 1
+    mshrs = 4
+    tgts_per_mshr = 20
+
 
 class L1DCache(Cache):
-    size = L1_SIZE; assoc = L1_ASSOC
-    tag_latency = 1; data_latency = 1; response_latency = 1
-    mshrs = 4; tgts_per_mshr = 20
+    size = L1_SIZE
+    assoc = L1_ASSOC
+    tag_latency = 1
+    data_latency = 1
+    response_latency = 1
+    mshrs = 4
+    tgts_per_mshr = 20
+
 
 class L2Cache(Cache):
-    size = L2_SIZE; assoc = L2_ASSOC
-    tag_latency = 5; data_latency = 5; response_latency = 5
-    mshrs = 16; tgts_per_mshr = 20
+    size = L2_SIZE
+    assoc = L2_ASSOC
+    tag_latency = 5
+    data_latency = 5
+    response_latency = 5
+    mshrs = 16
+    tgts_per_mshr = 20
+
 
 # ============================================================
 # ヘルパー関数
@@ -69,12 +88,13 @@ class L2Cache(Cache):
 def make_cpu(cpu_id, clock):
     return X86O3CPU(
         cpu_id=cpu_id,
-        clk_domain=SrcClockDomain(clock=clock, voltage_domain=VoltageDomain())
+        clk_domain=SrcClockDomain(clock=clock, voltage_domain=VoltageDomain()),
     )
+
 
 def connect_cpu_to_xbar(cpu, xbar):
     cpu.createInterruptController()
-    cpu.interrupts[0].pio           = xbar.mem_side_ports
+    cpu.interrupts[0].pio = xbar.mem_side_ports
     cpu.interrupts[0].int_requestor = xbar.cpu_side_ports
     cpu.interrupts[0].int_responder = xbar.mem_side_ports
 
@@ -84,21 +104,26 @@ def connect_cpu_to_xbar(cpu, xbar):
     cpu.dcache.cpu_side = cpu.dcache_port
 
     cpu.l2cache = L2Cache()
-    cpu.l2bus   = L2XBar()
-    cpu.icache.mem_side      = cpu.l2bus.cpu_side_ports
-    cpu.dcache.mem_side      = cpu.l2bus.cpu_side_ports
+    cpu.l2bus = L2XBar()
+    cpu.icache.mem_side = cpu.l2bus.cpu_side_ports
+    cpu.dcache.mem_side = cpu.l2bus.cpu_side_ports
     cpu.l2bus.mem_side_ports = cpu.l2cache.cpu_side
-    cpu.l2cache.mem_side     = xbar.cpu_side_ports
+    cpu.l2cache.mem_side = xbar.cpu_side_ports
 
     cpu.mmu.dtb.walker.port = xbar.cpu_side_ports
     cpu.mmu.itb.walker.port = xbar.cpu_side_ports
 
+
 def build_node(node_id, cpu_global_id):
     node = SubSystem()
-    big_cpus   = [make_cpu(cpu_global_id + j, BIG_CLOCK)
-                  for j in range(BIG_CORES_PER_NODE)]
-    small_cpus = [make_cpu(cpu_global_id + BIG_CORES_PER_NODE + j, SMALL_CLOCK)
-                  for j in range(SMALL_CORES_PER_NODE)]
+    big_cpus = [
+        make_cpu(cpu_global_id + j, BIG_CLOCK)
+        for j in range(BIG_CORES_PER_NODE)
+    ]
+    small_cpus = [
+        make_cpu(cpu_global_id + BIG_CORES_PER_NODE + j, SMALL_CLOCK)
+        for j in range(SMALL_CORES_PER_NODE)
+    ]
     node.cpus = big_cpus + small_cpus
 
     node.xbar = SystemXBar()
@@ -114,6 +139,7 @@ def build_node(node_id, cpu_global_id):
 
     return node
 
+
 def connect_nodes_with_bridges(system, nodes):
     bridge_idx = 0
     for i in range(NUM_NODES):
@@ -122,12 +148,13 @@ def connect_nodes_with_bridges(system, nodes):
                 continue
             bridge = Bridge(
                 delay=REMOTE_LATENCY,
-                ranges=[AddrRange(start=j * MEM_STRIDE, size=MEM_PER_NODE)]
+                ranges=[AddrRange(start=j * MEM_STRIDE, size=MEM_PER_NODE)],
             )
             bridge.cpu_side_port = nodes[i].xbar.mem_side_ports
             bridge.mem_side_port = nodes[j].xbar.cpu_side_ports
-            setattr(system, f'bridge{bridge_idx}', bridge)
+            setattr(system, f"bridge{bridge_idx}", bridge)
             bridge_idx += 1
+
 
 def compute_active_indices(strategy, num_threads):
     if strategy == "Packed":
@@ -141,17 +168,26 @@ def compute_active_indices(strategy, num_threads):
         return indices[:num_threads]
 
     elif strategy == "HPO":
-        big_node0   = list(range(0, BIG_CORES_PER_NODE))
-        big_node1   = list(range(CORES_PER_NODE, CORES_PER_NODE + BIG_CORES_PER_NODE))
+        big_node0 = list(range(0, BIG_CORES_PER_NODE))
+        big_node1 = list(
+            range(CORES_PER_NODE, CORES_PER_NODE + BIG_CORES_PER_NODE)
+        )
         small_node0 = list(range(BIG_CORES_PER_NODE, CORES_PER_NODE))
-        small_node1 = list(range(CORES_PER_NODE + BIG_CORES_PER_NODE, 2 * CORES_PER_NODE))
-        return (big_node0 + big_node1 + small_node0 + small_node1)[:num_threads]
+        small_node1 = list(
+            range(CORES_PER_NODE + BIG_CORES_PER_NODE, 2 * CORES_PER_NODE)
+        )
+        return (big_node0 + big_node1 + small_node0 + small_node1)[
+            :num_threads
+        ]
 
     elif strategy == "MPO":
-        return [0,1,8,9, 2,3,10,11, 4,5,12,13, 6,7,14,15][:num_threads]
+        return [0, 1, 8, 9, 2, 3, 10, 11, 4, 5, 12, 13, 6, 7, 14, 15][
+            :num_threads
+        ]
 
     else:
         raise ValueError(f"Unknown STRATEGY: {strategy}")
+
 
 def assign_workloads(all_cpus, omp_proc):
     all_cpus[0].workload = omp_proc
@@ -165,9 +201,10 @@ def assign_workloads(all_cpus, omp_proc):
         cpu.createThreads()
         dummy_pid += 1
 
+
 def save_config(path):
     """実験条件をm5out/に保存（move_outputs_to_timestamped_dirで一緒に移動される）"""
-    with open(path, 'w') as f:
+    with open(path, "w") as f:
         f.write(f"STRATEGY={STRATEGY}\n")
         f.write(f"NUM_THREADS={NUM_THREADS}\n")
         f.write(f"NUM_NODES={NUM_NODES}\n")
@@ -182,15 +219,23 @@ def save_config(path):
         f.write(f"BINARY_PATH={BINARY_PATH}\n")
         f.write(f"active_indices={active_indices}\n")
 
+
 def read_node_stats(stats_file, num_nodes):
     with open(stats_file) as f:
         content = f.read()
     for i in range(num_nodes):
         node = f"node{i}"
-        reads  = re.search(rf"system\.{node}\.mem_ctrl\.readReqs\s+(\d+)", content)
-        writes = re.search(rf"system\.{node}\.mem_ctrl\.writeReqs\s+(\d+)", content)
-        print(f"{node}: reads={reads.group(1) if reads else 0}, "
-              f"writes={writes.group(1) if writes else 0}")
+        reads = re.search(
+            rf"system\.{node}\.mem_ctrl\.readReqs\s+(\d+)", content
+        )
+        writes = re.search(
+            rf"system\.{node}\.mem_ctrl\.writeReqs\s+(\d+)", content
+        )
+        print(
+            f"{node}: reads={reads.group(1) if reads else 0}, "
+            f"writes={writes.group(1) if writes else 0}"
+        )
+
 
 # ============================================================
 # メイン
@@ -207,10 +252,14 @@ print(f"DUMMY exists: {os.path.exists(DUMMY)}")
 
 # --- システム構築 ---
 system = System()
-system.clk_domain = SrcClockDomain(clock='1GHz', voltage_domain=VoltageDomain())
-system.mem_mode   = 'timing'
-system.mem_ranges = [AddrRange(start=i * MEM_STRIDE, size=MEM_PER_NODE)
-                     for i in range(NUM_NODES)]
+system.clk_domain = SrcClockDomain(
+    clock="1GHz", voltage_domain=VoltageDomain()
+)
+system.mem_mode = "timing"
+system.mem_ranges = [
+    AddrRange(start=i * MEM_STRIDE, size=MEM_PER_NODE)
+    for i in range(NUM_NODES)
+]
 
 nodes = []
 cpu_global_id = 0
@@ -218,7 +267,7 @@ for i in range(NUM_NODES):
     node = build_node(i, cpu_global_id)
     cpu_global_id += CORES_PER_NODE
     nodes.append(node)
-    setattr(system, f'node{i}', node)
+    setattr(system, f"node{i}", node)
 
 connect_nodes_with_bridges(system, nodes)
 system.system_port = nodes[0].xbar.cpu_side_ports
@@ -232,7 +281,7 @@ omp_proc.env = [
     f"GOMP_CPU_AFFINITY={affinity_order}",
     f"OMP_NUM_THREADS={NUM_THREADS}",
     "OMP_DYNAMIC=FALSE",
-    "GOMP_SPINCOUNT=0"
+    "GOMP_SPINCOUNT=0",
 ]
 
 all_cpus = [cpu for node in nodes for cpu in node.cpus]
@@ -249,4 +298,4 @@ m5.stats.dump()
 # --- 結果表示・保存 ---
 read_node_stats("m5out/stats.txt", NUM_NODES)
 save_config("m5out/experiment_config.txt")
-move_outputs_to_timestamped_dir(STRATEGY,NUM_THREADS)
+move_outputs_to_timestamped_dir(STRATEGY, NUM_THREADS)

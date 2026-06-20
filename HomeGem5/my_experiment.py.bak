@@ -208,7 +208,7 @@ for cpu in all_cpus[1:]:
     dummy.cmd = [DUMMY]
     cpu.workload = dummy
     cpu.createThreads()
-    dummy_pid+=1 
+    dummy_pid+=1
 # --- 4. ワークロードの初期化とRoot生成 ---
 system.workload = SEWorkload.init_compatible(BINARY_PATH)
 root = Root(full_system=False, system=system)
@@ -297,5 +297,3 @@ for node in ["node0", "node1"]:
     writes = re.search(rf"system\.{node}\.mem_ctrl\.writeReqs\s+(\d+)", content)
     print(f"{node}: reads={reads.group(1) if reads else 0}, writes={writes.group(1) if writes else 0}")
 move_outputs_to_timestamped_dir(STRATEGY,NUM_NODES,BIG_CORES_PER_NODE,SMALL_CORES_PER_NODE)
-
-
