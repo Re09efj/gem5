@@ -1,0 +1,15 @@
+MPIFC = mpifort
+MPICC = mpicc
+FFLAGS = -O3 -static
+CFLAGS = -O3 -static
+FLINK = $(MPIFC)
+CLINK = $(MPICC)
+F_LIB =
+C_LIB = -lm
+RAND = randi8
+COMMON = ../common
+FCOMPILE = $(MPIFC) -c $(FFLAGS)
+CCOMPILE = $(MPICC) -c $(CFLAGS)
+FMPI_LIB =
+FMPI_INC =
+BINDIR = ../bin

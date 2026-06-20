@@ -1,0 +1,13 @@
+{
+    "BINARY_PATH": "/home/hiragahama/gem5/HomeGem5/binary/NPB3.4.4/NPB3.4-OMP/bin/mg.S.x",
+    "STRATEGY": "Scatter",
+    "CONCENTRATED_NODE": 0,
+    "NUM_NODES": 2,
+    "BIG_CORES_PER_NODE": 4,
+    "SMALL_CORES_PER_NODE": 4,
+    "NUM_THREADS": 4,
+    "BIG_CLOCK": "5GHz",
+    "SMALL_CLOCK": "1.2GHz",
+    "MEM_PER_NODE": "1GiB",
+    "REMOTE_LATENCY": "1000ns"
+}

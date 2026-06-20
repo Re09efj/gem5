@@ -1,0 +1,78 @@
+nohup: 入力を無視します
+Global frequency set at 1000000000000 ticks per second
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (4096 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (4096 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/base/remote_gdb.cc:418: warn: Sockets disabled, not accepting gdb connections
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.1.0.1
+gem5 compiled Jun 14 2026 03:25:24
+gem5 started Jun 16 2026 16:29:29
+gem5 executing on sid, pid 323126
+command line: /home/hiragahama/gem5/build/X86/gem5.opt /home/hiragahama/gem5/HomeGem5/my_experiment.py
+
+info: Standard input is not a terminal, disabling listeners.
+MPO
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1127: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/hiragahama/gem5/HomeGem5/binary/NPB3.4.4/NPB3.4-OMP/bin/mg.S.x'
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.cc:97: warn: ignoring syscall rt_sigaction(...)
+      (further warnings will be suppressed)
+src/sim/syscall_emul.cc:97: warn: ignoring syscall rt_sigprocmask(...)
+      (further warnings will be suppressed)
+
+
+ NAS Parallel Benchmarks (NPB3.4-OMP) - MG Benchmark
+
+ No input file. Using compiled defaults 
+src/sim/power_state.cc:105: warn: PowerState: Already in the requested power state, request ignored
+
+libgomp: Thread creation failed: Resource temporarily unavailable
+gem5.opt: src/cpu/simple/timing.cc:246: virtual void gem5::TimingSimpleCPU::suspendContext(gem5::ThreadID): Assertion `_status == BaseSimpleCPU::Running' failed.
+Program aborted at tick 479514800
+--- BEGIN LIBC BACKTRACE ---
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem515print_backtraceEv+0x16) [0x1eeeb36]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem512abortHandlerEi+0x39) [0x1f13db9]
+/lib64/libc.so.6(+0x1a040) [0x7f7be7629040]
+/lib64/libc.so.6(+0x73e7c) [0x7f7be7682e7c]
+/lib64/libc.so.6(gsignal+0x1e) [0x7f7be7628f0e]
+/lib64/libc.so.6(abort+0x26) [0x7f7be76106d0]
+/lib64/libc.so.6(__assert_perror_fail+0x0) [0x7f7be7610639]
+/home/hiragahama/gem5/build/X86/gem5.opt() [0x4d79b0]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem513BaseSimpleCPU11haltContextEs+0x1d) [0x121d2dd]
+/home/hiragahama/gem5/build/X86/gem5.opt() [0x1fa5582]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem513exitGroupFuncEPNS_11SyscallDescEPNS_13ThreadContextEi+0x11) [0x1fa5741]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZNSt17_Function_handlerIFN4gem513SyscallReturnEPNS0_11SyscallDescEPNS0_13ThreadContextEiEPS6_E9_M_invokeERKSt9_Any_dataOS3_OS5_Oi+0x18) [0xce8d28]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZNSt17_Function_handlerIFN4gem513SyscallReturnEPNS0_13ThreadContextEiEZZNS0_14SyscallDescABIINS0_6X86ISA8EmuLinux12SyscallABI64EE13buildExecutorIJiEEESt8functionIFS1_PNS0_11SyscallDescES3_EESB_IFS1_SD_S3_DpT_EEENKUlSD_S3_E_clESD_S3_EUlS3_iE_E9_M_invokeERKSt9_Any_dataOS3_Oi+0x44) [0xd21c44]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem513invokeSimcallINS_6X86ISA8EmuLinux12SyscallABI64ELb0ENS_13SyscallReturnEJiEEET1_PNS_13ThreadContextESt8functionIFS5_S7_DpT2_EE+0x8f) [0xd4d5ff]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZNSt17_Function_handlerIFN4gem513SyscallReturnEPNS0_11SyscallDescEPNS0_13ThreadContextEEZNS0_14SyscallDescABIINS0_6X86ISA8EmuLinux12SyscallABI64EE13buildExecutorIJiEEESt8functionIS6_ESD_IFS1_S3_S5_DpT_EEEUlS3_S5_E_E9_M_invokeERKSt9_Any_dataOS3_OS5_+0xf0) [0xd4d760]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem511SyscallDesc9doSyscallEPNS_13ThreadContextE+0x64) [0x1fa93c4]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem514SESyscallFault6invokeEPNS_13ThreadContextERKNS_14RefCountingPtrINS_10StaticInstEEE+0x5a) [0x1f89dea]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem513BaseSimpleCPU9advancePCERKSt10shared_ptrINS_9FaultBaseEE+0xb8) [0x121eb58]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem515TimingSimpleCPU11advanceInstERKSt10shared_ptrINS_9FaultBaseEE+0x70) [0x12162c0]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem515TimingSimpleCPU14completeIfetchEPNS_6PacketE+0x21b) [0x1215a2b]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem510EventQueue10serviceOneEv+0x125) [0x1f044d5]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem59doSimLoopEPNS_10EventQueueE+0x58) [0x1f32398]
+/home/hiragahama/gem5/build/X86/gem5.opt(_ZN4gem58simulateEm+0x23e) [0x1f32a1e]
+/home/hiragahama/gem5/build/X86/gem5.opt() [0x1e59ee7]
+/home/hiragahama/gem5/build/X86/gem5.opt() [0x74bac2]
+/lib64/libpython3.13.so.1.0(+0x17285c) [0x7f7be877285c]
+/lib64/libpython3.13.so.1.0(+0x235a52) [0x7f7be8835a52]
+/lib64/libpython3.13.so.1.0(_PyEval_EvalFrameDefault+0x47ea) [0x7f7be875473a]
+/lib64/libpython3.13.so.1.0(PyEval_EvalCode+0x9f) [0x7f7be8827b4f]
+/lib64/libpython3.13.so.1.0(+0x2449d3) [0x7f7be88449d3]
+/lib64/libpython3.13.so.1.0(+0x16ad98) [0x7f7be876ad98]
+/lib64/libpython3.13.so.1.0(PyObject_Vectorcall+0x37) [0x7f7be87409d7]
+--- END LIBC BACKTRACE ---
+For more info on how to address this issue, please visit https://www.gem5.org/documentation/general_docs/common-errors/ 
+
