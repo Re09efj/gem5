@@ -404,9 +404,9 @@ Process::replicatePage(Addr vaddr, Addr new_paddr, ThreadContext *old_tc,
 }
 
 bool
-Process::fixupFault(Addr vaddr)
+Process::fixupFault(Addr vaddr, ThreadContext *tc)
 {
-    return memState->fixupFault(vaddr);
+    return memState->fixupFault(vaddr, tc);
 }
 
 void

@@ -149,7 +149,7 @@ PageFault::invoke(ThreadContext *tc, const StaticInstPtr &inst)
             tc->setMiscReg(misc_reg::Cr2, addr);
         else
             tc->setMiscReg(misc_reg::Cr2, (uint32_t)addr);
-    } else if (!tc->getProcessPtr()->fixupFault(addr)) {
+    } else if (!tc->getProcessPtr()->fixupFault(addr, tc)) {
         PageFaultErrorCode code = errorCode;
         const char *modeStr = "";
         if (code.fetch)

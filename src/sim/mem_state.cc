@@ -27,6 +27,7 @@
  */
 
 #include "sim/mem_state.hh"
+#include "cpu/thread_context.hh"
 
 #include <cassert>
 
@@ -384,8 +385,13 @@ MemState::remapRegion(Addr start_addr, Addr new_start_addr, Addr length)
 }
 
 bool
-MemState::fixupFault(Addr vaddr)
+MemState::fixupFault(Addr vaddr, ThreadContext *tc)
 {
+    // NUMA: tcが渡された場合、そのcpuIdからNUMAノードを決定
+    if (tc) {
+        int cpu_id = tc->cpuId();
+        _ownerProcess->currentNumaNode = cpu_id / _ownerProcess->coresPerNode;
+    }
     /**
      * Check if we are accessing a mapped virtual address. If so then we
      * just haven't allocated it a physical page yet and can do so here.

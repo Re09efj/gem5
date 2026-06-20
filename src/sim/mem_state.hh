@@ -170,7 +170,7 @@ class MemState : public Serializable
      * @param vaddr The virtual address which is causing the fault.
      * @return Whether the fault has been fixed.
      */
-    bool fixupFault(Addr vaddr);
+    bool fixupFault(Addr vaddr, ThreadContext *tc = nullptr);
 
     /**
      * Given the vaddr and size, this method will chunk the allocation into
