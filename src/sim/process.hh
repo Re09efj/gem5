@@ -128,7 +128,7 @@ class Process : public SimObject
 
     /// Attempt to fix up a fault at vaddr by allocating a page on the stack.
     /// @return Whether the fault has been fixed.
-    bool fixupFault(Addr vaddr);
+    bool fixupFault(Addr vaddr, ThreadContext *tc = nullptr);
 
     // After getting registered with system object, tell process which
     // system-wide context id it is assigned.
@@ -184,8 +184,12 @@ class Process : public SimObject
     std::map<int, int> threadAffinityMap;
     int coresPerNode = 8;  // Node0: CPU0-7, Node1: CPU8-15
 
+    // 最後にsetAffinityされたNUMAノード（allocateMemで参照）
+    int currentNumaNode = 0;
+
     void setThreadAffinity(int tid, int cpu_id) {
         threadAffinityMap[tid] = cpu_id;
+        currentNumaNode = cpu_id / coresPerNode;
     }
     int getThreadAffinity(int tid) {
         auto it = threadAffinityMap.find(tid);

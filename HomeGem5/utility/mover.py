@@ -18,7 +18,7 @@ def move_outputs_to_timestamped_dir(STRATEGY, NUM_THREADS):
     # 時刻を取得して一意のフォルダ名を決定
     now = datetime.now().strftime("%Y%m%d_%H%M%S")
     final_output_dir = os.path.join(
-        BASE_OUTPUT_DIR, f"{STRATEGY}_{NUM_THREADS}THDS_{now}"
+        BASE_OUTPUT_DIR, f"{STRATEGY}_{NUM_THREADS}TH_{now}"
     )
 
     # 移動させたいターゲットファイル群

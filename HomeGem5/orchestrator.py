@@ -9,6 +9,7 @@ def run(strategy, num_threads, binary=BINARY, num_nodes=2):
     subprocess.run(
         [
             gem5,
+            # "--debug-flags=SyscallVerbose",
             MYEXP,
             f"--strategy={strategy}",
             f"--num-threads={num_threads}",
@@ -19,7 +20,7 @@ def run(strategy, num_threads, binary=BINARY, num_nodes=2):
 
 
 def main():
-    run("Scatter", 4)
+    run("Scatter", 2)
     # run("MPO",     1)
     # run("HPO",     1)
     # run("Packed",  1)

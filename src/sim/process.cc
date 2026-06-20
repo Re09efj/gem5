@@ -338,9 +338,8 @@ Process::allocateMem(Addr vaddr, int64_t size, bool clobber)
     }
 
     const int npages = divCeil(size, page_size);
-    // NUMA: このプロセスのpidからNUMAノードを決定
-    const int numa_pool_id = getNumaNode(pid());
-    const Addr paddr = seWorkload->allocPhysPages(npages, numa_pool_id);
+    // NUMA: 直近のsched_setaffinityで設定されたNUMAノードを使用
+    const Addr paddr = seWorkload->allocPhysPages(npages, currentNumaNode);
     const Addr pages_size = npages * page_size;
     pTable->map(page_addr, paddr, pages_size,
                 clobber ? EmulationPageTable::Clobber :
@@ -405,7 +404,7 @@ Process::replicatePage(Addr vaddr, Addr new_paddr, ThreadContext *old_tc,
 }
 
 bool
-Process::fixupFault(Addr vaddr)
+Process::fixupFault(Addr vaddr, ThreadContext *tc)
 {
     return memState->fixupFault(vaddr);
 }
