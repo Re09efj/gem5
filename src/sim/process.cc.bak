@@ -338,8 +338,16 @@ Process::allocateMem(Addr vaddr, int64_t size, bool clobber)
     }
 
     const int npages = divCeil(size, page_size);
-    // NUMA: このプロセスのpidからNUMAノードを決定
-    const int numa_pool_id = getNumaNode(pid());
+    // NUMA: スレッドのaffinityに基づいてpool_id(=NUMAノード)を決定
+    int numa_pool_id = 0;
+    // 現在アクティブなスレッドのcpuIdからNUMAノードを取得
+    for (auto cid : contextIds) {
+        ThreadContext *tc_check = system->threads[cid];
+        if (tc_check && tc_check->status() == ThreadContext::Active) {
+            numa_pool_id = getNumaNode(tc_check->cpuId());
+            break;
+        }
+    }
     const Addr paddr = seWorkload->allocPhysPages(npages, numa_pool_id);
     const Addr pages_size = npages * page_size;
     pTable->map(page_addr, paddr, pages_size,

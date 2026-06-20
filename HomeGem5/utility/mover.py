@@ -12,13 +12,13 @@ def get_default_m5out():
     """gem5に渡すためのデフォルトの出力パスを返します"""
     return DEFAULT_M5OUT
 
-def move_outputs_to_timestamped_dir(STRATEGY,NUM_NODES,BIG_CORES_PER_NODE,SMALL_CORES_PER_NODE):
+def move_outputs_to_timestamped_dir(STRATEGY,NUM_THREADS):
     # 時刻を取得して一意のフォルダ名を決定
     now = datetime.now().strftime("%Y%m%d_%H%M%S")
-    final_output_dir = os.path.join(BASE_OUTPUT_DIR, f"{STRATEGY}_{NUM_NODES}N{BIG_CORES_PER_NODE}P{SMALL_CORES_PER_NODE}E_{now}")
+    final_output_dir = os.path.join(BASE_OUTPUT_DIR, f"{STRATEGY}_{NUM_THREADS}THDS_{now}")
     
     # 移動させたいターゲットファイル群
-    target_files = ["stats.txt", "config.ini", "config.json"]
+    target_files = ["stats.txt", "config.ini", "config.json","experiment_config.txt"]
     
     # 実際に生成されているファイルだけを抽出
     files_to_move = [f for f in target_files if os.path.exists(os.path.join(DEFAULT_M5OUT, f))]

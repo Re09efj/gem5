@@ -3078,11 +3078,12 @@ schedSetaffinityFunc(SyscallDesc *desc, ThreadContext *tc,
     if (target_cpu < 0)
         return -EINVAL;
 
-    // プロセスのaffinityマップに記録（キーはpid）
+    // プロセスのaffinityマップに記録（キーはcpuIdを使用）
     auto process = tc->getProcessPtr();
-    process->setThreadAffinity(pid, target_cpu);
+    int cpu_key = tc->cpuId();
+    process->setThreadAffinity(cpu_key, target_cpu);
 
-    warn("sched_setaffinity: pid=%d pinned to CPU %d (NUMA node %d)\n", pid, target_cpu, process->getNumaNode(pid));
+    warn("sched_setaffinity: cpuId %d pinned to CPU %d (NUMA node %d)\n", cpu_key, target_cpu, process->getNumaNode(cpu_key));
 
     return 0;
 #else

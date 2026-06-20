@@ -1,6 +1,6 @@
 {
     "BINARY_PATH": "/home/hiragahama/gem5/HomeGem5/binary/NPB3.4.4/NPB3.4-OMP/bin/mg.S.x",
-    "STRATEGY": "Scatter",
+    "STRATEGY": "Packed",
     "CONCENTRATED_NODE": 0,
     "NUM_NODES": 2,
     "BIG_CORES_PER_NODE": 4,
