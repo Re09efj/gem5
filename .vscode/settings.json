@@ -1,0 +1,12 @@
+{
+  "python.analysis.diagnosticSeverityOverrides": {
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "reportUndefinedVariable": "none",
+  "reportAttributeAccessIssue": "none",
+  "reportGeneralTypeIssues": "none"
+  },
+  "python-envs.defaultEnvManager": "ms-python.python:system",
+  "python-envs.defaultPackageManager": "ms-python.python:pip",
+  "python.analysis.stubPath": "/home/hiragahama/.gem5_stubs"
+}
