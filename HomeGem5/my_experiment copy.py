@@ -92,15 +92,11 @@ def make_cpu(cpu_id, clock):
     )
 
 
-def connect_cpu_to_membus(cpu, membus):
-    """CPUを単一のコヒーレントなmembusに接続する。
-    membusがsnoopを全CPUに伝播するため、ノードをまたいでも
-    キャッシュコヒーレンシ(MESI)が機能し、OpenMPバリアが正しく動作する。
-    """
+def connect_cpu_to_xbar(cpu, xbar):
     cpu.createInterruptController()
-    cpu.interrupts[0].pio = membus.mem_side_ports
-    cpu.interrupts[0].int_requestor = membus.cpu_side_ports
-    cpu.interrupts[0].int_responder = membus.mem_side_ports
+    cpu.interrupts[0].pio = xbar.mem_side_ports
+    cpu.interrupts[0].int_requestor = xbar.cpu_side_ports
+    cpu.interrupts[0].int_responder = xbar.mem_side_ports
 
     cpu.icache = L1ICache()
     cpu.dcache = L1DCache()
@@ -112,14 +108,14 @@ def connect_cpu_to_membus(cpu, membus):
     cpu.icache.mem_side = cpu.l2bus.cpu_side_ports
     cpu.dcache.mem_side = cpu.l2bus.cpu_side_ports
     cpu.l2bus.mem_side_ports = cpu.l2cache.cpu_side
-    cpu.l2cache.mem_side = membus.cpu_side_ports
+    cpu.l2cache.mem_side = xbar.cpu_side_ports
 
-    cpu.mmu.dtb.walker.port = membus.cpu_side_ports
-    cpu.mmu.itb.walker.port = membus.cpu_side_ports
+    cpu.mmu.dtb.walker.port = xbar.cpu_side_ports
+    cpu.mmu.itb.walker.port = xbar.cpu_side_ports
 
 
-def make_cpus(node_id, cpu_global_id):
-    """1ノード分のCPU群を生成して返す（接続はまだしない）"""
+def build_node(node_id, cpu_global_id):
+    node = SubSystem()
     big_cpus = [
         make_cpu(cpu_global_id + j, BIG_CLOCK)
         for j in range(BIG_CORES_PER_NODE)
@@ -128,7 +124,38 @@ def make_cpus(node_id, cpu_global_id):
         make_cpu(cpu_global_id + BIG_CORES_PER_NODE + j, SMALL_CLOCK)
         for j in range(SMALL_CORES_PER_NODE)
     ]
-    return big_cpus + small_cpus
+    node.cpus = big_cpus + small_cpus
+
+    node.xbar = SystemXBar()
+    node.mem_ctrl = MemCtrl()
+    node.mem_ctrl.dram = DDR3_1600_8x8(
+        range=AddrRange(start=node_id * MEM_STRIDE, size=MEM_PER_NODE),
+        ranks_per_channel=1,
+    )
+    node.mem_ctrl.port = node.xbar.mem_side_ports
+
+    for cpu in node.cpus:
+        connect_cpu_to_xbar(cpu, node.xbar)
+
+    return node
+
+
+def connect_nodes_with_bridges(system, nodes):
+    bridge_idx = 0
+    for i in range(NUM_NODES):
+        for j in range(NUM_NODES):
+            if i == j:
+                continue
+            bridge = Bridge(
+                delay=REMOTE_LATENCY,
+                ranges=[AddrRange(start=j * MEM_STRIDE, size=MEM_PER_NODE)],
+                req_size=32,
+                resp_size=32,
+            )
+            bridge.cpu_side_port = nodes[i].xbar.mem_side_ports
+            bridge.mem_side_port = nodes[j].xbar.cpu_side_ports
+            setattr(system, f"bridge{bridge_idx}", bridge)
+            bridge_idx += 1
 
 
 def compute_active_indices(strategy, num_threads):
@@ -195,17 +222,19 @@ def save_config(path):
         f.write(f"active_indices={active_indices}\n")
 
 
-def read_mem_stats(stats_file, num_nodes):
-    """単一membus構成では mem_ctrl の名前が変わるので、
-    両ノードのmem_ctrlを名前で拾って表示する。"""
+def read_node_stats(stats_file, num_nodes):
     with open(stats_file) as f:
         content = f.read()
     for i in range(num_nodes):
-        name = f"mem_ctrl{i}"
-        reads = re.search(rf"system\.{name}\.readReqs\s+(\d+)", content)
-        writes = re.search(rf"system\.{name}\.writeReqs\s+(\d+)", content)
+        node = f"node{i}"
+        reads = re.search(
+            rf"system\.{node}\.mem_ctrl\.readReqs\s+(\d+)", content
+        )
+        writes = re.search(
+            rf"system\.{node}\.mem_ctrl\.writeReqs\s+(\d+)", content
+        )
         print(
-            f"node{i} ({name}): reads={reads.group(1) if reads else 0}, "
+            f"{node}: reads={reads.group(1) if reads else 0}, "
             f"writes={writes.group(1) if writes else 0}"
         )
 
@@ -234,40 +263,18 @@ system.mem_ranges = [
     for i in range(NUM_NODES)
 ]
 
-# 単一のコヒーレントなfabric（membus）。
-# 全CPUのL2とすべてのメモリコントローラをここに集約することで、
-# ノードをまたいでもMESIプロトコルが機能する（バリアが動く）。
-system.membus = SystemXBar()
-
-# 全ノードのCPUを生成し、まとめてmembusに接続
-all_cpus = []
+nodes = []
 cpu_global_id = 0
 for i in range(NUM_NODES):
-    cpus = make_cpus(i, cpu_global_id)
+    node = build_node(i, cpu_global_id)
     cpu_global_id += CORES_PER_NODE
-    all_cpus.extend(cpus)
-setattr(system, "cpus", all_cpus)
+    nodes.append(node)
+    setattr(system, f"node{i}", node)
 
-for cpu in all_cpus:
-    connect_cpu_to_membus(cpu, system.membus)
+connect_nodes_with_bridges(system, nodes)
+system.system_port = nodes[0].xbar.cpu_side_ports
 
-# 各ノードのメモリコントローラをmembusに接続。
-# range で物理アドレス空間を分割し、どのアドレスがどのノードに
-# 属するかを表現する（NUMAのアドレスマップ）。
-mem_ctrls = []
-for i in range(NUM_NODES):
-    mc = MemCtrl()
-    mc.dram = DDR3_1600_8x8(
-        range=AddrRange(start=i * MEM_STRIDE, size=MEM_PER_NODE),
-        ranks_per_channel=1,
-    )
-    mc.port = system.membus.mem_side_ports
-    setattr(system, f"mem_ctrl{i}", mc)
-    mem_ctrls.append(mc)
-
-system.system_port = system.membus.cpu_side_ports
-
-print(f"total CPUs: {len(all_cpus)}")
+print(f"total CPUs: {sum(len(n.cpus) for n in nodes)}")
 
 # --- ワークロード定義 ---
 omp_proc = Process(pid=100)
@@ -280,6 +287,7 @@ omp_proc.env = [
     "GOMP_SPINCOUNT=100000000",
 ]
 
+all_cpus = [cpu for node in nodes for cpu in node.cpus]
 assign_workloads(all_cpus, omp_proc)
 
 system.workload = SEWorkload.init_compatible(BINARY_PATH)
@@ -287,11 +295,15 @@ root = Root(full_system=False, system=system)
 
 # --- シミュレーション実行 ---
 m5.instantiate()
+MMAP_START = 0x7FFFF76FB000
+MMAP_END = 0x7FFFF7FFEFFF
+MMAP_SIZE = MMAP_END - MMAP_START + 1
+HALF = MMAP_SIZE // 2
 
 m5.simulate()
 m5.stats.dump()
 
 # --- 結果表示・保存 ---
-read_mem_stats("m5out/stats.txt", NUM_NODES)
+read_node_stats("m5out/stats.txt", NUM_NODES)
 save_config("m5out/experiment_config.txt")
 move_outputs_to_timestamped_dir(STRATEGY, NUM_THREADS)

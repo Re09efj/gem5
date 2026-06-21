@@ -73,6 +73,7 @@
 
 #endif
 #include <fcntl.h>
+#include <sstream>
 #include <net/if.h>
 #include <poll.h>
 #include <sys/ioctl.h>
@@ -1771,7 +1772,45 @@ doClone(SyscallDesc *desc, ThreadContext *tc, RegVal flags, RegVal newStack,
         return -EINVAL;
 
     ThreadContext *ctc;
-    if (!(ctc = tc->getSystemPtr()->threads.findFree())) {
+    // NUMA: GEM5_TARGET_CPUSに従ってtcを選ぶ
+    auto *parent_process = tc->getProcessPtr();
+    int target_cpu_for_clone = -1;
+    for (const auto &env_str : parent_process->envp) {
+        if (env_str.find("GEM5_TARGET_CPUS=") == 0) {
+            std::string val = env_str.substr(17);
+            // cloneCountに対応するCPU番号を取得
+            int idx = 0;
+            std::string token;
+            std::istringstream ss(val);
+            while (std::getline(ss, token, ',')) {
+                if (idx == parent_process->cloneCount) {
+                    target_cpu_for_clone = std::stoi(token);
+                    break;
+                }
+                idx++;
+            }
+            break;
+        }
+    }
+    warn("doClone: cloneCount=%d target_cpu=%d\n", parent_process->cloneCount, target_cpu_for_clone);
+    parent_process->cloneCount++;
+
+    if (target_cpu_for_clone >= 0) {
+        ctc = nullptr;
+        for (auto *ctx : tc->getSystemPtr()->threads) {
+            if (ctx && ctx->cpuId() == target_cpu_for_clone) {
+                // DummyプロセスをHaltして強制的にこのtcを使う
+                // Dummyが既にHaltedなら何もしない（tiny_exitで即終了するはず）
+                ctc = ctx;
+                warn("doClone: assigning to cpuId=%d\n", target_cpu_for_clone);
+                break;
+            }
+        }
+        if (!ctc) ctc = tc->getSystemPtr()->threads.findFree();
+    } else {
+        ctc = tc->getSystemPtr()->threads.findFree();
+    }
+    if (!ctc) {
         DPRINTF_SYSCALL(Verbose, "clone: no spare thread context in system"
                         "[cpu %d, thread %d]", tc->cpuId(), tc->threadId());
         return -EAGAIN;
@@ -1892,6 +1931,8 @@ doClone(SyscallDesc *desc, ThreadContext *tc, RegVal flags, RegVal newStack,
     OS::archClone(flags, p, cp, tc, ctc, newStack, tlsPtr);
 
     desc->returnInto(ctc, 0);
+
+    warn("doClone: ctc cpuId=%d PC=%#x after archClone\n", ctc->cpuId(), ctc->pcState().instAddr());
 
     ctc->activate();
 
@@ -3078,14 +3119,12 @@ schedSetaffinityFunc(SyscallDesc *desc, ThreadContext *tc,
     if (target_cpu < 0)
         return -EINVAL;
 
-    // プロセスのaffinityマップに記録（キーはcpuIdを使用）
+    // プロセスのaffinityマップに記録（キーはtarget_cpu）
     auto process = tc->getProcessPtr();
-    int cpu_key = tc->cpuId();
-    process->setThreadAffinity(cpu_key, target_cpu);
-
-    warn("sched_setaffinity: cpuId %d pinned to CPU %d (NUMA node %d)\n", cpu_key, target_cpu, process->getNumaNode(cpu_key));
-
-    return 0;
+    process->setThreadAffinity(target_cpu, target_cpu);
+    warn("sched_setaffinity: pid=%d pinned to CPU %d (NUMA node %d)\n",
+         pid, target_cpu, process->getNumaNode(target_cpu));
+        return 0;
 #else
     warnUnsupportedOS("sched_setaffinity");
     return -1;

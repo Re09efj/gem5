@@ -385,8 +385,19 @@ MemState::remapRegion(Addr start_addr, Addr new_start_addr, Addr length)
 }
 
 bool
-MemState::fixupFault(Addr vaddr)
+MemState::fixupFault(Addr vaddr, ThreadContext *tc)
 {
+    // NUMA: ページフォルトを起こしたCPUのIDからNUMAノードを決定
+    if (tc) {
+        int cpu_id = tc->cpuId();
+        // affinityマップが空のプロセス（Dummy）はNode0固定
+        if (_ownerProcess->threadAffinityMap.empty()) {
+            _ownerProcess->currentNumaNode = 0;
+        } else {
+            _ownerProcess->currentNumaNode = cpu_id / _ownerProcess->coresPerNode;
+        }
+        warn("fixupFault: cpuId=%d numaNode=%d pid=%d mapsize=%d vaddr=%#x\n", cpu_id, _ownerProcess->currentNumaNode, _ownerProcess->pid(), (int)_ownerProcess->threadAffinityMap.size(), vaddr);
+    }
     /**
      * Check if we are accessing a mapped virtual address. If so then we
      * just haven't allocated it a physical page yet and can do so here.

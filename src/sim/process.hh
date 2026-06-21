@@ -186,6 +186,8 @@ class Process : public SimObject
 
     // 最後にsetAffinityされたNUMAノード（allocateMemで参照）
     int currentNumaNode = 0;
+    int cloneCount = 0;  // cloneが何回呼ばれたか
+    std::vector<int> targetCpuList;  // active_indicesのCPU番号リスト
 
     void setThreadAffinity(int tid, int cpu_id) {
         threadAffinityMap[tid] = cpu_id;

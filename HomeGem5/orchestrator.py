@@ -2,14 +2,14 @@ import subprocess
 
 gem5 = "/home/hiragahama/gem5/build/X86/gem5.opt"
 MYEXP = "/home/hiragahama/gem5/HomeGem5/my_experiment.py"
-BINARY = "/home/hiragahama/gem5/HomeGem5/binary/NPB3.4.4/NPB3.4-OMP/bin/mg.S.x"
+BINARY = "/home/hiragahama/gem5/HomeGem5/binary/NPB3.4.4/NPB3.4-OMP/bin/mg.S.numa_firsttouch.x"
 
 
 def run(strategy, num_threads, binary=BINARY, num_nodes=2):
     subprocess.run(
         [
             gem5,
-            # "--debug-flags=SyscallVerbose",
+            # "--debug-flags=TLB",
             MYEXP,
             f"--strategy={strategy}",
             f"--num-threads={num_threads}",
