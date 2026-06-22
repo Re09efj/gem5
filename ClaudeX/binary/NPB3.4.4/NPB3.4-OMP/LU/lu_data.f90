@@ -7,7 +7,7 @@
       module lu_data
 
 !---------------------------------------------------------------------
-!   npbparams.h defines parameters that depend on the class and 
+!   npbparams.h defines parameters that depend on the class and
 !   number of nodes
 !---------------------------------------------------------------------
 
@@ -144,9 +144,9 @@
       integer ios
 
 !---------------------------------------------------------------------
-!   to improve cache performance, second two dimensions padded by 1 
+!   to improve cache performance, second two dimensions padded by 1
 !   for even number sizes only.
-!   Note: corresponding array (called "v") in routines blts, buts, 
+!   Note: corresponding array (called "v") in routines blts, buts,
 !   and l2norm are similarly padded
 !---------------------------------------------------------------------
 
@@ -190,4 +190,3 @@
 
       return
       end
-

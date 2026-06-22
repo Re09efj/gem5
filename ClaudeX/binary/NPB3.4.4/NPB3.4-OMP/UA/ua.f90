@@ -57,7 +57,7 @@
 !     Read input file (if it exists), else take
 !     defaults from parameters
 !---------------------------------------------------------------------
-          
+
       call check_timer_flag( timeron )
       if (timeron) then
          t_names(t_total) = 'total'
@@ -72,11 +72,11 @@
          t_names(t_add2) = 'add2'
       endif
 
-      write (*,1000) 
+      write (*,1000)
       open (unit=2,file='inputua.data',status='old', iostat=fstatus)
 
       if (fstatus .eq. 0) then
-        write(*,233) 
+        write(*,233)
  233    format(' Reading from input file inputua.data')
         read (2,*) fre
         read (2,*) niter
@@ -85,7 +85,7 @@
         class = 'U'
         close(2)
       else
-        write(*,234) 
+        write(*,234)
         fre        = fre_default
         niter      = niter_default
         nmxh       = nmxh_default
@@ -130,8 +130,8 @@
 
       call init_locks
 
-!.....compute tables of coefficients and weights      
-      call coef 
+!.....compute tables of coefficients and weights
+      call coef
       call geom1
 
 !.....compute the discrete laplacian operators
@@ -162,10 +162,10 @@
           do i = 1, t_last
              if (i.ne.t_init) call timer_clear(i)
           end do
-          call timer_start(1)          
+          call timer_start(1)
         endif
 
-!.......advance the convection step 
+!.......advance the convection step
         call convect(ifmortar)
 
         if (timeron) call timer_start(t_transf2)
@@ -175,13 +175,13 @@
 !.......compute residual for diffusion term based on intital guess
 
 !.......compute the left hand side of equation, lapacian t
-!$OMP PARALLEL DEFAULT(SHARED) PRIVATE(ie,k,j,i) 
-!$OMP DO 
+!$OMP PARALLEL DEFAULT(SHARED) PRIVATE(ie,k,j,i)
+!$OMP DO
         do ie = 1,nelt
           call laplacian(ta2(1,1,1,ie),ta1(1,1,1,ie),size_e(ie))
         end do
-!$OMP END DO 
-!.......compute the residual 
+!$OMP END DO
+!.......compute the residual
 !$OMP DO
         do ie = 1, nelt
           do k=1,lx1
@@ -194,7 +194,7 @@
         end do
 !$OMP END DO
 !$OMP END PARALLEL
-!.......get the residual on mortar 
+!.......get the residual on mortar
         call transfb(rmor,trhs)
         if (timeron) call timer_stop(t_transf2)
 
@@ -202,7 +202,7 @@
 
 !.......apply boundary conidtion to trhs
 !$OMP PARALLEL DO DEFAULT(SHARED) PRIVATE(ie,iside)
-        do ie=1,nelt  
+        do ie=1,nelt
           do iside=1,nsides
             if (cbc(iside,ie).eq.0) then
               call facev(trhs(1,1,1,ie),iside,0.d0)
@@ -221,7 +221,7 @@
         call add2(ta1,t,ntot)
         if (timeron) call timer_stop(t_add2)
 
-        
+
 !.......perform mesh adaptation
         time=time+dtime
         if ((step.ne.0).and.(step/fre*fre .eq. step)) then
@@ -236,7 +236,7 @@
 
       call timer_stop(1)
       tmax = timer_read(1)
-       
+
       call verify(class, verified)
 
       call free_space
@@ -277,5 +277,4 @@
 
  999  continue
 
-      end 
-
+      end

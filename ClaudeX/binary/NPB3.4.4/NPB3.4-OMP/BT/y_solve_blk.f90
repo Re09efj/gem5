@@ -8,10 +8,10 @@
 
 !---------------------------------------------------------------------
 !     Performs line solves in Y direction by first factoring
-!     the block-tridiagonal matrix into an upper triangular matrix, 
+!     the block-tridiagonal matrix into an upper triangular matrix,
 !     and then performing back substitution to solve for the unknow
-!     vectors of each line.  
-!     
+!     vectors of each line.
+!
 !     Make sure we treat elements zero to cell_size in the direction
 !     of the sweep.
 !---------------------------------------------------------------------
@@ -34,7 +34,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!     This function computes the left hand side for the three y-factors   
+!     This function computes the left hand side for the three y-factors
 !---------------------------------------------------------------------
 
       jsize = grid_points(2)-1
@@ -99,8 +99,8 @@
      &              + c2 * qs(i,j,k)
                fjac(ib,3,2,jp) = - c2 *  u(2,i,j,k) * tmp1
                fjac(ib,3,3,jp) = ( 2.0d+00 - c2 )  &
-     &              *  u(3,i,j,k) * tmp1 
-               fjac(ib,3,4,jp) = - c2 * u(4,i,j,k) * tmp1 
+     &              *  u(3,i,j,k) * tmp1
+               fjac(ib,3,4,jp) = - c2 * u(4,i,j,k) * tmp1
                fjac(ib,3,5,jp) = c2
 
                fjac(ib,4,1,jp) = - ( u(3,i,j,k)*u(4,i,j,k) )  &
@@ -121,7 +121,7 @@
      &              + u(3,i,j,k)*u(3,i,j,k) * tmp2 )
                fjac(ib,5,4,jp) = - c2 * ( u(3,i,j,k)*u(4,i,j,k) )  &
      &              * tmp2
-               fjac(ib,5,5,jp) = c1 * u(3,i,j,k) * tmp1 
+               fjac(ib,5,5,jp) = c1 * u(3,i,j,k) * tmp1
 
                njac(ib,1,1,jp) = 0.0d+00
                njac(ib,1,2,jp) = 0.0d+00
@@ -176,7 +176,7 @@
 
                lhsa(ib,1,1,1) = - tmp2 * fjac(ib,1,1,jm)  &
      &              - tmp1 * njac(ib,1,1,jm)  &
-     &              - tmp1 * dy1 
+     &              - tmp1 * dy1
                lhsa(ib,1,2,1) = - tmp2 * fjac(ib,1,2,jm)  &
      &              - tmp1 * njac(ib,1,2,jm)
                lhsa(ib,1,3,1) = - tmp2 * fjac(ib,1,3,jm)  &
@@ -204,7 +204,7 @@
      &              - tmp1 * njac(ib,3,2,jm)
                lhsa(ib,3,3,1) = - tmp2 * fjac(ib,3,3,jm)  &
      &              - tmp1 * njac(ib,3,3,jm)  &
-     &              - tmp1 * dy3 
+     &              - tmp1 * dy3
                lhsa(ib,3,4,1) = - tmp2 * fjac(ib,3,4,jm)  &
      &              - tmp1 * njac(ib,3,4,jm)
                lhsa(ib,3,5,1) = - tmp2 * fjac(ib,3,5,jm)  &
@@ -341,10 +341,10 @@
 
 !---------------------------------------------------------------------
 !     performs guaussian elimination on this cell.
-!     
-!     assumes that unpacking routines for non-first cells 
+!
+!     assumes that unpacking routines for non-first cells
 !     preload C' and rhs' from previous cell.
-!     
+!
 !     assumed send happens outside this routine, but that
 !     c'(JMAX) and rhs'(JMAX) will be sent to next cell
 !---------------------------------------------------------------------
@@ -362,12 +362,12 @@
 
 !---------------------------------------------------------------------
 !     begin inner most do loop
-!     do all the elements of the cell unless last 
+!     do all the elements of the cell unless last
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
 !     subtract A*lhs_vector(j-1) from lhs_vector(j)
-!     
+!
 !     rhs(j) = rhs(j) - A*rhs(j-1)
 !---------------------------------------------------------------------
                call matvec_sub(lhsa(1,1,1,1),  &
@@ -422,7 +422,7 @@
 !     so just use it
 !     after call u(jstart) will be sent to next cell
 !---------------------------------------------------------------------
-      
+
             do j=jsize-1,0,-1
 !dir$ vector always
             do ib=1,bsize
@@ -460,5 +460,3 @@
 
       return
       end
-
-

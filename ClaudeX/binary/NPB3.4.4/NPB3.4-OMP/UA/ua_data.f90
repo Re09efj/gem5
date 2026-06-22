@@ -10,7 +10,7 @@
 
       include 'npbparams.h'
 
-!.....Array dimensions     
+!.....Array dimensions
       integer lx1, lnje, nsides, nxyz
       parameter(lx1=5, lnje=2, nsides=6,  nxyz=lx1*lx1*lx1)
 
@@ -36,7 +36,7 @@
 !.....double precision arays associated with mortar points
       double precision, allocatable ::  &
      &       umor(:), tmmor (:),  &
-     &       rmor(:), dpcmor(:), pmorx(:), ppmor(:) 
+     &       rmor(:), dpcmor(:), pmorx(:), ppmor(:)
       double precision, allocatable, target ::  &
      &       mormult(:), tmort(:)
 
@@ -49,14 +49,14 @@
      &        ijel    (:,      :,:),  &
      &        ijel_new(:,      :,:),  &
      &        cbc     (        :,:),  &
-     &        cbc_new (        :,:) 
+     &        cbc_new (        :,:)
 
 !.....integer array associated with vertices
       integer, allocatable :: vassign (:,:), emo(:,:,:),   &
      &        nemo (:)
 
 !.....integer array associated with element edges
-      integer, allocatable :: diagn  (:,:,:) 
+      integer, allocatable :: diagn  (:,:,:)
 
 !.... integer arrays associated with elements
       integer, allocatable ::  &
@@ -80,7 +80,7 @@
       logical, allocatable :: skip(:), ifcoa(:), ifcoa_id(:)
 
 !.....logical arrays associated with element faces
-      logical, allocatable :: fassign(:,:), edgevis(:,:,:)      
+      logical, allocatable :: fassign(:,:), edgevis(:,:,:)
 
 !.....small arrays
       double precision qbnew(lx1-2,lx1,2), bqnew(lx1-2,lx1-2,2)
@@ -128,7 +128,7 @@
      &       g4m1_s(lx1,lx1,lx1,refine_max),  &
      &       g5m1_s(lx1,lx1,lx1,refine_max),  &
      &       g6m1_s(lx1,lx1,lx1,refine_max)
-      
+
 !.....We store some tables of useful topological constants
 !     These constants are intialized as a block data below
       integer f_e_ef(4,6)
@@ -191,14 +191,14 @@
 !.....returns the opposite local corner index: 1-4,2-3
       data oplc /4,3,2,1/
 
-!.....cal_iijj(i,n) returns the location of local corner number n on a face 
+!.....cal_iijj(i,n) returns the location of local corner number n on a face
 !     i =1  to get ii, i=2 to get jj
 !     (ii,jj) is defined the same as in mortar location (ii,jj)
       data cal_iijj /1,1, 1,2, 2,1, 2,2/
 
 !.....returns the adjacent(neighbored by a face) element's children,
-!     assumming a vertex is shared by eight child elements 1-8. 
-!     index n is local corner number on the face which is being 
+!     assumming a vertex is shared by eight child elements 1-8.
+!     index n is local corner number on the face which is being
 !     assigned the mortar index number
       data cal_intempx /8,6,4,2, 7,5,3,1, 8,7,4,3,  &
      &                  6,5,2,1, 8,7,6,5, 4,3,2,1/
@@ -207,12 +207,12 @@
       data c_f /2,4,6,8, 1,3,5,7, 3,4,7,8, 1,2,5,6, 5,6,7,8, 1,2,3,4/
 
 !.....on each face of the parent element, there are four children element.
-!     le_arr(i,j,n) returns the i'th elements among the four children elements 
-!     n refers to the direction: 1 for x, 2 for y and 3 for z direction. 
+!     le_arr(i,j,n) returns the i'th elements among the four children elements
+!     n refers to the direction: 1 for x, 2 for y and 3 for z direction.
 !     j refers to positive(0) or negative(1) direction on x, y or z direction.
 !     n=1,j=0 refers to face 1 and n=1, j=1 refers to face 2, n=2,j=0 refers to
-!     face 3.... 
-!     The current eight children are ordered as 8,1,2,3,4,5,6,7 
+!     face 3....
+!     The current eight children are ordered as 8,1,2,3,4,5,6,7
       data    le_arr/8,2,4,6, 1,3,5,7,  &
      &               8,1,4,5, 2,3,6,7,  &
      &               8,1,2,3, 4,5,6,7/
@@ -222,7 +222,7 @@
 
 !c.....edgeface(n,f) returns OTHER face which shares local edge n on face f
 !      integer edgeface(4,6)
-!      data edgeface /6,3,5,4, 6,3,5,4, 6,1,5,2, 
+!      data edgeface /6,3,5,4, 6,3,5,4, 6,1,5,2,
 !     $               6,1,5,2, 4,1,3,2, 4,1,3,2/
 
 !.....e_face2(n,f) returns the local edge number of edge n on the
@@ -230,7 +230,7 @@
       data e_face2 /2,2,2,2, 4,4,4,4, 3,2,3,2,  &
      &              1,4,1,4, 3,3,3,3, 1,1,1,1/
 
-!.....op(n) returns the local edge number of the edge which 
+!.....op(n) returns the local edge number of the edge which
 !     is opposite to local edge n on the same face
       data op /3,4,1,2/
 
@@ -245,16 +245,16 @@
       data edgenumber / 1,2, 3,4,  5,6, 7,8,  9,2,10,6,  &
      &                 11,4,12,8, 12,3,10,7, 11,1, 9,5/
 
-!.....f_c(c,n) returns the face index of i'th face sharing vertex n 
+!.....f_c(c,n) returns the face index of i'th face sharing vertex n
       data f_c /2,4,6, 1,4,6, 2,3,6, 1,3,6,  &
      &          2,4,5, 1,4,5, 2,3,5, 1,3,5/
 
-!.....if two elements are neighbor by one edge, 
-!     e1v1(f1,f2) returns the smaller index of the two vertices on this 
+!.....if two elements are neighbor by one edge,
+!     e1v1(f1,f2) returns the smaller index of the two vertices on this
 !     edge on one element
-!     e1v2 returns the larger index of the two vertices of this edge on 
-!     on element. exfor a vertex on element 
-!     e2v1 returns the smaller index of the two vertices on this edge on 
+!     e1v2 returns the larger index of the two vertices of this edge on
+!     on element. exfor a vertex on element
+!     e2v1 returns the smaller index of the two vertices on this edge on
 !     another element
 !     e2v2 returns the larger index of the two vertiex on this edge on
 !     another element
@@ -267,7 +267,7 @@
       data e2v2/0,0,5,7,3,7, 0,0,6,8,4,8, 5,6,0,0,2,6,  &
      &          7,8,0,0,4,8, 3,4,2,4,0,0, 7,8,6,8,0,0/
 
-!.....children(n1,n)returns the four elements among the eight children 
+!.....children(n1,n)returns the four elements among the eight children
 !     elements to be merged on face n of the parent element
 !     the IDs for the eight children are 1,2,3,4,5,6,7,8
       data children/2,4,6,8, 1,3,5,7, 3,4,7,8,  &
@@ -281,7 +281,7 @@
 !     direction
       data v_end /1,lx1/
 
-!.....face_l1,face_l2,face_ld return for start,end,stride for a loop over faces 
+!.....face_l1,face_l2,face_ld return for start,end,stride for a loop over faces
 !     used on subroutine  mortar_vertex
       data face_l1 /2,3,1/, face_l2 /3,1,2/, face_ld /1,-2,1/
 

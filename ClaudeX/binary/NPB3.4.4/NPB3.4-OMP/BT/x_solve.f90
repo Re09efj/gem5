@@ -8,15 +8,15 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!     
+!
 !     Performs line solves in X direction by first factoring
-!     the block-tridiagonal matrix into an upper triangular matrix, 
+!     the block-tridiagonal matrix into an upper triangular matrix,
 !     and then performing back substitution to solve for the unknow
-!     vectors of each line.  
-!     
+!     vectors of each line.
+!
 !     Make sure we treat elements zero to cell_size in the direction
 !     of the sweep.
-!     
+!
 !---------------------------------------------------------------------
 
       use bt_data
@@ -54,7 +54,7 @@
                tmp2 = tmp1 * tmp1
                tmp3 = tmp1 * tmp2
 !---------------------------------------------------------------------
-!     
+!
 !---------------------------------------------------------------------
                fjac(1,1,i) = 0.0d+00
                fjac(1,2,i) = 1.0d+00
@@ -115,7 +115,7 @@
                njac(3,5,i) =   0.0d+00
 
                njac(4,1,i) = - c3c4 * tmp2 * u(4,i,j,k)
-               njac(4,2,i) =   0.0d+00 
+               njac(4,2,i) =   0.0d+00
                njac(4,3,i) =   0.0d+00
                njac(4,4,i) =   c3c4 * tmp1
                njac(4,5,i) =   0.0d+00
@@ -145,7 +145,7 @@
 
                lhs(1,1,aa,i) = - tmp2 * fjac(1,1,i-1)  &
      &              - tmp1 * njac(1,1,i-1)  &
-     &              - tmp1 * dx1 
+     &              - tmp1 * dx1
                lhs(1,2,aa,i) = - tmp2 * fjac(1,2,i-1)  &
      &              - tmp1 * njac(1,2,i-1)
                lhs(1,3,aa,i) = - tmp2 * fjac(1,3,i-1)  &
@@ -173,7 +173,7 @@
      &              - tmp1 * njac(3,2,i-1)
                lhs(3,3,aa,i) = - tmp2 * fjac(3,3,i-1)  &
      &              - tmp1 * njac(3,3,i-1)  &
-     &              - tmp1 * dx3 
+     &              - tmp1 * dx3
                lhs(3,4,aa,i) = - tmp2 * fjac(3,4,i-1)  &
      &              - tmp1 * njac(3,4,i-1)
                lhs(3,5,aa,i) = - tmp2 * fjac(3,5,i-1)  &
@@ -310,10 +310,10 @@
 
 !---------------------------------------------------------------------
 !     performs guaussian elimination on this cell.
-!     
-!     assumes that unpacking routines for non-first cells 
+!
+!     assumes that unpacking routines for non-first cells
 !     preload C' and rhs' from previous cell.
-!     
+!
 !     assumed send happens outside this routine, but that
 !     c'(IMAX) and rhs'(IMAX) will be sent to next cell
 !---------------------------------------------------------------------
@@ -333,7 +333,7 @@
 
 !---------------------------------------------------------------------
 !     begin inner most do loop
-!     do all the elements of the cell unless last 
+!     do all the elements of the cell unless last
 !---------------------------------------------------------------------
             do i=1,isize-1
 
@@ -404,6 +404,3 @@
 
       return
       end
-
-
-

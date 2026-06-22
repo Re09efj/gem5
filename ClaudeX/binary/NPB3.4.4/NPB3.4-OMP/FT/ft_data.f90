@@ -23,9 +23,9 @@
 
 
 ! Cache blocking params. These values are good for most
-! RISC processors.  
+! RISC processors.
 ! FFT parameters:
-!  fftblock controls how many ffts are done at a time. 
+!  fftblock controls how many ffts are done at a time.
 !  The default is appropriate for most cache-based machines
 !  On vector machines, the FFT can be vectorized with vector
 !  length equal to the block size, so the block size should
@@ -36,11 +36,11 @@
       include 'blk_par.h'
 !      integer fftblock_default, fftblockpad_default
 !      parameter (fftblock_default=32, fftblockpad_default=34)
-      
+
       integer fftblock, fftblockpad
 
 ! we need a bunch of logic to keep track of how
-! arrays are laid out. 
+! arrays are laid out.
 
 
 ! Note: this serial version is the derived from the parallel 0D case
@@ -62,7 +62,7 @@
 ! compute residual(1)
 
 ! for the 0D, 1D, 2D strategies, the layouts look like xxx
-!        
+!
 !            0D        1D        2D
 ! 1:        xyz       xyz       xyz
 
@@ -126,14 +126,14 @@
       module ft_fields
 
 !---------------------------------------------------------------------
-! u0, u1, u2 are the main arrays in the problem. 
-! Depending on the decomposition, these arrays will have different 
-! dimensions. To accomodate all possibilities, we allocate them as 
-! one-dimensional arrays and pass them to subroutines for different 
+! u0, u1, u2 are the main arrays in the problem.
+! Depending on the decomposition, these arrays will have different
+! dimensions. To accomodate all possibilities, we allocate them as
+! one-dimensional arrays and pass them to subroutines for different
 ! views
 !  - u0 contains the initial (transformed) initial condition
 !  - u1 and u2 are working arrays
-!  - twiddle contains exponents for the time evolution operator. 
+!  - twiddle contains exponents for the time evolution operator.
 !---------------------------------------------------------------------
 
       double complex, allocatable ::  &
@@ -144,7 +144,7 @@
 !---------------------------------------------------------------------
 ! Large arrays are in module so that they are allocated on the
 ! heap rather than the stack. This module is not
-! referenced directly anywhere else. Padding is to avoid accidental 
+! referenced directly anywhere else. Padding is to avoid accidental
 ! cache problems, since all array sizes are powers of two.
 !---------------------------------------------------------------------
 
@@ -210,5 +210,3 @@
 
       return
       end
-
-

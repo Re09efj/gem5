@@ -23,7 +23,7 @@
       integer ist, iend
       integer jst, jend
 !---------------------------------------------------------------------
-!   To improve cache performance, second two dimensions padded by 1 
+!   To improve cache performance, second two dimensions padded by 1
 !   for even number sizes only.  Only needed in v.
 !---------------------------------------------------------------------
       double precision  v(5,ldx/2*2+1,ldy/2*2+1,*), sum(5)

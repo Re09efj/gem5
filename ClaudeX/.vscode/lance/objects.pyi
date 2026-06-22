@@ -1,14 +1,10 @@
 from typing import Any
 
 class ABC:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ABCMeta(type):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class AMPMPrefetcher(QueuedPrefetcher):
     ampm: Any
@@ -38,7 +34,6 @@ class AMPMPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class AbstractMemory(ClockedObject):
     range: Any
     null: Any
@@ -54,7 +49,6 @@ class AbstractMemory(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class AccessMapPatternMatching(ClockedObject):
     block_size: Any
@@ -80,27 +74,19 @@ class AccessMapPatternMatching(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Addr(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class AddrMap(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class AddrMapper(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class AddrRange(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class AtomicSimpleCPU(BaseAtomicSimpleCPU, X86CPU):
     width: Any
@@ -137,7 +123,6 @@ class AtomicSimpleCPU(BaseAtomicSimpleCPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BDI(MultiCompressor):
     compressors: Any
     encoding_in_tags: Any
@@ -152,13 +137,11 @@ class BDI(MultiCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BIPRP(LRURP):
     btp: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BOPPrefetcher(QueuedPrefetcher):
     score_max: Any
@@ -198,7 +181,6 @@ class BOPPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BRRIPRP(BaseReplacementPolicy):
     num_bits: Any
     hit_priority: Any
@@ -207,13 +189,11 @@ class BRRIPRP(BaseReplacementPolicy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BTBIndexingPolicy(SimObject):
     assoc: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BTBSetAssociative(BTBIndexingPolicy):
     num_entries: Any
@@ -224,7 +204,6 @@ class BTBSetAssociative(BTBIndexingPolicy):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BadAddr(IsaFake):
     ret_bad_addr: Any
@@ -246,7 +225,6 @@ class BadAddr(IsaFake):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BadDevice(BasicPioDevice):
     devicename: Any
     pio_addr: Any
@@ -258,7 +236,6 @@ class BadDevice(BasicPioDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Base16Delta8(BaseDictionaryCompressor):
     dictionary_size: Any
@@ -273,7 +250,6 @@ class Base16Delta8(BaseDictionaryCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Base32Delta16(BaseDictionaryCompressor):
     dictionary_size: Any
     block_size: Any
@@ -286,7 +262,6 @@ class Base32Delta16(BaseDictionaryCompressor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Base32Delta8(BaseDictionaryCompressor):
     dictionary_size: Any
@@ -301,7 +276,6 @@ class Base32Delta8(BaseDictionaryCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Base64Delta16(BaseDictionaryCompressor):
     dictionary_size: Any
     block_size: Any
@@ -314,7 +288,6 @@ class Base64Delta16(BaseDictionaryCompressor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Base64Delta32(BaseDictionaryCompressor):
     dictionary_size: Any
@@ -329,7 +302,6 @@ class Base64Delta32(BaseDictionaryCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Base64Delta8(BaseDictionaryCompressor):
     dictionary_size: Any
     block_size: Any
@@ -342,7 +314,6 @@ class Base64Delta8(BaseDictionaryCompressor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseAtomicSimpleCPU(BaseSimpleCPU):
     width: Any
@@ -379,7 +350,6 @@ class BaseAtomicSimpleCPU(BaseSimpleCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseCPU(ClockedObject):
     system: Any
     cpu_id: Any
@@ -410,7 +380,6 @@ class BaseCPU(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseCache(ClockedObject):
     size: Any
@@ -445,7 +414,6 @@ class BaseCache(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseCacheCompressor(SimObject):
     block_size: Any
     chunk_size_bits: Any
@@ -457,7 +425,6 @@ class BaseCacheCompressor(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseDictionaryCompressor(BaseCacheCompressor):
     dictionary_size: Any
@@ -472,12 +439,10 @@ class BaseDictionaryCompressor(BaseCacheCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseISA(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseIndexingPolicy(SimObject):
     assoc: Any
@@ -485,12 +450,10 @@ class BaseIndexingPolicy(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseInterrupts(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseKvmCPU(BaseCPU):
     usePerf: Any
@@ -529,7 +492,6 @@ class BaseKvmCPU(BaseCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseMMU(SimObject):
     itb: Any
     dtb: Any
@@ -537,14 +499,12 @@ class BaseMMU(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseMemProbe(SimObject):
     manager: Any
     probe_name: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseMinorCPU(BaseCPU):
     threadPolicy: Any
@@ -610,7 +570,6 @@ class BaseMinorCPU(BaseCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseNonCachingSimpleCPU(BaseAtomicSimpleCPU):
     width: Any
     simulate_data_stalls: Any
@@ -645,7 +604,6 @@ class BaseNonCachingSimpleCPU(BaseAtomicSimpleCPU):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseO3CPU(BaseCPU):
     activity: Any
@@ -750,7 +708,6 @@ class BaseO3CPU(BaseCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseO3Checker(CheckerCPU):
     exitOnError: Any
     updateOnError: Any
@@ -785,12 +742,10 @@ class BaseO3Checker(CheckerCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BasePartitioningPolicy(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BasePrefetcher(ClockedObject):
     sys: Any
@@ -811,18 +766,15 @@ class BasePrefetcher(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseReplacementPolicy(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseRoutingUnit(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseSetAssoc(BaseTags):
     assoc: Any
@@ -842,7 +794,6 @@ class BaseSetAssoc(BaseTags):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseSimpleCPU(BaseCPU):
     branchPred: Any
@@ -876,14 +827,12 @@ class BaseSimpleCPU(BaseCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseTLB(SimObject):
     entry_type: Any
     next_level: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseTags(ClockedObject):
     system: Any
@@ -901,7 +850,6 @@ class BaseTags(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BaseTimingSimpleCPU(BaseSimpleCPU):
     branchPred: Any
@@ -935,7 +883,6 @@ class BaseTimingSimpleCPU(BaseSimpleCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseTrafficGen(ClockedObject):
     system: Any
     elastic_req: Any
@@ -954,7 +901,6 @@ class BaseTrafficGen(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BaseXBar(ClockedObject):
     frontend_latency: Any
     forward_latency: Any
@@ -969,7 +915,6 @@ class BaseXBar(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BasicExtLink(BasicLink):
     ext_node: Any
     int_node: Any
@@ -981,7 +926,6 @@ class BasicExtLink(BasicLink):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BasicIntLink(BasicLink):
     src_node: Any
@@ -997,7 +941,6 @@ class BasicIntLink(BasicLink):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BasicLink(SimObject):
     link_id: Any
     latency: Any
@@ -1007,7 +950,6 @@ class BasicLink(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BasicPioDevice(PioDevice):
     pio_addr: Any
@@ -1020,7 +962,6 @@ class BasicPioDevice(PioDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BasicRouter(ClockedObject):
     router_id: Any
     latency: Any
@@ -1030,7 +971,6 @@ class BasicRouter(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BiModeBP(ConditionalPredictor):
     globalPredictorSize: Any
@@ -1044,7 +984,6 @@ class BiModeBP(ConditionalPredictor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BloomFilterBase(SimObject):
     size: Any
     offset_bits: Any
@@ -1053,7 +992,6 @@ class BloomFilterBase(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BloomFilterBlock(BloomFilterBase):
     masks_lsbs: Any
@@ -1065,7 +1003,6 @@ class BloomFilterBlock(BloomFilterBase):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BloomFilterBulk(BloomFilterMultiBitSel):
     num_hashes: Any
@@ -1079,7 +1016,6 @@ class BloomFilterBulk(BloomFilterMultiBitSel):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BloomFilterH3(BloomFilterMultiBitSel):
     num_hashes: Any
     skip_bits: Any
@@ -1092,7 +1028,6 @@ class BloomFilterH3(BloomFilterMultiBitSel):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BloomFilterMulti(BloomFilterBase):
     filters: Any
     size: Any
@@ -1102,7 +1037,6 @@ class BloomFilterMulti(BloomFilterBase):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BloomFilterMultiBitSel(BloomFilterBase):
     num_hashes: Any
@@ -1116,7 +1050,6 @@ class BloomFilterMultiBitSel(BloomFilterBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BloomFilterPerfect(BloomFilterBase):
     size: Any
     offset_bits: Any
@@ -1126,11 +1059,8 @@ class BloomFilterPerfect(BloomFilterBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Bool(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class BranchPredictor(SimObject):
     numThreads: Any
@@ -1147,7 +1077,6 @@ class BranchPredictor(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BranchTargetBuffer(ClockedObject):
     numThreads: Any
     clk_domain: Any
@@ -1157,11 +1086,8 @@ class BranchTargetBuffer(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BranchType(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Bridge(BridgeBase):
     ranges: Any
@@ -1175,7 +1101,6 @@ class Bridge(BridgeBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class BridgeBase(ClockedObject):
     req_size: Any
     resp_size: Any
@@ -1187,16 +1112,11 @@ class BridgeBase(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ByteOrder(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CDCType(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CPack(BaseDictionaryCompressor):
     dictionary_size: Any
@@ -1210,7 +1130,6 @@ class CPack(BaseDictionaryCompressor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Cache(BaseCache):
     size: Any
@@ -1245,7 +1164,6 @@ class Cache(BaseCache):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class CfiMemory(AbstractMemory):
     latency: Any
     latency_var: Any
@@ -1269,11 +1187,8 @@ class CfiMemory(AbstractMemory):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Characteristic(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CheckerCPU(BaseCPU):
     exitOnError: Any
@@ -1309,17 +1224,13 @@ class CheckerCPU(BaseCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Clock(TickParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ClockDomain(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ClockedObject(SimObject):
     clk_domain: Any
@@ -1329,11 +1240,8 @@ class ClockedObject(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Clusivity(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Cmos(BasicPioDevice):
     time: Any
@@ -1346,7 +1254,6 @@ class Cmos(BasicPioDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CoherentXBar(BaseXBar):
     snoop_response_latency: Any
@@ -1368,7 +1275,6 @@ class CoherentXBar(BaseXBar):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CommMonitor(SimObject):
     system: Any
@@ -1393,11 +1299,8 @@ class CommMonitor(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class CommitPolicy(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CompressedTags(SectorTags):
     max_compression_ratio: Any
@@ -1420,7 +1323,6 @@ class CompressedTags(SectorTags):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ConditionalPredictor(SimObject):
     numThreads: Any
     instShiftAmt: Any
@@ -1428,7 +1330,6 @@ class ConditionalPredictor(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CopyEngine(PciEndpoint):
     ChanCnt: Any
@@ -1522,11 +1423,8 @@ class CopyEngine(PciEndpoint):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Counter(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CowDiskImage(DiskImage):
     child: Any
@@ -1537,7 +1435,6 @@ class CowDiskImage(DiskImage):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class CpuCluster(SubSystem):
     voltage_domain: Any
     clk_domain: Any
@@ -1545,7 +1442,6 @@ class CpuCluster(SubSystem):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class CreditLink(NetworkLink):
     link_id: Any
@@ -1561,16 +1457,11 @@ class CreditLink(NetworkLink):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Current(Float):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Cycles(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DCPTPrefetcher(QueuedPrefetcher):
     dcpt: Any
@@ -1599,7 +1490,6 @@ class DCPTPrefetcher(QueuedPrefetcher):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DDR3_1600_8x8(DRAMInterface):
     page_policy: Any
@@ -1689,7 +1579,6 @@ class DDR3_1600_8x8(DRAMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DDR3_2133_8x8(DDR3_1600_8x8):
     page_policy: Any
     max_accesses_per_row: Any
@@ -1777,7 +1666,6 @@ class DDR3_2133_8x8(DDR3_1600_8x8):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DDR4_2400_16x4(DRAMInterface):
     page_policy: Any
@@ -1867,7 +1755,6 @@ class DDR4_2400_16x4(DRAMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DDR4_2400_4x16(DDR4_2400_16x4):
     page_policy: Any
     max_accesses_per_row: Any
@@ -1955,7 +1842,6 @@ class DDR4_2400_4x16(DDR4_2400_16x4):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DDR4_2400_8x8(DDR4_2400_16x4):
     page_policy: Any
@@ -2045,7 +1931,6 @@ class DDR4_2400_8x8(DDR4_2400_16x4):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DDR5_4400_4x8(DRAMInterface):
     page_policy: Any
     max_accesses_per_row: Any
@@ -2133,7 +2018,6 @@ class DDR5_4400_4x8(DRAMInterface):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DDR5_6400_4x8(DDR5_4400_4x8):
     page_policy: Any
@@ -2223,7 +2107,6 @@ class DDR5_6400_4x8(DDR5_4400_4x8):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DDR5_8400_4x8(DDR5_4400_4x8):
     page_policy: Any
     max_accesses_per_row: Any
@@ -2312,7 +2195,6 @@ class DDR5_8400_4x8(DDR5_4400_4x8):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DMASequencer(RubyPort):
     max_outstanding_requests: Any
     version: Any
@@ -2329,7 +2211,6 @@ class DMASequencer(RubyPort):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DMA_Controller(MESI_Two_Level_DMA_Controller):
     dma_sequencer: Any
@@ -2355,7 +2236,6 @@ class DMA_Controller(MESI_Two_Level_DMA_Controller):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DRAMInterface(MemInterface):
     page_policy: Any
@@ -2445,7 +2325,6 @@ class DRAMInterface(MemInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DRRIPRP(DuelingRP):
     constituency_size: Any
     team_size: Any
@@ -2454,7 +2333,6 @@ class DRRIPRP(DuelingRP):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DVFSHandler(SimObject):
     domains: Any
@@ -2465,20 +2343,17 @@ class DVFSHandler(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DefaultFUPool(FUPool):
     FUList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DefaultX86FUPool(FUPool):
     FUList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DeltaCorrelatingPredictionTables(SimObject):
     deltas_per_entry: Any
@@ -2492,11 +2367,8 @@ class DeltaCorrelatingPredictionTables(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DeprecatedParam:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DerivO3CPU(BaseO3CPU, X86CPU):
     activity: Any
@@ -2601,7 +2473,6 @@ class DerivO3CPU(BaseO3CPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DerivedClockDomain(ClockDomain):
     clk_domain: Any
     clk_divider: Any
@@ -2609,16 +2480,11 @@ class DerivedClockDomain(ClockDomain):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DictParamDesc(ParamDesc):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DictParamValue(dict):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DirectedGenerator(SimObject):
     num_cpus: Any
@@ -2626,7 +2492,6 @@ class DirectedGenerator(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Directory_Controller(MESI_Two_Level_Directory_Controller):
     directory: Any
@@ -2656,14 +2521,12 @@ class Directory_Controller(MESI_Two_Level_Directory_Controller):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DiskImage(SimObject):
     image_file: Any
     read_only: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DistEtherLink(SimObject):
     delay: Any
@@ -2683,7 +2546,6 @@ class DistEtherLink(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DmaDevice(PioDevice):
     sid: Any
     ssid: Any
@@ -2694,7 +2556,6 @@ class DmaDevice(PioDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DmaVirtDevice(DmaDevice):
     sid: Any
@@ -2707,7 +2568,6 @@ class DmaVirtDevice(DmaDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class DuelingRP(BaseReplacementPolicy):
     constituency_size: Any
     team_size: Any
@@ -2716,7 +2576,6 @@ class DuelingRP(BaseReplacementPolicy):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class DummyChecker(CheckerCPU):
     exitOnError: Any
@@ -2752,7 +2611,6 @@ class DummyChecker(CheckerCPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ElasticTrace(ProbeListenerObject):
     instFetchTraceFile: Any
     dataDepTraceFile: Any
@@ -2764,23 +2622,17 @@ class ElasticTrace(ProbeListenerObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class EmulatedDriver(SimObject):
     filename: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Energy(Float):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Enum(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class EtherBus(SimObject):
     loopback: Any
@@ -2789,7 +2641,6 @@ class EtherBus(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class EtherDevBase(EtherDevice):
     hardware_address: Any
@@ -2893,7 +2744,6 @@ class EtherDevBase(EtherDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class EtherDevice(PciEndpoint):
     BAR0: Any
     BAR1: Any
@@ -2982,7 +2832,6 @@ class EtherDevice(PciEndpoint):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class EtherDump(SimObject):
     file: Any
     maxlen: Any
@@ -2990,11 +2839,8 @@ class EtherDump(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class EtherInt(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class EtherLink(SimObject):
     delay: Any
@@ -3004,7 +2850,6 @@ class EtherLink(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class EtherSwitch(SimObject):
     dump: Any
@@ -3017,7 +2862,6 @@ class EtherSwitch(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class EtherTap(EtherTapBase):
     tun_clone_device: Any
     tap_device_name: Any
@@ -3027,14 +2871,12 @@ class EtherTap(EtherTapBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class EtherTapBase(SimObject):
     bufsz: Any
     dump: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class EtherTapStub(EtherTapBase):
     port: Any
@@ -3044,11 +2886,8 @@ class EtherTapStub(EtherTapBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class EthernetAddr(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ExeTracer(InstTracer):
     disassembler: Any
@@ -3056,11 +2895,8 @@ class ExeTracer(InstTracer):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ExtCharacteristic(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ExternalMaster(SimObject):
     port_type: Any
@@ -3070,7 +2906,6 @@ class ExternalMaster(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ExternalSlave(SimObject):
     addr_ranges: Any
     port_type: Any
@@ -3078,7 +2913,6 @@ class ExternalSlave(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FALRU(BaseTags):
     min_tracked_cache_size: Any
@@ -3098,12 +2932,10 @@ class FALRU(BaseTags):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class FIFORP(BaseReplacementPolicy):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FPC(BaseDictionaryCompressor):
     zero_run_bits: Any
@@ -3119,7 +2951,6 @@ class FPC(BaseDictionaryCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class FPCD(BaseDictionaryCompressor):
     dictionary_size: Any
     block_size: Any
@@ -3133,14 +2964,12 @@ class FPCD(BaseDictionaryCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class FP_ALU(FUDesc):
     count: Any
     opList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FP_MultDiv(FUDesc):
     count: Any
@@ -3149,7 +2978,6 @@ class FP_MultDiv(FUDesc):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class FUDesc(SimObject):
     count: Any
     opList: Any
@@ -3157,13 +2985,11 @@ class FUDesc(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class FUPool(SimObject):
     FUList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FaultModel(SimObject):
     baseline_fault_vector_database: Any
@@ -3172,46 +2998,29 @@ class FaultModel(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Fdt(Fdt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FdtNode(FdtNode):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FdtNop(FdtNop):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FdtProperty(FdtProperty):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FdtPropertyBytes(FdtPropertyBytes):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FdtPropertyStrings(FdtPropertyStrings):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FdtPropertyWords(FdtPropertyWords):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FdtState:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FetchDirectedPrefetcher(BasePrefetcher):
     cpu: Any
@@ -3239,16 +3048,11 @@ class FetchDirectedPrefetcher(BasePrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Float(ParamValue, float):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Frequency(TickParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class FrequentValuesCompressor(BaseCacheCompressor):
     code_generation_ticks: Any
@@ -3270,7 +3074,6 @@ class FrequentValuesCompressor(BaseCacheCompressor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GDDR5_4000_2x32(DRAMInterface):
     page_policy: Any
@@ -3360,7 +3163,6 @@ class GDDR5_4000_2x32(DRAMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class GUPSGen(ClockedObject):
     system: Any
     start_addr: Any
@@ -3374,7 +3176,6 @@ class GUPSGen(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GarnetExtLink(BasicExtLink):
     network_links: Any
@@ -3398,7 +3199,6 @@ class GarnetExtLink(BasicExtLink):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GarnetIntLink(BasicIntLink):
     network_link: Any
@@ -3424,7 +3224,6 @@ class GarnetIntLink(BasicIntLink):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GarnetNetwork(RubyNetwork):
     num_rows: Any
@@ -3452,7 +3251,6 @@ class GarnetNetwork(RubyNetwork):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class GarnetNetworkInterface(ClockedObject):
     id: Any
     vcs_per_vnet: Any
@@ -3464,7 +3262,6 @@ class GarnetNetworkInterface(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GarnetRouter(BasicRouter):
     vcs_per_vnet: Any
@@ -3478,7 +3275,6 @@ class GarnetRouter(BasicRouter):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GarnetSyntheticTraffic(ClockedObject):
     block_offset: Any
@@ -3501,14 +3297,12 @@ class GarnetSyntheticTraffic(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Gem5ToTlmBridge128(Gem5ToTlmBridgeBase):
     system: Any
     addr_ranges: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Gem5ToTlmBridge256(Gem5ToTlmBridgeBase):
     system: Any
@@ -3517,14 +3311,12 @@ class Gem5ToTlmBridge256(Gem5ToTlmBridgeBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Gem5ToTlmBridge32(Gem5ToTlmBridgeBase):
     system: Any
     addr_ranges: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Gem5ToTlmBridge512(Gem5ToTlmBridgeBase):
     system: Any
@@ -3533,7 +3325,6 @@ class Gem5ToTlmBridge512(Gem5ToTlmBridgeBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Gem5ToTlmBridge64(Gem5ToTlmBridgeBase):
     system: Any
     addr_ranges: Any
@@ -3541,14 +3332,12 @@ class Gem5ToTlmBridge64(Gem5ToTlmBridgeBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Gem5ToTlmBridgeBase(SystemC_ScModule):
     system: Any
     addr_ranges: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GenericPciHost(PciHost):
     platform: Any
@@ -3568,13 +3357,11 @@ class GenericPciHost(PciHost):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class GlobalInstTracker(SimObject):
     inst_thresholds: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GoodbyeObject(SimObject):
     buffer_size: Any
@@ -3582,7 +3369,6 @@ class GoodbyeObject(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class GshareBP(BranchPredictor):
     global_predictor_size: Any
@@ -3600,7 +3386,6 @@ class GshareBP(BranchPredictor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class HBMCtrl(MemCtrl):
     dram_2: Any
@@ -3628,7 +3413,6 @@ class HBMCtrl(MemCtrl):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class HBM_1000_4H_1x128(DRAMInterface):
     page_policy: Any
@@ -3718,7 +3502,6 @@ class HBM_1000_4H_1x128(DRAMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class HBM_1000_4H_1x64(HBM_1000_4H_1x128):
     page_policy: Any
     max_accesses_per_row: Any
@@ -3806,7 +3589,6 @@ class HBM_1000_4H_1x64(HBM_1000_4H_1x128):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class HBM_2000_4H_1x64(DRAMInterface):
     page_policy: Any
@@ -3896,7 +3678,6 @@ class HBM_2000_4H_1x64(DRAMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class HMCController(NoncoherentXBar):
     frontend_latency: Any
     forward_latency: Any
@@ -3910,7 +3691,6 @@ class HMCController(NoncoherentXBar):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class HMC_2500_1x32(DDR3_1600_8x8):
     page_policy: Any
@@ -4000,16 +3780,11 @@ class HMC_2500_1x32(DDR3_1600_8x8):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class HWPProbeEvent:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class HWPProbeEventRetiredInsts(HWPProbeEvent):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class HelloObject(SimObject):
     time_to_wait: Any
@@ -4018,7 +3793,6 @@ class HelloObject(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class HeteroMemCtrl(MemCtrl):
     nvm: Any
@@ -4047,11 +3821,8 @@ class HeteroMemCtrl(MemCtrl):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class HostSocket(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class I2CBus(BasicPioDevice):
     devices: Any
@@ -4065,13 +3836,11 @@ class I2CBus(BasicPioDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class I2CDevice(SimObject):
     i2c_addr: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class I8042(PioDevice):
     pio_latency: Any
@@ -4087,7 +3856,6 @@ class I8042(PioDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class I82094AA(BasicPioDevice):
     apic_id: Any
     int_latency: Any
@@ -4101,7 +3869,6 @@ class I82094AA(BasicPioDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class I8237(BasicPioDevice):
     pio_addr: Any
     pio_latency: Any
@@ -4113,7 +3880,6 @@ class I8237(BasicPioDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class I8254(BasicPioDevice):
     pio_addr: Any
     pio_latency: Any
@@ -4124,7 +3890,6 @@ class I8254(BasicPioDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class I8259(BasicPioDevice):
     mode: Any
@@ -4138,7 +3903,6 @@ class I8259(BasicPioDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IGbE(EtherDevice):
     hardware_address: Any
@@ -4241,7 +4005,6 @@ class IGbE(EtherDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IGbE_e1000(IGbE):
     hardware_address: Any
     rx_fifo_size: Any
@@ -4342,7 +4105,6 @@ class IGbE_e1000(IGbE):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IGbE_igb(IGbE):
     hardware_address: Any
@@ -4445,7 +4207,6 @@ class IGbE_igb(IGbE):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IOXBar(NoncoherentXBar):
     frontend_latency: Any
     forward_latency: Any
@@ -4460,7 +4221,6 @@ class IOXBar(NoncoherentXBar):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IQUnit(SimObject):
     numEntries: Any
     fuPool: Any
@@ -4470,7 +4230,6 @@ class IQUnit(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IdeController(PciEndpoint):
     disks: Any
@@ -4563,7 +4322,6 @@ class IdeController(PciEndpoint):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IdeDisk(SimObject):
     delay: Any
     driveID: Any
@@ -4572,16 +4330,11 @@ class IdeDisk(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IdeID(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ImageFormat(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IndirectMemoryPrefetcher(QueuedPrefetcher):
     pt_table_entries: Any
@@ -4625,13 +4378,11 @@ class IndirectMemoryPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IndirectPredictor(SimObject):
     numThreads: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class InstDecoder(SimObject):
     isa: Any
@@ -4639,12 +4390,10 @@ class InstDecoder(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class InstDisassembler(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class InstPBTrace(InstTracer):
     file_name: Any
@@ -4653,38 +4402,26 @@ class InstPBTrace(InstTracer):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class InstTracer(SimObject):
     disassembler: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Int(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Int16(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Int32(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Int64(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Int8(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IntALU(FUDesc):
     count: Any
@@ -4693,7 +4430,6 @@ class IntALU(FUDesc):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IntMultDiv(FUDesc):
     count: Any
     opList: Any
@@ -4701,23 +4437,17 @@ class IntMultDiv(FUDesc):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IntSinkPin(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IntSourcePin(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IntelTrace(InstTracer):
     disassembler: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class InvalidateGenerator(DirectedGenerator):
     addr_increment_size: Any
@@ -4727,21 +4457,14 @@ class InvalidateGenerator(DirectedGenerator):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IpAddress(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IpNetmask(IpAddress):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IpWithPort(IpAddress):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class IrregularStreamBufferPrefetcher(QueuedPrefetcher):
     num_counter_bits: Any
@@ -4784,7 +4507,6 @@ class IrregularStreamBufferPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class IsaFake(BasicPioDevice):
     pio_size: Any
     ret_data8: Any
@@ -4805,11 +4527,8 @@ class IsaFake(BasicPioDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class KernelPanicOopsBehaviour(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class KernelWorkload(Workload):
     object_file: Any
@@ -4827,14 +4546,12 @@ class KernelWorkload(Workload):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class KvmVM(SimObject):
     coalescedMMIO: Any
     system: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class L1Cache_Controller(MESI_Two_Level_L1Cache_Controller):
     sequencer: Any
@@ -4875,7 +4592,6 @@ class L1Cache_Controller(MESI_Two_Level_L1Cache_Controller):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class L2Cache_Controller(MESI_Two_Level_L2Cache_Controller):
     L2cache: Any
     l2_request_latency: Any
@@ -4906,7 +4622,6 @@ class L2Cache_Controller(MESI_Two_Level_L2Cache_Controller):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class L2XBar(CoherentXBar):
     snoop_response_latency: Any
     snoop_filter: Any
@@ -4928,19 +4643,16 @@ class L2XBar(CoherentXBar):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LFURP(BaseReplacementPolicy):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LIPRP(BIPRP):
     btp: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LPDDR2_S4_1066_1x32(DRAMInterface):
     page_policy: Any
@@ -5030,7 +4742,6 @@ class LPDDR2_S4_1066_1x32(DRAMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LPDDR3_1600_1x32(DRAMInterface):
     page_policy: Any
     max_accesses_per_row: Any
@@ -5118,7 +4829,6 @@ class LPDDR3_1600_1x32(DRAMInterface):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LPDDR5_5500_1x16_8B_BL32(LPDDR5_5500_1x16_BG_BL32):
     page_policy: Any
@@ -5208,7 +4918,6 @@ class LPDDR5_5500_1x16_8B_BL32(LPDDR5_5500_1x16_BG_BL32):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LPDDR5_5500_1x16_BG_BL16(LPDDR5_5500_1x16_BG_BL32):
     page_policy: Any
     max_accesses_per_row: Any
@@ -5296,7 +5005,6 @@ class LPDDR5_5500_1x16_BG_BL16(LPDDR5_5500_1x16_BG_BL32):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LPDDR5_5500_1x16_BG_BL32(DRAMInterface):
     page_policy: Any
@@ -5386,7 +5094,6 @@ class LPDDR5_5500_1x16_BG_BL32(DRAMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LPDDR5_6400_1x16_8B_BL32(LPDDR5_6400_1x16_BG_BL32):
     page_policy: Any
     max_accesses_per_row: Any
@@ -5474,7 +5181,6 @@ class LPDDR5_6400_1x16_8B_BL32(LPDDR5_6400_1x16_BG_BL32):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LPDDR5_6400_1x16_BG_BL16(LPDDR5_6400_1x16_BG_BL32):
     page_policy: Any
@@ -5564,7 +5270,6 @@ class LPDDR5_6400_1x16_BG_BL16(LPDDR5_6400_1x16_BG_BL32):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LPDDR5_6400_1x16_BG_BL32(LPDDR5_5500_1x16_BG_BL32):
     page_policy: Any
     max_accesses_per_row: Any
@@ -5653,12 +5358,10 @@ class LPDDR5_6400_1x16_BG_BL32(LPDDR5_5500_1x16_BG_BL32):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LRURP(BaseReplacementPolicy):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LTAGE(TAGE):
     loop_predictor: Any
@@ -5669,7 +5372,6 @@ class LTAGE(TAGE):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LTAGE_TAGE(TAGEBase):
     numThreads: Any
@@ -5696,11 +5398,8 @@ class LTAGE_TAGE(TAGEBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Latency(TickParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LocalBP(ConditionalPredictor):
     localPredictorSize: Any
@@ -5712,7 +5411,6 @@ class LocalBP(ConditionalPredictor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LocalInstTracker(ProbeListenerObject):
     global_inst_tracker: Any
     start_listening: Any
@@ -5720,7 +5418,6 @@ class LocalInstTracker(ProbeListenerObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class LoopPredictor(SimObject):
     logSizeLoopPred: Any
@@ -5741,7 +5438,6 @@ class LoopPredictor(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LooppointAnalysis(ProbeListenerObject):
     looppoint_analysis_manager: Any
     bb_valid_addr_range: Any
@@ -5753,13 +5449,11 @@ class LooppointAnalysis(ProbeListenerObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class LooppointAnalysisManager(SimObject):
     region_length: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MESI_Two_Level_DMA_Controller(RubyController):
     dma_sequencer: Any
@@ -5785,7 +5479,6 @@ class MESI_Two_Level_DMA_Controller(RubyController):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MESI_Two_Level_Directory_Controller(RubyController):
     directory: Any
@@ -5814,7 +5507,6 @@ class MESI_Two_Level_Directory_Controller(RubyController):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MESI_Two_Level_L1Cache_Controller(RubyController):
     sequencer: Any
@@ -5855,7 +5547,6 @@ class MESI_Two_Level_L1Cache_Controller(RubyController):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MESI_Two_Level_L2Cache_Controller(RubyController):
     L2cache: Any
     l2_request_latency: Any
@@ -5886,7 +5577,6 @@ class MESI_Two_Level_L2Cache_Controller(RubyController):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MPP_LoopPredictor(LoopPredictor):
     logSizeLoopPred: Any
     withLoopBits: Any
@@ -5906,7 +5596,6 @@ class MPP_LoopPredictor(LoopPredictor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MPP_LoopPredictor_8KB(MPP_LoopPredictor):
     logSizeLoopPred: Any
     withLoopBits: Any
@@ -5925,7 +5614,6 @@ class MPP_LoopPredictor_8KB(MPP_LoopPredictor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MPP_StatisticalCorrector(StatisticalCorrector):
     gnb: Any
@@ -5960,7 +5648,6 @@ class MPP_StatisticalCorrector(StatisticalCorrector):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MPP_StatisticalCorrector_64KB(MPP_StatisticalCorrector):
     snb: Any
@@ -6004,7 +5691,6 @@ class MPP_StatisticalCorrector_64KB(MPP_StatisticalCorrector):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MPP_StatisticalCorrector_8KB(MPP_StatisticalCorrector):
     gnb: Any
     gm: Any
@@ -6039,7 +5725,6 @@ class MPP_StatisticalCorrector_8KB(MPP_StatisticalCorrector):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MPP_TAGE(TAGEBase):
     tunedHistoryLengths: Any
     numThreads: Any
@@ -6065,7 +5750,6 @@ class MPP_TAGE(TAGEBase):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MPP_TAGE_8KB(MPP_TAGE):
     tunedHistoryLengths: Any
@@ -6093,17 +5777,13 @@ class MPP_TAGE_8KB(MPP_TAGE):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MRURP(BaseReplacementPolicy):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MasterPort(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MathExprPowerModel(PowerModelState):
     dyn: Any
@@ -6112,14 +5792,12 @@ class MathExprPowerModel(PowerModelState):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Matrix_Unit(FUDesc):
     count: Any
     opList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MaxCapacityPartitioningPolicy(BasePartitioningPolicy):
     cache_size: Any
@@ -6130,12 +5808,10 @@ class MaxCapacityPartitioningPolicy(BasePartitioningPolicy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MemChecker(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MemCheckerMonitor(SimObject):
     warn_only: Any
@@ -6143,7 +5819,6 @@ class MemCheckerMonitor(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MemCtrl(QoSMemCtrl):
     dram: Any
@@ -6171,7 +5846,6 @@ class MemCtrl(QoSMemCtrl):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MemDelay(ClockedObject):
     clk_domain: Any
     power_model: Any
@@ -6179,7 +5853,6 @@ class MemDelay(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MemFootprintProbe(BaseMemProbe):
     system: Any
@@ -6189,7 +5862,6 @@ class MemFootprintProbe(BaseMemProbe):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MemInterface(AbstractMemory):
     write_buffer_size: Any
@@ -6222,11 +5894,8 @@ class MemInterface(AbstractMemory):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MemSched(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MemTest(ClockedObject):
     interval: Any
@@ -6250,7 +5919,6 @@ class MemTest(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MemTraceProbe(BaseMemProbe):
     trace_compress: Any
     with_pc: Any
@@ -6262,26 +5930,17 @@ class MemTraceProbe(BaseMemProbe):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MemoryBandwidth(float, ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MemoryMode(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MemorySize(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MemorySize32(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MessageBuffer(SimObject):
     ordered: Any
@@ -6294,18 +5953,14 @@ class MessageBuffer(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MessageRandomization(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MinorDefaultFUPool(MinorFUPool):
     funcUnits: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MinorDefaultFloatSimdFU(MinorFU):
     opClasses: Any
@@ -6317,7 +5972,6 @@ class MinorDefaultFloatSimdFU(MinorFU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MinorDefaultIntDivFU(MinorFU):
     opClasses: Any
     opLat: Any
@@ -6327,7 +5981,6 @@ class MinorDefaultIntDivFU(MinorFU):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MinorDefaultIntFU(MinorFU):
     opClasses: Any
@@ -6339,7 +5992,6 @@ class MinorDefaultIntFU(MinorFU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MinorDefaultIntMulFU(MinorFU):
     opClasses: Any
     opLat: Any
@@ -6349,7 +6001,6 @@ class MinorDefaultIntMulFU(MinorFU):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MinorDefaultMemFU(MinorFU):
     opClasses: Any
@@ -6361,7 +6012,6 @@ class MinorDefaultMemFU(MinorFU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MinorDefaultMiscFU(MinorFU):
     opClasses: Any
     opLat: Any
@@ -6371,7 +6021,6 @@ class MinorDefaultMiscFU(MinorFU):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MinorDefaultPredFU(MinorFU):
     opClasses: Any
@@ -6383,7 +6032,6 @@ class MinorDefaultPredFU(MinorFU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MinorFU(SimObject):
     opClasses: Any
     opLat: Any
@@ -6394,13 +6042,11 @@ class MinorFU(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MinorFUPool(SimObject):
     funcUnits: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MinorFUTiming(SimObject):
     mask: Any
@@ -6416,20 +6062,17 @@ class MinorFUTiming(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MinorOpClass(SimObject):
     opClass: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MinorOpClassSet(SimObject):
     opClasses: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MultiCompressor(BaseCacheCompressor):
     compressors: Any
@@ -6444,7 +6087,6 @@ class MultiCompressor(BaseCacheCompressor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MultiPrefetcher(BasePrefetcher):
     prefetchers: Any
@@ -6465,7 +6107,6 @@ class MultiPrefetcher(BasePrefetcher):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MultiperspectivePerceptron(ConditionalPredictor):
     num_filter_entries: Any
@@ -6505,7 +6146,6 @@ class MultiperspectivePerceptron(ConditionalPredictor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MultiperspectivePerceptron64KB(MultiperspectivePerceptron):
     num_filter_entries: Any
     num_local_histories: Any
@@ -6544,7 +6184,6 @@ class MultiperspectivePerceptron64KB(MultiperspectivePerceptron):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MultiperspectivePerceptron8KB(MultiperspectivePerceptron):
     num_filter_entries: Any
     num_local_histories: Any
@@ -6582,7 +6221,6 @@ class MultiperspectivePerceptron8KB(MultiperspectivePerceptron):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MultiperspectivePerceptronTAGE(MultiperspectivePerceptron):
     tage: Any
@@ -6625,7 +6263,6 @@ class MultiperspectivePerceptronTAGE(MultiperspectivePerceptron):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class MultiperspectivePerceptronTAGE64KB(MultiperspectivePerceptronTAGE):
     tage: Any
     loop_predictor: Any
@@ -6666,7 +6303,6 @@ class MultiperspectivePerceptronTAGE64KB(MultiperspectivePerceptronTAGE):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class MultiperspectivePerceptronTAGE8KB(MultiperspectivePerceptronTAGE):
     tage: Any
@@ -6709,7 +6345,6 @@ class MultiperspectivePerceptronTAGE8KB(MultiperspectivePerceptronTAGE):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class NRURP(BRRIPRP):
     num_bits: Any
     hit_priority: Any
@@ -6717,7 +6352,6 @@ class NRURP(BRRIPRP):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class NSGigE(EtherDevBase):
     dma_data_free: Any
@@ -6824,7 +6458,6 @@ class NSGigE(EtherDevBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class NVMInterface(MemInterface):
     max_pending_writes: Any
     max_pending_reads: Any
@@ -6861,7 +6494,6 @@ class NVMInterface(MemInterface):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class NVM_2400_1x64(NVMInterface):
     max_pending_writes: Any
@@ -6900,18 +6532,14 @@ class NVM_2400_1x64(NVMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class NativeTrace(ExeTracer):
     disassembler: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class NetworkBandwidth(float, ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class NetworkBridge(CreditLink):
     link: Any
@@ -6931,7 +6559,6 @@ class NetworkBridge(CreditLink):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class NetworkLink(ClockedObject):
     link_id: Any
     link_latency: Any
@@ -6945,7 +6572,6 @@ class NetworkLink(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class NonCachingSimpleCPU(BaseNonCachingSimpleCPU, X86CPU):
     width: Any
@@ -6982,7 +6608,6 @@ class NonCachingSimpleCPU(BaseNonCachingSimpleCPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class NoncoherentCache(BaseCache):
     size: Any
     assoc: Any
@@ -7016,7 +6641,6 @@ class NoncoherentCache(BaseCache):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class NoncoherentXBar(BaseXBar):
     frontend_latency: Any
     forward_latency: Any
@@ -7030,7 +6654,6 @@ class NoncoherentXBar(BaseXBar):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class O3CPU(BaseO3CPU, X86CPU):
     activity: Any
@@ -7135,11 +6758,8 @@ class O3CPU(BaseO3CPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class OpClass(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class OpDesc(SimObject):
     opClass: Any
@@ -7149,18 +6769,14 @@ class OpDesc(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class OptionalParamDesc(SingleTypeParamDesc):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class OutgoingRequestBridge(SimObject):
     physical_address_ranges: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PIFPrefetcher(QueuedPrefetcher):
     prec_spatial_region_bits: Any
@@ -7198,17 +6814,13 @@ class PIFPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PMType(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PS2Device(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PS2Keyboard(PS2Device):
     vnc: Any
@@ -7216,12 +6828,10 @@ class PS2Keyboard(PS2Device):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PS2Mouse(PS2Device):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PS2TouchKit(PS2Device):
     vnc: Any
@@ -7229,28 +6839,20 @@ class PS2TouchKit(PS2Device):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PageManage(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ParamDesc:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ParamValue:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PartitionManager(SimObject):
     partitioning_policies: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Pc(Platform):
     system: Any
@@ -7259,11 +6861,8 @@ class Pc(Platform):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PcCountPair(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PcCountTracker(ProbeListenerObject):
     targets: Any
@@ -7274,13 +6873,11 @@ class PcCountTracker(ProbeListenerObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PcCountTrackerManager(SimObject):
     targets: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PcPciHost(GenericPciHost):
     platform: Any
@@ -7300,7 +6897,6 @@ class PcPciHost(GenericPciHost):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PcSpeaker(BasicPioDevice):
     i8254: Any
     pio_addr: Any
@@ -7313,18 +6909,15 @@ class PcSpeaker(BasicPioDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PciBar(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PciBarNone(PciBar):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PciBus(NoncoherentXBar):
     frontend_latency: Any
@@ -7339,7 +6932,6 @@ class PciBus(NoncoherentXBar):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PciConfigError(IsaFake):
     pio_addr: Any
@@ -7360,7 +6952,6 @@ class PciConfigError(IsaFake):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PciDevice(DmaDevice):
     upstream: Any
@@ -7437,7 +7028,6 @@ class PciDevice(DmaDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PciEndpoint(PciDevice):
     BAR0: Any
@@ -7527,7 +7117,6 @@ class PciEndpoint(PciDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PciHost(PciUpstream):
     up_to_down: Any
     down_to_up: Any
@@ -7539,13 +7128,11 @@ class PciHost(PciUpstream):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PciIoBar(PciBar):
     size: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PciLegacyIoBar(PciIoBar):
     addr: Any
@@ -7554,19 +7141,16 @@ class PciLegacyIoBar(PciIoBar):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PciMemBar(PciBar):
     size: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PciMemUpperBar(PciBar):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PciType1Device(PciDevice):
     BAR0: Any
@@ -7663,7 +7247,6 @@ class PciType1Device(PciDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PciUpDownBridge(BridgeBase):
     req_size: Any
     resp_size: Any
@@ -7675,7 +7258,6 @@ class PciUpDownBridge(BridgeBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PciUpstream(ClockedObject):
     up_to_down: Any
     down_to_up: Any
@@ -7686,7 +7268,6 @@ class PciUpstream(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PciVirtIO(PciEndpoint):
     vio: Any
@@ -7777,11 +7358,8 @@ class PciVirtIO(PciEndpoint):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Percent(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PerfectCompressor(BaseCacheCompressor):
     max_compression_ratio: Any
@@ -7796,7 +7374,6 @@ class PerfectCompressor(BaseCacheCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PioDevice(ClockedObject):
     system: Any
     clk_domain: Any
@@ -7806,24 +7383,19 @@ class PioDevice(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Platform(SimObject):
     system: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Port:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PortTerminator(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PowerDomain(PowerState):
     default_state: Any
@@ -7836,7 +7408,6 @@ class PowerDomain(PowerState):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PowerModel(SimObject):
     pm: Any
     subsystem: Any
@@ -7846,12 +7417,10 @@ class PowerModel(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PowerModelState(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PowerState(SimObject):
     default_state: Any
@@ -7864,14 +7433,12 @@ class PowerState(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PredALU(FUDesc):
     count: Any
     opList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Prefetcher(RubyPrefetcher):
     num_streams: Any
@@ -7886,13 +7453,11 @@ class Prefetcher(RubyPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ProbeListenerObject(SimObject):
     manager: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Process(SimObject):
     input: Any
@@ -7922,26 +7487,17 @@ class Process(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class PwrState(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PyBindExport:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PyBindMethod(PyBindExport):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PyBindProperty(PyBindExport):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class PyTrafficGen(BaseTrafficGen):
     system: Any
@@ -7961,7 +7517,6 @@ class PyTrafficGen(BaseTrafficGen):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QemuFwCfg(PioDevice):
     items: Any
     system: Any
@@ -7971,7 +7526,6 @@ class QemuFwCfg(PioDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QemuFwCfgIo(QemuFwCfg):
     selector_addr: Any
@@ -7984,7 +7538,6 @@ class QemuFwCfgIo(QemuFwCfg):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QemuFwCfgItem(SimObject):
     arch_specific: Any
     index: Any
@@ -7992,7 +7545,6 @@ class QemuFwCfgItem(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QemuFwCfgItemBytes(QemuFwCfgItem):
     data: Any
@@ -8003,7 +7555,6 @@ class QemuFwCfgItemBytes(QemuFwCfgItem):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QemuFwCfgItemE820(QemuFwCfgItem):
     entries: Any
     arch_specific: Any
@@ -8012,7 +7563,6 @@ class QemuFwCfgItemE820(QemuFwCfgItem):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QemuFwCfgItemFile(QemuFwCfgItem):
     file: Any
@@ -8023,7 +7573,6 @@ class QemuFwCfgItemFile(QemuFwCfgItem):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QemuFwCfgItemString(QemuFwCfgItem):
     string: Any
     arch_specific: Any
@@ -8032,7 +7581,6 @@ class QemuFwCfgItemString(QemuFwCfgItem):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QemuFwCfgMmio(QemuFwCfg):
     selector_addr: Any
@@ -8046,13 +7594,11 @@ class QemuFwCfgMmio(QemuFwCfg):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QoSFixedPriorityPolicy(QoSPolicy):
     qos_fixed_prio_default_prio: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QoSMemCtrl(ClockedObject):
     system: Any
@@ -8069,7 +7615,6 @@ class QoSMemCtrl(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QoSMemSinkCtrl(QoSMemCtrl):
     interface: Any
@@ -8093,7 +7638,6 @@ class QoSMemSinkCtrl(QoSMemCtrl):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QoSMemSinkInterface(AbstractMemory):
     range: Any
     null: Any
@@ -8110,12 +7654,10 @@ class QoSMemSinkInterface(AbstractMemory):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QoSPolicy(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QoSPropFairPolicy(QoSPolicy):
     weight: Any
@@ -8123,23 +7665,18 @@ class QoSPropFairPolicy(QoSPolicy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QoSQPolicy(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QoSTurnaroundPolicy(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class QoSTurnaroundPolicyIdeal(QoSTurnaroundPolicy):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class QueuedPrefetcher(BasePrefetcher):
     latency: Any
@@ -8168,7 +7705,6 @@ class QueuedPrefetcher(BasePrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RRIPRP(BRRIPRP):
     num_bits: Any
     hit_priority: Any
@@ -8177,12 +7713,10 @@ class RRIPRP(BRRIPRP):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RandomRP(BaseReplacementPolicy):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RangeAddrMapper(AddrMapper):
     original_ranges: Any
@@ -8191,14 +7725,12 @@ class RangeAddrMapper(AddrMapper):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RawDiskImage(DiskImage):
     image_file: Any
     read_only: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RdWrPort(FUDesc):
     count: Any
@@ -8207,7 +7739,6 @@ class RdWrPort(FUDesc):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ReadPort(FUDesc):
     count: Any
     opList: Any
@@ -8215,14 +7746,12 @@ class ReadPort(FUDesc):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RedirectPath(SimObject):
     app_path: Any
     host_paths: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RepeatedQwordsCompressor(BaseDictionaryCompressor):
     dictionary_size: Any
@@ -8237,26 +7766,17 @@ class RepeatedQwordsCompressor(BaseDictionaryCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RequestPort(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ResetRequestPort(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ResetResponsePort(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ResponsePort(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ReturnAddrStack(SimObject):
     numThreads: Any
@@ -8264,7 +7784,6 @@ class ReturnAddrStack(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RiscvUart8250(Uart8250):
     pio_size: Any
@@ -8280,7 +7799,6 @@ class RiscvUart8250(Uart8250):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Root(SimObject):
     sim_quantum: Any
     full_system: Any
@@ -8290,7 +7808,6 @@ class Root(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RubyCache(SimObject):
     size: Any
@@ -8309,7 +7826,6 @@ class RubyCache(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RubyController(ClockedObject):
     version: Any
@@ -8331,7 +7847,6 @@ class RubyController(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RubyDirectedTester(ClockedObject):
     requests_to_complete: Any
     generator: Any
@@ -8342,7 +7857,6 @@ class RubyDirectedTester(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RubyDirectoryMemory(SimObject):
     addr_ranges: Any
     block_size: Any
@@ -8350,7 +7864,6 @@ class RubyDirectoryMemory(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RubyHTMSequencer(RubySequencer):
     dcache: Any
@@ -8373,7 +7886,6 @@ class RubyHTMSequencer(RubySequencer):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RubyNetwork(ClockedObject):
     topology: Any
     number_of_virtual_networks: Any
@@ -8391,7 +7903,6 @@ class RubyNetwork(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RubyPort(ClockedObject):
     version: Any
     using_ruby_tester: Any
@@ -8407,7 +7918,6 @@ class RubyPort(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RubyPortProxy(RubyPort):
     version: Any
@@ -8425,7 +7935,6 @@ class RubyPortProxy(RubyPort):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RubyPrefetcher(SimObject):
     num_streams: Any
     unit_filter: Any
@@ -8438,7 +7947,6 @@ class RubyPrefetcher(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class RubySequencer(RubyPort):
     dcache: Any
@@ -8461,7 +7969,6 @@ class RubySequencer(RubyPort):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RubySystem(ClockedObject):
     randomization: Any
     block_size_bytes: Any
@@ -8480,7 +7987,6 @@ class RubySystem(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RubyTester(ClockedObject):
     num_cpus: Any
     checks_to_complete: Any
@@ -8495,12 +8001,10 @@ class RubyTester(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class RubyWireBuffer(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SBOOEPrefetcher(QueuedPrefetcher):
     latency_buffer_size: Any
@@ -8533,7 +8037,6 @@ class SBOOEPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SEWorkload(Workload):
     wait_for_remote_gdb: Any
     remote_gdb_port: Any
@@ -8541,11 +8044,8 @@ class SEWorkload(Workload):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SEWorkloadMeta(MetaSimObject):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SHiPMemRP(SHiPRP):
     shct_size: Any
@@ -8557,7 +8057,6 @@ class SHiPMemRP(SHiPRP):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SHiPPCRP(SHiPRP):
     shct_size: Any
     insertion_threshold: Any
@@ -8567,7 +8066,6 @@ class SHiPPCRP(SHiPRP):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SHiPRP(BRRIPRP):
     shct_size: Any
@@ -8579,7 +8077,6 @@ class SHiPRP(BRRIPRP):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SIMD_Unit(FUDesc):
     count: Any
     opList: Any
@@ -8587,16 +8084,11 @@ class SIMD_Unit(FUDesc):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SMTFetchPolicy(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SMTQueuePolicy(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class STeMSPrefetcher(QueuedPrefetcher):
     spatial_region_size: Any
@@ -8637,17 +8129,13 @@ class STeMSPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ScopedEnum(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SecondChanceRP(FIFORP):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SectorTags(BaseTags):
     assoc: Any
@@ -8669,12 +8157,10 @@ class SectorTags(BaseTags):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SerialDevice(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SerialLink(ClockedObject):
     req_size: Any
@@ -8690,12 +8176,10 @@ class SerialLink(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SerialNullDevice(SerialDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SeriesRequestGenerator(DirectedGenerator):
     addr_increment_size: Any
@@ -8707,7 +8191,6 @@ class SeriesRequestGenerator(DirectedGenerator):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SetAssociative(BaseIndexingPolicy):
     size: Any
     entry_size: Any
@@ -8716,14 +8199,12 @@ class SetAssociative(BaseIndexingPolicy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SharedMemoryServer(SimObject):
     system: Any
     server_path: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SignaturePathPrefetcher(QueuedPrefetcher):
     signature_shift: Any
@@ -8765,7 +8246,6 @@ class SignaturePathPrefetcher(QueuedPrefetcher):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SignaturePathPrefetcherV2(SignaturePathPrefetcher):
     global_history_register_entries: Any
@@ -8811,17 +8291,13 @@ class SignaturePathPrefetcherV2(SignaturePathPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SimObject:
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SimObjectVector(VectorParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SimPoint(ProbeListenerObject):
     interval: Any
@@ -8830,7 +8306,6 @@ class SimPoint(ProbeListenerObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SimpleBTB(BranchTargetBuffer):
     numEntries: Any
@@ -8847,7 +8322,6 @@ class SimpleBTB(BranchTargetBuffer):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SimpleCache(ClockedObject):
     latency: Any
     size: Any
@@ -8859,14 +8333,12 @@ class SimpleCache(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SimpleDisk(SimObject):
     disk: Any
     system: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SimpleExtLink(BasicExtLink):
     ext_node: Any
@@ -8879,7 +8351,6 @@ class SimpleExtLink(BasicExtLink):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SimpleIndirectPredictor(IndirectPredictor):
     indirectHashGHR: Any
@@ -8896,7 +8367,6 @@ class SimpleIndirectPredictor(IndirectPredictor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SimpleIntLink(BasicIntLink):
     buffers: Any
     src_node: Any
@@ -8912,7 +8382,6 @@ class SimpleIntLink(BasicIntLink):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SimpleMemDelay(MemDelay):
     read_req: Any
     read_resp: Any
@@ -8925,12 +8394,10 @@ class SimpleMemDelay(MemDelay):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SimpleMemobj(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SimpleMemory(AbstractMemory):
     latency: Any
@@ -8950,7 +8417,6 @@ class SimpleMemory(AbstractMemory):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SimpleNetwork(RubyNetwork):
     buffer_size: Any
@@ -8973,19 +8439,16 @@ class SimpleNetwork(RubyNetwork):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SimpleObject(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SimpleTrace(ProbeListenerObject):
     manager: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SimpleUart(Uart):
     byte_order: Any
@@ -9002,7 +8465,6 @@ class SimpleUart(Uart):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Sinic(EtherDevBase):
     rx_max_copy: Any
@@ -9119,7 +8581,6 @@ class Sinic(EtherDevBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SkewedAssociative(BaseIndexingPolicy):
     size: Any
     entry_size: Any
@@ -9128,11 +8589,8 @@ class SkewedAssociative(BaseIndexingPolicy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SlavePort(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SlimAMPMPrefetcher(QueuedPrefetcher):
     ampm: Any
@@ -9163,7 +8621,6 @@ class SlimAMPMPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SlimAccessMapPatternMatching(AccessMapPatternMatching):
     block_size: Any
     limit_stride: Any
@@ -9188,7 +8645,6 @@ class SlimAccessMapPatternMatching(AccessMapPatternMatching):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SlimDeltaCorrelatingPredictionTables(DeltaCorrelatingPredictionTables):
     deltas_per_entry: Any
     delta_bits: Any
@@ -9200,7 +8656,6 @@ class SlimDeltaCorrelatingPredictionTables(DeltaCorrelatingPredictionTables):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SmsPrefetcher(QueuedPrefetcher):
     ft_size: Any
@@ -9232,7 +8687,6 @@ class SmsPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SnoopFilter(SimObject):
     lookup_latency: Any
     system: Any
@@ -9240,7 +8694,6 @@ class SnoopFilter(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SouthBridge(SimObject):
     pic1: Any
@@ -9254,7 +8707,6 @@ class SouthBridge(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SpatterGen(ClockedObject):
     system: Any
@@ -9272,16 +8724,11 @@ class SpatterGen(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SpatterKernelType(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SpatterProcessingMode(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SrcClockDomain(ClockDomain):
     clock: Any
@@ -9291,7 +8738,6 @@ class SrcClockDomain(ClockDomain):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class StackDistProbe(BaseMemProbe):
     system: Any
@@ -9307,11 +8753,8 @@ class StackDistProbe(BaseMemProbe):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class StaticInstFlags(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class StatisticalCorrector(SimObject):
     instShiftAmt: Any
@@ -9341,11 +8784,8 @@ class StatisticalCorrector(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class StreamGenType(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class StridePrefetcher(QueuedPrefetcher):
     confidence_counter_bits: Any
@@ -9385,7 +8825,6 @@ class StridePrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class StridePrefetcherHashedSetAssociative(TaggedSetAssociative):
     size: Any
     entry_size: Any
@@ -9394,11 +8833,8 @@ class StridePrefetcherHashedSetAssociative(TaggedSetAssociative):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class String(ParamValue, str):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class StubWorkload(Workload):
     entry: Any
@@ -9409,13 +8845,11 @@ class StubWorkload(Workload):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SubSystem(SimObject):
     thermal_domain: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Switch(BasicRouter):
     virt_nets: Any
@@ -9432,7 +8866,6 @@ class Switch(BasicRouter):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SwitchPortBuffer(MessageBuffer):
     ordered: Any
     buffer_size: Any
@@ -9444,14 +8877,12 @@ class SwitchPortBuffer(MessageBuffer):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SysBridge(SimObject):
     source: Any
     target: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class System(SimObject):
     memories: Any
@@ -9485,24 +8916,20 @@ class System(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SystemC_Kernel(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SystemC_ScModule(SystemC_ScObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class SystemC_ScObject(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class SystemXBar(CoherentXBar):
     snoop_response_latency: Any
@@ -9525,14 +8952,12 @@ class SystemXBar(CoherentXBar):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class System_Unit(FUDesc):
     count: Any
     opList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TAGE(ConditionalPredictor):
     tage: Any
@@ -9542,7 +8967,6 @@ class TAGE(ConditionalPredictor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TAGEBase(SimObject):
     numThreads: Any
@@ -9569,7 +8993,6 @@ class TAGEBase(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TAGE_SC_L(LTAGE):
     statistical_corrector: Any
     loop_predictor: Any
@@ -9581,7 +9004,6 @@ class TAGE_SC_L(LTAGE):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TAGE_SC_L_64KB(TAGE_SC_L):
     statistical_corrector: Any
     loop_predictor: Any
@@ -9592,7 +9014,6 @@ class TAGE_SC_L_64KB(TAGE_SC_L):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TAGE_SC_L_64KB_LoopPredictor(TAGE_SC_L_LoopPredictor):
     logSizeLoopPred: Any
@@ -9612,7 +9033,6 @@ class TAGE_SC_L_64KB_LoopPredictor(TAGE_SC_L_LoopPredictor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TAGE_SC_L_64KB_StatisticalCorrector(StatisticalCorrector):
     pnb: Any
@@ -9656,7 +9076,6 @@ class TAGE_SC_L_64KB_StatisticalCorrector(StatisticalCorrector):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TAGE_SC_L_8KB(TAGE_SC_L):
     statistical_corrector: Any
     loop_predictor: Any
@@ -9667,7 +9086,6 @@ class TAGE_SC_L_8KB(TAGE_SC_L):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TAGE_SC_L_8KB_LoopPredictor(TAGE_SC_L_LoopPredictor):
     logSizeLoopPred: Any
@@ -9687,7 +9105,6 @@ class TAGE_SC_L_8KB_LoopPredictor(TAGE_SC_L_LoopPredictor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TAGE_SC_L_8KB_StatisticalCorrector(StatisticalCorrector):
     gnb: Any
@@ -9720,7 +9137,6 @@ class TAGE_SC_L_8KB_StatisticalCorrector(StatisticalCorrector):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TAGE_SC_L_LoopPredictor(LoopPredictor):
     logSizeLoopPred: Any
     withLoopBits: Any
@@ -9739,7 +9155,6 @@ class TAGE_SC_L_LoopPredictor(LoopPredictor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TAGE_SC_L_TAGE(TAGEBase):
     logTagTableSize: Any
@@ -9773,7 +9188,6 @@ class TAGE_SC_L_TAGE(TAGEBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TAGE_SC_L_TAGE_64KB(TAGE_SC_L_TAGE):
     logTagTableSize: Any
     shortTagsTageFactor: Any
@@ -9805,7 +9219,6 @@ class TAGE_SC_L_TAGE_64KB(TAGE_SC_L_TAGE):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TAGE_SC_L_TAGE_8KB(TAGE_SC_L_TAGE):
     logTagTableSize: Any
@@ -9839,13 +9252,11 @@ class TAGE_SC_L_TAGE_8KB(TAGE_SC_L_TAGE):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TaggedIndexingPolicy(SimObject):
     assoc: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TaggedPrefetcher(QueuedPrefetcher):
     degree: Any
@@ -9875,7 +9286,6 @@ class TaggedPrefetcher(QueuedPrefetcher):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TaggedSetAssociative(TaggedIndexingPolicy):
     size: Any
     entry_size: Any
@@ -9884,21 +9294,14 @@ class TaggedSetAssociative(TaggedIndexingPolicy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TargetProvider(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TcpPort(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Temperature(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Terminal(SerialDevice):
     port: Any
@@ -9908,11 +9311,8 @@ class Terminal(SerialDevice):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TerminalDump(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ThermalCapacitor(SimObject):
     capacitance: Any
@@ -9920,13 +9320,11 @@ class ThermalCapacitor(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ThermalDomain(SimObject):
     initial_temperature: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ThermalModel(ClockedObject):
     step: Any
@@ -9937,12 +9335,10 @@ class ThermalModel(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ThermalNode(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class ThermalReference(SimObject):
     temperature: Any
@@ -9950,29 +9346,22 @@ class ThermalReference(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ThermalResistor(SimObject):
     resistance: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ThreadBridge(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ThreadPolicy(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Tick(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TickedObject(ClockedObject):
     clk_domain: Any
@@ -9982,24 +9371,19 @@ class TickedObject(ClockedObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Time(ParamValue):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TimingExpr(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TimingExpr0(TimingExprLiteral):
     value: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TimingExprBin(TimingExpr):
     op: Any
@@ -10009,7 +9393,6 @@ class TimingExprBin(TimingExpr):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TimingExprIf(TimingExpr):
     cond: Any
     trueExpr: Any
@@ -10018,7 +9401,6 @@ class TimingExprIf(TimingExpr):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TimingExprLet(TimingExpr):
     defns: Any
     expr: Any
@@ -10026,18 +9408,14 @@ class TimingExprLet(TimingExpr):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TimingExprLiteral(TimingExpr):
     value: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TimingExprOp(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TimingExprRef(TimingExpr):
     index: Any
@@ -10045,13 +9423,11 @@ class TimingExprRef(TimingExpr):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TimingExprSrcReg(TimingExpr):
     index: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TimingExprUn(TimingExpr):
     op: Any
@@ -10059,7 +9435,6 @@ class TimingExprUn(TimingExpr):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TimingSimpleCPU(BaseTimingSimpleCPU, X86CPU):
     branchPred: Any
@@ -10093,16 +9468,11 @@ class TimingSimpleCPU(BaseTimingSimpleCPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TlmInitiatorSocket(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TlmTargetSocket(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TlmToGem5Bridge128(TlmToGem5BridgeBase):
     system: Any
@@ -10110,13 +9480,11 @@ class TlmToGem5Bridge128(TlmToGem5BridgeBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TlmToGem5Bridge256(TlmToGem5BridgeBase):
     system: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TlmToGem5Bridge32(TlmToGem5BridgeBase):
     system: Any
@@ -10124,13 +9492,11 @@ class TlmToGem5Bridge32(TlmToGem5BridgeBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TlmToGem5Bridge512(TlmToGem5BridgeBase):
     system: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TlmToGem5Bridge64(TlmToGem5BridgeBase):
     system: Any
@@ -10138,13 +9504,11 @@ class TlmToGem5Bridge64(TlmToGem5BridgeBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TlmToGem5BridgeBase(SystemC_ScModule):
     system: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TournamentBP(ConditionalPredictor):
     localPredictorSize: Any
@@ -10160,7 +9524,6 @@ class TournamentBP(ConditionalPredictor):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TraceCPU(ClockedObject):
     system: Any
@@ -10178,7 +9541,6 @@ class TraceCPU(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class TrafficGen(BaseTrafficGen):
     config_file: Any
@@ -10199,38 +9561,26 @@ class TrafficGen(BaseTrafficGen):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TreePLRURP(BaseReplacementPolicy):
     num_leaves: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class TypeTLB(ScopedEnum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class UInt16(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class UInt32(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class UInt64(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class UInt8(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Uart(BasicPioDevice):
     platform: Any
@@ -10244,7 +9594,6 @@ class Uart(BasicPioDevice):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Uart8250(Uart):
     pio_size: Any
@@ -10260,86 +9609,53 @@ class Uart8250(Uart):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class UdpPort(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class Unsigned(CheckedInt):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorEtherInt(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorIntSinkPin(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorIntSourcePin(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorMasterPort(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorParamDesc(SingleTypeParamDesc):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorParamValue(list):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorPort(Port):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorRequestPort(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorResetRequestPort(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorResetResponsePort(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorResponsePort(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorSlavePort(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorTlmInitiatorSocket(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VectorTlmTargetSocket(VectorPort):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VirtIO9PBase(VirtIODeviceBase):
     queueSize: Any
@@ -10350,7 +9666,6 @@ class VirtIO9PBase(VirtIODeviceBase):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VirtIO9PDiod(VirtIO9PProxy):
     diod: Any
@@ -10365,7 +9680,6 @@ class VirtIO9PDiod(VirtIO9PProxy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class VirtIO9PProxy(VirtIO9PBase):
     queueSize: Any
     tag: Any
@@ -10375,7 +9689,6 @@ class VirtIO9PProxy(VirtIO9PBase):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VirtIO9PSocket(VirtIO9PProxy):
     server: Any
@@ -10389,7 +9702,6 @@ class VirtIO9PSocket(VirtIO9PProxy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class VirtIOBlock(VirtIODeviceBase):
     queueSize: Any
     image: Any
@@ -10399,7 +9711,6 @@ class VirtIOBlock(VirtIODeviceBase):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VirtIOConsole(VirtIODeviceBase):
     qRecvSize: Any
@@ -10412,7 +9723,6 @@ class VirtIOConsole(VirtIODeviceBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class VirtIODeviceBase(SimObject):
     subsystem: Any
     system: Any
@@ -10421,7 +9731,6 @@ class VirtIODeviceBase(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class VirtIODummyDevice(VirtIODeviceBase):
     subsystem: Any
     system: Any
@@ -10429,7 +9738,6 @@ class VirtIODummyDevice(VirtIODeviceBase):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VirtIORng(VirtIODeviceBase):
     qSize: Any
@@ -10440,14 +9748,12 @@ class VirtIORng(VirtIODeviceBase):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class VncInput(SimObject):
     frame_capture: Any
     img_format: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VncServer(VncInput):
     port: Any
@@ -10458,18 +9764,14 @@ class VncServer(VncInput):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Voltage(Float):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class VoltageDomain(SimObject):
     voltage: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class WayPartitioningPolicy(BasePartitioningPolicy):
     cache_associativity: Any
@@ -10478,7 +9780,6 @@ class WayPartitioningPolicy(BasePartitioningPolicy):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class WayPolicyAllocation(SimObject):
     partition_id: Any
     ways: Any
@@ -10486,19 +9787,16 @@ class WayPolicyAllocation(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class WeightBased(BaseRoutingUnit):
     adaptive_routing: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class WeightedLRURP(LRURP):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class WideIO_200_1x128(DRAMInterface):
     page_policy: Any
@@ -10588,14 +9886,12 @@ class WideIO_200_1x128(DRAMInterface):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class Workload(SimObject):
     wait_for_remote_gdb: Any
     remote_gdb_port: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class WriteAllocator(SimObject):
     coalesce_limit: Any
@@ -10606,14 +9902,12 @@ class WriteAllocator(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class WritePort(FUDesc):
     count: Any
     opList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86ACPIMadt(X86ACPISysDescTable):
     local_apic_address: Any
@@ -10628,7 +9922,6 @@ class X86ACPIMadt(X86ACPISysDescTable):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86ACPIMadtIOAPIC(X86ACPIMadtRecord):
     id: Any
     address: Any
@@ -10636,7 +9929,6 @@ class X86ACPIMadtIOAPIC(X86ACPIMadtRecord):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86ACPIMadtIntSourceOverride(X86ACPIMadtRecord):
     bus_source: Any
@@ -10647,7 +9939,6 @@ class X86ACPIMadtIntSourceOverride(X86ACPIMadtRecord):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86ACPIMadtLAPIC(X86ACPIMadtRecord):
     acpi_processor_id: Any
     apic_id: Any
@@ -10656,13 +9947,11 @@ class X86ACPIMadtLAPIC(X86ACPIMadtRecord):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86ACPIMadtLAPICOverride(X86ACPIMadtRecord):
     address: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86ACPIMadtNMI(X86ACPIMadtRecord):
     acpi_processor_id: Any
@@ -10672,12 +9961,10 @@ class X86ACPIMadtNMI(X86ACPIMadtRecord):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86ACPIMadtRecord(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86ACPIRSDP(SimObject):
     oem_id: Any
@@ -10687,7 +9974,6 @@ class X86ACPIRSDP(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86ACPIRSDT(X86ACPISysDescTable):
     entries: Any
@@ -10700,7 +9986,6 @@ class X86ACPIRSDT(X86ACPISysDescTable):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86ACPISysDescTable(SimObject):
     oem_id: Any
     oem_table_id: Any
@@ -10710,7 +9995,6 @@ class X86ACPISysDescTable(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86ACPIXSDT(X86ACPISysDescTable):
     entries: Any
@@ -10722,7 +10006,6 @@ class X86ACPIXSDT(X86ACPISysDescTable):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86AtomicSimpleCPU(BaseAtomicSimpleCPU, X86CPU):
     width: Any
@@ -10759,7 +10042,6 @@ class X86AtomicSimpleCPU(BaseAtomicSimpleCPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86BareMetalWorkload(Workload):
     wait_for_remote_gdb: Any
     remote_gdb_port: Any
@@ -10767,18 +10049,14 @@ class X86BareMetalWorkload(Workload):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86CPU:
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86Decoder(InstDecoder):
     isa: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86E820Entry(SimObject):
     addr: Any
@@ -10788,13 +10066,11 @@ class X86E820Entry(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86E820Table(SimObject):
     entries: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86EmuLinux(SEWorkload):
     wait_for_remote_gdb: Any
@@ -10802,7 +10078,6 @@ class X86EmuLinux(SEWorkload):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86FsLinux(X86FsWorkload):
     e820_table: Any
@@ -10828,7 +10103,6 @@ class X86FsLinux(X86FsWorkload):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86FsWorkload(KernelWorkload):
     smbios_table: Any
     intel_mp_pointer: Any
@@ -10852,11 +10126,8 @@ class X86FsWorkload(KernelWorkload):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86I8259CascadeMode(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86ISA(BaseISA):
     vendor_string: Any
@@ -10873,7 +10144,6 @@ class X86ISA(BaseISA):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IdeController(IdeController):
     disks: Any
@@ -10966,14 +10236,12 @@ class X86IdeController(IdeController):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86IntMultDiv(IntMultDiv):
     count: Any
     opList: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPAddrSpaceMapping(X86IntelMPExtConfigEntry):
     bus_id: Any
@@ -10984,17 +10252,13 @@ class X86IntelMPAddrSpaceMapping(X86IntelMPExtConfigEntry):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86IntelMPAddressType(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPBaseConfigEntry(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPBus(X86IntelMPBaseConfigEntry):
     bus_id: Any
@@ -11002,7 +10266,6 @@ class X86IntelMPBus(X86IntelMPBaseConfigEntry):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPBusHierarchy(X86IntelMPExtConfigEntry):
     bus_id: Any
@@ -11012,7 +10275,6 @@ class X86IntelMPBusHierarchy(X86IntelMPExtConfigEntry):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86IntelMPCompatAddrSpaceMod(X86IntelMPExtConfigEntry):
     bus_id: Any
     add: Any
@@ -11020,7 +10282,6 @@ class X86IntelMPCompatAddrSpaceMod(X86IntelMPExtConfigEntry):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPConfigTable(SimObject):
     spec_rev: Any
@@ -11035,12 +10296,10 @@ class X86IntelMPConfigTable(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86IntelMPExtConfigEntry(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPFloatingPointer(SimObject):
     spec_rev: Any
@@ -11050,7 +10309,6 @@ class X86IntelMPFloatingPointer(SimObject):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86IntelMPIOAPIC(X86IntelMPBaseConfigEntry):
     id: Any
     version: Any
@@ -11059,7 +10317,6 @@ class X86IntelMPIOAPIC(X86IntelMPBaseConfigEntry):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPIOIntAssignment(X86IntelMPBaseConfigEntry):
     interrupt_type: Any
@@ -11073,11 +10330,8 @@ class X86IntelMPIOIntAssignment(X86IntelMPBaseConfigEntry):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86IntelMPInterruptType(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPLocalIntAssignment(X86IntelMPBaseConfigEntry):
     interrupt_type: Any
@@ -11091,11 +10345,8 @@ class X86IntelMPLocalIntAssignment(X86IntelMPBaseConfigEntry):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86IntelMPPolarity(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPProcessor(X86IntelMPBaseConfigEntry):
     local_apic_id: Any
@@ -11110,16 +10361,11 @@ class X86IntelMPProcessor(X86IntelMPBaseConfigEntry):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86IntelMPRangeList(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86IntelMPTriggerMode(Enum):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86KvmCPU(BaseKvmCPU, X86CPU):
     useXSave: Any
@@ -11159,7 +10405,6 @@ class X86KvmCPU(BaseKvmCPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86LocalApic(BaseInterrupts):
     int_latency: Any
     system: Any
@@ -11169,14 +10414,12 @@ class X86LocalApic(BaseInterrupts):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86MMU(BaseMMU):
     itb: Any
     dtb: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86MinorCPU(BaseMinorCPU, X86CPU):
     threadPolicy: Any
@@ -11242,13 +10485,11 @@ class X86MinorCPU(BaseMinorCPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86NativeTrace(NativeTrace):
     disassembler: Any
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86NonCachingSimpleCPU(BaseNonCachingSimpleCPU, X86CPU):
     width: Any
@@ -11284,7 +10525,6 @@ class X86NonCachingSimpleCPU(BaseNonCachingSimpleCPU, X86CPU):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86O3CPU(BaseO3CPU, X86CPU):
     activity: Any
@@ -11389,7 +10629,6 @@ class X86O3CPU(BaseO3CPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86PagetableWalker(ClockedObject):
     system: Any
     num_squash_per_cycle: Any
@@ -11399,7 +10638,6 @@ class X86PagetableWalker(ClockedObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86QemuFwCfg(QemuFwCfgIo):
     selector_addr: Any
@@ -11411,7 +10649,6 @@ class X86QemuFwCfg(QemuFwCfgIo):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86SMBiosBiosInformation(X86SMBiosSMBiosStructure):
     vendor: Any
@@ -11429,12 +10666,10 @@ class X86SMBiosBiosInformation(X86SMBiosSMBiosStructure):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class X86SMBiosSMBiosStructure(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86SMBiosSMBiosTable(SimObject):
     major_version: Any
@@ -11443,7 +10678,6 @@ class X86SMBiosSMBiosTable(SimObject):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86TLB(BaseTLB):
     size: Any
@@ -11454,7 +10688,6 @@ class X86TLB(BaseTLB):
     eventq_index: Any
 
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class X86TimingSimpleCPU(BaseTimingSimpleCPU, X86CPU):
     branchPred: Any
@@ -11488,7 +10721,6 @@ class X86TimingSimpleCPU(BaseTimingSimpleCPU, X86CPU):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class ZeroCompressor(BaseDictionaryCompressor):
     dictionary_size: Any
     block_size: Any
@@ -11502,19 +10734,11 @@ class ZeroCompressor(BaseDictionaryCompressor):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-
 class abstractclassmethod(classmethod):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class abstractproperty(property):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
 
 class abstractstaticmethod(staticmethod):
-
     def __init__(self, *args, **kwargs) -> None: ...
-
-

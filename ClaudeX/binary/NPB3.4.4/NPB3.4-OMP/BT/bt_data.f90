@@ -5,12 +5,12 @@
 !
 !---------------------------------------------------------------------
 !---------------------------------------------------------------------
- 
+
       module bt_data
 
 !---------------------------------------------------------------------
 ! The following include file is generated automatically by the
-! "setparams" utility. It defines 
+! "setparams" utility. It defines
 !      maxcells:      the square root of the maximum number of processors
 !      problem_size:  12, 64, 102, 162 (for class T, A, B, C)
 !      dt_default:    default time step for this problem size if no
@@ -45,9 +45,9 @@
       parameter (IMAX=problem_size,JMAX=problem_size,KMAX=problem_size)
 
 !
-!   field arrays 
+!   field arrays
 !
-      double precision, allocatable ::  & 
+      double precision, allocatable ::  &
      &   us      (   :, :, :),  &
      &   vs      (   :, :, :),  &
      &   ws      (   :, :, :),  &
@@ -107,7 +107,7 @@
       parameter (IMAXP=IMAX/2*2,JMAXP=JMAX/2*2)
 
 !
-!   to improve cache performance, grid dimensions padded by 1 
+!   to improve cache performance, grid dimensions padded by 1
 !   for even number sizes only.
 !
       allocate (   &
@@ -153,4 +153,3 @@
 
       return
       end
-

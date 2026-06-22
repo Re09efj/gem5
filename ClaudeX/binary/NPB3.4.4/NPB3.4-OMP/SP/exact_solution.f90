@@ -8,7 +8,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-! this function returns the exact solution at point xi, eta, zeta  
+! this function returns the exact solution at point xi, eta, zeta
 !---------------------------------------------------------------------
 
        use sp_data
@@ -28,5 +28,3 @@
 
        return
        end
-
-

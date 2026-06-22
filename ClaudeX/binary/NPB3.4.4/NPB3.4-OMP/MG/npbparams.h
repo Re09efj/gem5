@@ -1,10 +1,10 @@
 ! CLASS = S
-!  
-!  
+!
+!
 !  This file is generated automatically by the setparams utility.
 !  It sets the number of processors and the class of the NPB
 !  in this directory. Do not modify it by hand.
-!  
+!
         integer nx_default, ny_default, nz_default
         parameter (nx_default=32, ny_default=32, nz_default=32)
         integer nit_default, lm, lt_default

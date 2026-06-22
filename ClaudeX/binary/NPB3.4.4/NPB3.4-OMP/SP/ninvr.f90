@@ -8,7 +8,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!   block-diagonal matrix-vector multiplication              
+!   block-diagonal matrix-vector multiplication
 !---------------------------------------------------------------------
 
        use sp_data
@@ -29,7 +29,7 @@
                 r3 = rhs(3,i,j,k)
                 r4 = rhs(4,i,j,k)
                 r5 = rhs(5,i,j,k)
-               
+
                 t1 = bt * r3
                 t2 = 0.5d0 * ( r4 + r5 )
 
@@ -38,7 +38,7 @@
                 rhs(3,i,j,k) = bt * ( r4 - r5 )
                 rhs(4,i,j,k) = -t1 + t2
                 rhs(5,i,j,k) =  t1 + t2
-             enddo    
+             enddo
           enddo
        enddo
        if (timeron) call timer_stop(t_ninvr)

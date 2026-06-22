@@ -34,7 +34,7 @@
 
 !---------------------------------------------------------------------
 !
-! Author: P. O. Frederickson 
+! Author: P. O. Frederickson
 !         D. H. Bailey
 !         A. C. Woo
 !         H. Jin
@@ -91,11 +91,11 @@
  1003 format(' Number of available threads:        ', 2x,i13)
 
 
-!   Compute the number of "batches" of random number pairs generated 
-!   per processor. Adjust if the number of processors does not evenly 
+!   Compute the number of "batches" of random number pairs generated
+!   per processor. Adjust if the number of processors does not evenly
 !   divide the total number
 
-      np = nn 
+      np = nn
 
 
 !   Call the random number generator functions and initialize
@@ -154,7 +154,7 @@
 
 !$omp do schedule(static)
       do 150 k = 1, np
-         kk = k_offset + k 
+         kk = k_offset + k
          t1 = s
          t2 = an
 
@@ -175,9 +175,9 @@
          call vranlc(2 * nk, t1, a, x)
          if (timers_enabled) call timer_stop(3)
 
-!        Compute Gaussian deviates by acceptance-rejection method and 
-!        tally counts in concentric square annuli.  This loop is not 
-!        vectorizable. 
+!        Compute Gaussian deviates by acceptance-rejection method and
+!        tally counts in concentric square annuli.  This loop is not
+!        vectorizable.
 
          if (timers_enabled) call timer_start(2)
 

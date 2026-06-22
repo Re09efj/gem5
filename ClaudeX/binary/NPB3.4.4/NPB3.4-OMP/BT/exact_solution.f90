@@ -7,7 +7,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!     this function returns the exact solution at point xi, eta, zeta  
+!     this function returns the exact solution at point xi, eta, zeta
 !---------------------------------------------------------------------
 
       use bt_data
@@ -26,5 +26,3 @@
 
       return
       end
-
-

@@ -1,6 +1,6 @@
 !---------------------------------------------------------------------
 !---------------------------------------------------------------------
-      
+
       module timers
 
       double precision start(64), elapsed(64)
@@ -13,7 +13,7 @@
 
 !---------------------------------------------------------------------
 !---------------------------------------------------------------------
-      
+
       subroutine timer_clear(n)
 
 !---------------------------------------------------------------------
@@ -46,7 +46,7 @@
 
       return
       end
-      
+
 
 !---------------------------------------------------------------------
 !---------------------------------------------------------------------
@@ -83,7 +83,7 @@
       implicit none
 
       integer n
-      
+
       timer_read = elapsed(n)
 
       return
@@ -111,14 +111,14 @@
 !$    t = omp_get_wtime()
 
       if (.not.mp) then
-! This function must measure wall clock time, not CPU time. 
+! This function must measure wall clock time, not CPU time.
 ! Since there is no portable timer in Fortran (77)
 ! we call a routine compiled in C (though the C source may have
-! to be tweaked). 
+! to be tweaked).
          call wtime(t)
 ! The following is not ok for "official" results because it reports
 ! CPU time not wall clock time. It may be useful for developing/testing
-! on timeshared Crays, though. 
+! on timeshared Crays, though.
 !        call second(t)
       endif
 

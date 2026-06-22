@@ -6,7 +6,7 @@
 
       use ua_data
       implicit none
-      
+
       logical if_coarsen,if_refine,ifmortar,ifrepeat
       integer iel,miel,irefine,icoarsen,neltold,step
 
@@ -36,7 +36,7 @@
 2       if(ifrepeat) then
 !.........Check with restriction, unmark elements that cannot be refined.
 !         Elements preventing desired refinement will be marked to be refined.
-          call check_refine(ifrepeat) 
+          call check_refine(ifrepeat)
           go to 2
         end if
 !.......perform refinement
@@ -48,7 +48,7 @@
 !     Perform coarsening repeatedly until all possible coarsening
 !     is done.
 
-!.....icoarsen records how many elements got coarsened 
+!.....icoarsen records how many elements got coarsened
       icoarsen=0
 
 !.....skip(iel)=.true. indicates an element no longer exists (because it
@@ -62,40 +62,40 @@
       neltold=nelt
 
 !.....Check whether elements need to be coarsened because they don't have
-!     overlap with the heat source. Only elements that don't have a larger 
+!     overlap with the heat source. Only elements that don't have a larger
 !     size neighbor can be marked to be coarsened
 
 5     call find_coarsen(if_coarsen,neltold)
 
       if(if_coarsen) then
-!.......Perform coarsening, however subject to restriction. Only possible 
+!.......Perform coarsening, however subject to restriction. Only possible
 !       coarsening will be performed. if_coarsen=.true. indicates that
 !       actual coarsening happened
         call do_coarsen(if_coarsen,icoarsen,neltold)
         if(if_coarsen) then
-!.........ifmortar=.true. indicates the grid changed, i.e. the mortar points 
+!.........ifmortar=.true. indicates the grid changed, i.e. the mortar points
 !         indices need to be regenerated on the new grid.
           ifmortar=.true.
           go to 5
-        end if 
+        end if
       end if
 
       write(*,1000) step, irefine, icoarsen, nelt
  1000 format('Step ',i4, ': elements refined, merged, total: ',  &
      &       i7, 1X , i7, 1X, i7)
 
-!.....mt_to_id(miel) takes as argument the morton index  and returns the actual 
+!.....mt_to_id(miel) takes as argument the morton index  and returns the actual
 !                    element index
-!.....id_to_mt(iel)  takes as argument the actual element index and returns the 
+!.....id_to_mt(iel)  takes as argument the actual element index and returns the
 !                    morton index
 !$OMP PARALLEL DO DEFAULT(SHARED) PRIVATE(miel,iel)
       do miel=1,nelt
         iel=mt_to_id(miel)
         id_to_mt(iel)=miel
-      end do 
+      end do
 !$OMP END PARALLEL DO
 
-!.....Reorder the elements in the order of the morton curve. After the move 
+!.....Reorder the elements in the order of the morton curve. After the move
 !     subroutine the element indices are  the same as the morton indices
       call move
 
@@ -108,13 +108,13 @@
       if (timeron) call timer_stop(t_adaptation)
 
       return
-      end 
+      end
 
 
 !-----------------------------------------------------------
       subroutine do_coarsen(if_coarsen,icoarsen,neltold)
 !---------------------------------------------------------------
-!     Coarsening procedure: 
+!     Coarsening procedure:
 !     1) check with restrictions
 !     2) perform coarsening
 !---------------------------------------------------------------
@@ -126,7 +126,7 @@
       integer iel, ntp(8), ntempmin, ic, parent, mielnew, miel,  &
      &        icoarsen, i, index, num_coarsen, ntemp, ii, ntemp1,  &
      &        neltold
-      
+
       if_coarsen=.false.
 
 !.....If an element has been merged, it will be skipped afterwards
@@ -136,20 +136,20 @@
 !                        coarsened
 
 !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(iel)
-!$OMP DO 
+!$OMP DO
       do iel=1,nelt
         mt_to_id_old(iel)=mt_to_id(iel)
         mt_to_id(iel)=0
       end do
 !$OMP END DO nowait
-!$OMP DO 
-      do iel=1,neltold 
+!$OMP DO
+      do iel=1,neltold
         ifcoa_id(iel)=.false.
       end do
 !$OMP END DO nowait
 !$OMP END PARALLEL
 
-!.....Check whether the potential coarsening will make neighbor, 
+!.....Check whether the potential coarsening will make neighbor,
 !     and neighbor's neighbor....break grid restriction
 
 !$OMP PARALLEL DO DEFAULT(SHARED) PRIVATE(miel,iel,ic,  &
@@ -163,8 +163,8 @@
         if(ich(iel).eq.2) then
 
 !.........If the current  element is the "first" child (front-left-
-!         bottom) of its parent (tree(iel) mod 8 equals 0), then 
-!         find all its neighbors. Check whether they are from the same 
+!         bottom) of its parent (tree(iel) mod 8 equals 0), then
+!         find all its neighbors. Check whether they are from the same
 !         parent.
 
           ic=tree(iel)
@@ -178,7 +178,7 @@
             ntp(6)=sje(1,1,1,ntp(5))
             ntp(7)=sje(1,1,3,ntp(5))
             ntp(8)=sje(1,1,1,ntp(7))
- 
+
             parent=ishft(tree(iel),-3)
             test=.false.
 
@@ -206,7 +206,7 @@
 !...........if the eight child elements are eligible to be coarsened
 !           mark the first children ifcoa(miel)=.true.
 !           mark them all ifcoa_id()=.true.
-!           front(miel) will be used to calculate (potentially in parallel) 
+!           front(miel) will be used to calculate (potentially in parallel)
 !                       how many elements with seuqnece numbers less than
 !                       miel will be coarsened.
 !           skip()      marks that an element will no longer exist after merge.
@@ -223,9 +223,9 @@
               end do
               if(.not.if_coarsen) if_coarsen=.true.
             end if
-          end if 
-        end if 
-      end do 
+          end if
+        end if
+      end do
 !$OMP END PARALLEL DO
 
 !.....compute front(iel), how many elements will be coarsened before iel
@@ -246,7 +246,7 @@
           if(ifcoa(miel))then
             action(front(miel))=miel
             mielnew=miel-(front(miel)-1)*7
-          else 
+          else
             mielnew=miel-front(miel)*7
           end if
           mt_to_id(mielnew)=iel
@@ -349,7 +349,7 @@
 !$OMP END PARALLEL DO
 
 
-!.....Perform refinement (potentially in parallel): 
+!.....Perform refinement (potentially in parallel):
 !       - Cut an element into eight children.
 !       - Assign them element index  as iel, nelt+1,...., nelt+7.
 !       - Update neighboring information.
@@ -363,12 +363,12 @@
 !$OMP& treetemp,xctemp,yctemp,zctemp,cbctemp,sjetemp,ta1temp,  &
 !$OMP& ii,jj,ntemp,xleft,xright,xhalf,yleft,yright,yhalf,zleft,zright,  &
 !$OMP& zhalf,ndir,facedir,jface,cb,le,ne,n1,n2,i,j,k)
-      do index=1, num_refine  
+      do index=1, num_refine
 !.......miel is old morton index and mielnew is new morton index after refinement.
         miel=action(index)
         mielnew=miel+(front(miel)-1)*7
-        iel=mt_to_id_old(miel) 
-        nelt=nelttemp+(front(miel)-1)*7 
+        iel=mt_to_id_old(miel)
+        nelt=nelttemp+(front(miel)-1)*7
 !.......save iel's information in a temporary array
         treetemp=tree(iel)
         do i=1,8
@@ -396,7 +396,7 @@
 
 
 !.......initialize new child elements:iel and nelt+1~nelt+7
-        do j=1,7 
+        do j=1,7
           mt_to_id(mielnew+j)=nelt+j
           tree(nelt+j)=0
           call nr_init(cbc(1,nelt+j),6,0)
@@ -404,13 +404,13 @@
           call nr_init(ijel(1,1,nelt+j),12,0)
           call r_init(ta1(1,1,1,nelt+j),nxyz,0.d0)
         end do
-          
+
 !.......update the tree()
         ntemp=ishft(treetemp,3)
         tree(iel)=ntemp
         do i=1,7
           tree(nelt+i)=ntemp+mod(i,8)
-        end do   
+        end do
 !.......update the children's vertices' coordinates
         xhalf=xctemp(1)+(xctemp(2)-xctemp(1))/2.d0
         xleft=xctemp(1)
@@ -421,11 +421,11 @@
         zhalf=zctemp(1)+(zctemp(5)-zctemp(1))/2.d0
         zleft=zctemp(1)
         zright=zctemp(5)
-       
+
         do j=1,7,2
           do i=1,7,2
             xc(i,nelt+j)     = xhalf
-            xc(i+1,nelt+j)   = xright 
+            xc(i+1,nelt+j)   = xright
           end do
         end do
 
@@ -435,7 +435,7 @@
             xc(i+1,nelt+j) = xhalf
           end do
         end do
-         
+
         do i=1,7,2
           xc(i,iel)=xleft
           xc(i+1,iel)=xhalf
@@ -471,7 +471,7 @@
             yc(i+4,nelt+j+4)=yright
           end do
         end do
-          
+
         do i=1,2
           yc(i,iel)=yleft
           yc(i+4,iel)=yleft
@@ -501,7 +501,7 @@
 !.......update the children's neighbor information
 
 !.......ndir refers to the x,y,z directions, respectively.
-!       facedir refers to the orientation of the face in each direction, 
+!       facedir refers to the orientation of the face in each direction,
 !       e.g. ndir=1, facedir=0 refers to face 1,
 !       and ndir =1, facedir=1 refers to face 2.
 
@@ -522,7 +522,7 @@
             else
               ne(1)=iel
             end if
-!...........update neighbor information of the four child elements on each 
+!...........update neighbor information of the four child elements on each
 !           face of the parent element
             do k=1,4
               cbc(i,le(k))=2
@@ -540,7 +540,7 @@
                 cbc(jface,ntemp)=3
                 ijel(1,jface,ntemp)=1
                 ijel(2,jface,ntemp)=1
-  
+
                 do k=1,4
                   cbc(i,ne(k))=1
                   sje(1,1,i,ne(k))=ntemp
@@ -566,7 +566,7 @@
 !.............if the neighbor ntemp is also marked to be refined
               else
                 n1=ref_front_id(ntemp)
-                 
+
                 do k=1,4
                   cbc(i,ne(k))=2
                   n2=n1+le_arr(k,facedir,ndir)
@@ -605,8 +605,8 @@
               end do
             end if
 
-          end do 
-        end do 
+          end do
+        end do
 
 !.......map solution from parent element to children
         call remap(ta1(1,1,1,iel),ta1(1,1,1,ref_front_id(iel)+1),  &
@@ -623,8 +623,8 @@
 !-----------------------------------------------------------
        logical function ifcor(n1,n2,i,iface)
 !-----------------------------------------------------------
-!      returns whether element n1's face i and element n2's 
-!      jjface(iface) have intersections, i.e. whether n1 and 
+!      returns whether element n1's face i and element n2's
+!      jjface(iface) have intersections, i.e. whether n1 and
 !      n2 are neighbored by an edge.
 !-----------------------------------------------------------
 
@@ -701,7 +701,7 @@
       end if
 
       return
-      end 
+      end
 
 !-----------------------------------------------------------
       subroutine find_coarsen(if_coarsen,neltold)
@@ -787,7 +787,7 @@
 
       use ua_data
       implicit none
- 
+
       logical ifrepeat,ifcor
       integer iel,iface,ntemp,nntemp,i,jface
 
@@ -898,11 +898,11 @@
 
 
 !-----------------------------------------------------------------
-      subroutine remap (y,y1,x) 
+      subroutine remap (y,y1,x)
 !-----------------------------------------------------------------
 !     After a refinement, map the solution  from the parent (x) to
 !     the eight children. y is the solution on the first child
-!     (front-bottom-left) and y1 is the solution on the next 7 
+!     (front-bottom-left) and y1 is the solution on the next 7
 !     children.
 !-----------------------------------------------------------------
 
@@ -963,7 +963,7 @@
               y1(ii,iz,jj,6) = y1(ii,iz,jj,6) +  &
      &                        ytwo(ii,kk,iz,2)*ixtmc2(kk,jj)
               y1(ii,iz,jj,7) = y1(ii,iz,jj,7) +  &
-     &                        ytwo(ii,kk,iz,4)*ixtmc2(kk,jj)            
+     &                        ytwo(ii,kk,iz,4)*ixtmc2(kk,jj)
             end do
           end do
         end do
@@ -976,8 +976,8 @@
 !=======================================================================
       subroutine merging(iela)
 !-----------------------------------------------------------------------
-!     This subroutine is to merge the eight child elements and map 
-!     the solution from eight children to the  merged element. 
+!     This subroutine is to merge the eight child elements and map
+!     the solution from eight children to the  merged element.
 !     iela array records the eight elements to be merged.
 !-----------------------------------------------------------------------
 
@@ -990,9 +990,9 @@
 
       ielnew=iela(1)
 
-      tree(ielnew)=ishft(tree(ielnew),-3)   
+      tree(ielnew)=ishft(tree(ielnew),-3)
 
-!.....element vertices 
+!.....element vertices
       x1=xc(1,iela(1))
       x2=xc(2,iela(2))
       y1=yc(1,iela(1))
@@ -1030,7 +1030,7 @@
         end do
 
         cb=cbc(i,ielold)
-       
+
         if (cb.eq.2) then
 !.........if the neighbor elements also will be coarsened
           if(ifcoa_id(sje(1,1,i,ielold)))then
@@ -1038,7 +1038,7 @@
               ntemp=sje(1,1,i,sje(1,1,i,ntempa(1)))
             else
               ntemp=sje(1,1,i,ntempa(1))
-            end if 
+            end if
             sje(1,1,i,ielnew)=ntemp
             ijel(1,i,ielnew)=1
             ijel(2,i,ielnew)=1
@@ -1047,7 +1047,7 @@
 !.........if the neighbor elements will not be coarsened
           else
             do ii=1,4
-              ntema(ii)=sje(1,1,i,ntempa(ii)) 
+              ntema(ii)=sje(1,1,i,ntempa(ii))
               cbc(jface,ntema(ii))=1
               sje(1,1,jface,ntema(ii))=ielnew
               ijel(1,jface,ntema(ii))=iijj(1,ii)
@@ -1057,7 +1057,7 @@
               ijel(2,i,ielnew)=1
             end do
             cbc(i,ielnew)=3
-          end if       
+          end if
 
         else if(cb.eq.1)then
 
@@ -1069,12 +1069,12 @@
           sje(1,2,jface,ntemp)=0
           sje(2,1,jface,ntemp)=0
           sje(2,2,jface,ntemp)=0
-           
+
           cbc(i,ielnew)=2
           ijel(1,i,ielnew)=1
           ijel(2,i,ielnew)=1
           sje(1,1,i,ielnew)=ntemp
-         
+
         else if(cb.eq.0)then
           cbc(i,ielnew)=0
           sje(1,1,i,ielnew)=0
@@ -1087,7 +1087,7 @@
 
 !.....map solution from children to the merged element
       call remap2(iela, ielnew)
-      
+
       return
       end
 
@@ -1117,7 +1117,7 @@
       call remapz(temp5,temp6,ta1(1,1,1,ielnew))
 
       return
-      end       
+      end
 
 !-----------------------------------------------------------------
       subroutine remapz(x1,x2,y)
@@ -1153,7 +1153,7 @@
       end do
 
       return
-      end      
+      end
 
 !-----------------------------------------------------------------
       subroutine remapy(x1,x2,y)
@@ -1189,7 +1189,7 @@
       end do
 
       return
-      end      
+      end
 
 !-----------------------------------------------------------------
       subroutine remapx(x1,x2,y)
@@ -1225,5 +1225,4 @@
       end do
 
       return
-      end      
-       
+      end

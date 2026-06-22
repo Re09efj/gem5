@@ -92,5 +92,3 @@ echo "Total number of cases: $cnt" | tee -a $logfile
 echo "Total number of FAILED cases: $cntf" | tee -a $logfile
 echo "Total number of not present cases: $cntp" | tee -a $logfile
 echo "" >> $logfile
-
-

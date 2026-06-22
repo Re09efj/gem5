@@ -8,7 +8,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!  verification routine                         
+!  verification routine
 !---------------------------------------------------------------------
 
         use, intrinsic :: ieee_arithmetic, only : ieee_is_nan
@@ -160,7 +160,7 @@
          xcrref(5) = 7.3087969592545314d+03
 
 !---------------------------------------------------------------------
-!   Reference values of RMS-norms of solution error, for the (102X102X102) 
+!   Reference values of RMS-norms of solution error, for the (102X102X102)
 !   grid, after 250 time steps, with  DT = 2.0d+00
 !---------------------------------------------------------------------
          xceref(1) = 1.1401176380212709d+02
@@ -194,7 +194,7 @@
          xcrref(5) = 1.78078057261061185d+04
 
 !---------------------------------------------------------------------
-!   Reference values of RMS-norms of solution error, for the (162X162X162) 
+!   Reference values of RMS-norms of solution error, for the (162X162X162)
 !   grid, after 250 time steps, with  DT = 2.0d+00
 !---------------------------------------------------------------------
          xceref(1) = 2.15986399716949279d+02
@@ -229,12 +229,12 @@
 !---------------------------------------------------------------------
          xcrref(1) = 0.4868417937025d+05
          xcrref(2) = 0.4696371050071d+04
-         xcrref(3) = 0.1218114549776d+05 
+         xcrref(3) = 0.1218114549776d+05
          xcrref(4) = 0.1033801493461d+05
          xcrref(5) = 0.7142398413817d+05
 
 !---------------------------------------------------------------------
-!   Reference values of RMS-norms of solution error, for the (408X408X408) 
+!   Reference values of RMS-norms of solution error, for the (408X408X408)
 !   grid, after 300 time steps, with  DT = 1.0d+00
 !---------------------------------------------------------------------
          xceref(1) = 0.3752393004482d+03
@@ -263,12 +263,12 @@
 !---------------------------------------------------------------------
          xcrref(1) = 0.2099641687874d+06
          xcrref(2) = 0.2130403143165d+05
-         xcrref(3) = 0.5319228789371d+05 
+         xcrref(3) = 0.5319228789371d+05
          xcrref(4) = 0.4509761639833d+05
          xcrref(5) = 0.2932360006590d+06
 
 !---------------------------------------------------------------------
-!   Reference values of RMS-norms of solution error, for the (1020X1020X1020) 
+!   Reference values of RMS-norms of solution error, for the (1020X1020X1020)
 !   grid, after 300 time steps, with  DT = 0.5d+00
 !---------------------------------------------------------------------
          xceref(1) = 0.4800572578333d+03
@@ -322,7 +322,7 @@
         endif
 
 !---------------------------------------------------------------------
-!    verification test for residuals if gridsize is one of 
+!    verification test for residuals if gridsize is one of
 !    the defined grid sizes above (class .ne. 'U')
 !---------------------------------------------------------------------
 
@@ -330,10 +330,10 @@
 !    Compute the difference of solution values and the known reference values.
 !---------------------------------------------------------------------
         do m = 1, 5
-           
-           xcrdif(m) = dabs((xcr(m)-xcrref(m))/xcrref(m)) 
+
+           xcrdif(m) = dabs((xcr(m)-xcrref(m))/xcrref(m))
            xcedif(m) = dabs((xce(m)-xceref(m))/xceref(m))
-           
+
         enddo
         xcidif = dabs((xci - xciref)/xciref)
 
@@ -354,14 +354,14 @@
  1000         format(' DT does not match the reference value of ',  &
      &                 E15.8)
            endif
-        else 
+        else
            write(*, 1995)
  1995      format(' Unknown class')
         endif
 
 
         if (class .ne. 'U') then
-           write (*, 2001) 
+           write (*, 2001)
         else
            write (*, 2005)
         endif
@@ -374,7 +374,7 @@
            else if ((.not.ieee_is_nan(xcrdif(m))) .and.  &
      &              xcrdif(m) .le. epsilon) then
               write (*,2011) m,xcr(m),xcrref(m),xcrdif(m)
-           else 
+           else
               verified = .false.
               write (*,2010) m,xcr(m),xcrref(m),xcrdif(m)
            endif
@@ -387,7 +387,7 @@
         endif
  2002   format(' Comparison of RMS-norms of solution error')
  2006   format(' RMS-norms of solution error')
-        
+
         do m = 1, 5
            if (class .eq. 'U') then
               write(*, 2015) m, xce(m)
@@ -399,11 +399,11 @@
               write (*,2010) m,xce(m),xceref(m),xcedif(m)
            endif
         enddo
-        
+
  2010   format(' FAILURE: ', i2, 2x, E20.13, E20.13, E20.13)
  2011   format('          ', i2, 2x, E20.13, E20.13, E20.13)
  2015   format('          ', i2, 2x, E20.13)
-        
+
         if (class .ne. 'U') then
            write (*,2025)
         else

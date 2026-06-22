@@ -38,7 +38,7 @@
           jm = min(bsize, ny2 - jj + 1)
 
 !---------------------------------------------------------------------
-! To improve cache utilization, copy a slab of rhs to temp array  
+! To improve cache utilization, copy a slab of rhs to temp array
 !---------------------------------------------------------------------
           do  i = 0, grid_points(1)-1
              do  jb = 1, bsize
@@ -52,11 +52,11 @@
           end do
 
 !---------------------------------------------------------------------
-! Computes the left hand side for the three x-factors  
+! Computes the left hand side for the three x-factors
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!      first fill the lhs for the u-eigenvalue                   
+!      first fill the lhs for the u-eigenvalue
 !---------------------------------------------------------------------
           do  i = 0, grid_points(1)-1
              do  jb = 1, bsize
@@ -81,7 +81,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      add fourth order dissipation                             
+!      add fourth order dissipation
 !---------------------------------------------------------------------
 
           do  jb = 1, bsize
@@ -89,7 +89,7 @@
              lhs(jb,3,i) = lhs(jb,3,i) + comz5
              lhs(jb,4,i) = lhs(jb,4,i) - comz4
              lhs(jb,5,i) = lhs(jb,5,i) + comz1
-  
+
              i = 2
              lhs(jb,2,i) = lhs(jb,2,i) - comz4
              lhs(jb,3,i) = lhs(jb,3,i) + comz6
@@ -121,8 +121,8 @@
           end do
 
 !---------------------------------------------------------------------
-!      subsequently, fill the other factors (u+c), (u-c) by adding to 
-!      the first  
+!      subsequently, fill the other factors (u+c), (u-c) by adding to
+!      the first
 !---------------------------------------------------------------------
           do   i = 1, nx2
              do  jb = 1, bsize
@@ -145,11 +145,11 @@
           end do
 
 !---------------------------------------------------------------------
-!                          FORWARD ELIMINATION  
+!                          FORWARD ELIMINATION
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!      perform the Thomas algorithm; first, FORWARD ELIMINATION     
+!      perform the Thomas algorithm; first, FORWARD ELIMINATION
 !---------------------------------------------------------------------
 
           do    i = 0, grid_points(1)-3
@@ -186,7 +186,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      The last two rows in this grid block are a bit different, 
+!      The last two rows in this grid block are a bit different,
 !      since they do not have two more rows available for the
 !      elimination of off-diagonal entries
 !---------------------------------------------------------------------
@@ -211,7 +211,7 @@
              rhsx(jb,3,i1) = rhsx(jb,3,i1) -  &
      &                      lhs(jb,2,i1)*rhsx(jb,3,i)
 !---------------------------------------------------------------------
-!            scale the last row immediately 
+!            scale the last row immediately
 !---------------------------------------------------------------------
              fac2             = 1.d0/lhs(jb,3,i1)
              rhsx(jb,1,i1) = fac2*rhsx(jb,1,i1)
@@ -220,7 +220,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      do the u+c and the u-c factors                 
+!      do the u+c and the u-c factors
 !---------------------------------------------------------------------
 
           do    i = 0, grid_points(1)-3
@@ -297,7 +297,7 @@
 
 
 !---------------------------------------------------------------------
-!                         BACKSUBSTITUTION 
+!                         BACKSUBSTITUTION
 !---------------------------------------------------------------------
 
 
@@ -364,11 +364,9 @@
        if (timeron) call timer_stop(t_xsolve)
 
 !---------------------------------------------------------------------
-!      Do the block-diagonal inversion          
+!      Do the block-diagonal inversion
 !---------------------------------------------------------------------
        call ninvr
 
        return
        end
-
-

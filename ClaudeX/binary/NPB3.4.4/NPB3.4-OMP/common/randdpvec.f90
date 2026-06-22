@@ -71,9 +71,9 @@
 !---------------------------------------------------------------------
 !   This routine generates N uniform pseudorandom double precision numbers in
 !   the range (0, 1) by using the linear congruential generator
-!   
+!
 !   x_{k+1} = a x_k  (mod 2^46)
-!   
+!
 !   where 0 < x_k < 2^46 and 0 < a < 2^46.  This scheme generates 2^44 numbers
 !   before repeating.  The argument A is the same as 'a' in the above formula,
 !   and X is the same as x_0.  A and X must be odd double precision integers
@@ -81,18 +81,18 @@
 !   to be between 0 and 1.  X is updated to contain the new seed, so that
 !   subsequent calls to RANDLC using the same arguments will generate a
 !   continuous sequence.
-!   
+!
 !   This routine generates the output sequence in batches of length NV, for
 !   convenience on vector computers.  This routine should produce the same
 !   results on any computer with at least 48 mantissa bits in double precision
 !   floating point data.  On Cray systems, double precision should be disabled.
-!   
+!
 !   David H. Bailey    August 30, 1990
 !---------------------------------------------------------------------
 
       integer n
       double precision x, a, y(*)
-      
+
       double precision r23, r46, t23, t46
       integer nv
       parameter (r23 = 2.d0 ** (-23), r46 = r23 * r23, t23 = 2.d0 ** 23,  &
@@ -183,4 +183,3 @@
       end
 
 !----- end of program ------------------------------------------------
-

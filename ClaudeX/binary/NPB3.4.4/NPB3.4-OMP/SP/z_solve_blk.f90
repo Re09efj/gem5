@@ -27,7 +27,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-! Prepare for z-solve, array redistribution   
+! Prepare for z-solve, array redistribution
 !---------------------------------------------------------------------
 
        if (timeron) call timer_start(t_zsolve)
@@ -53,11 +53,11 @@
           end do
 
 !---------------------------------------------------------------------
-! Computes the left hand side for the three z-factors   
+! Computes the left hand side for the three z-factors
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-! first fill the lhs for the u-eigenvalue                          
+! first fill the lhs for the u-eigenvalue
 !---------------------------------------------------------------------
 
           do   k = 0, nz2 + 1
@@ -83,7 +83,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      add fourth order dissipation                                  
+!      add fourth order dissipation
 !---------------------------------------------------------------------
 
           do  ib = 1, bsize
@@ -124,7 +124,7 @@
 
 
 !---------------------------------------------------------------------
-!      subsequently, fill the other factors (u+c), (u-c) 
+!      subsequently, fill the other factors (u+c), (u-c)
 !---------------------------------------------------------------------
           do    k = 1, nz2
              do  ib = 1, bsize
@@ -148,7 +148,7 @@
 
 
 !---------------------------------------------------------------------
-!                          FORWARD ELIMINATION  
+!                          FORWARD ELIMINATION
 !---------------------------------------------------------------------
 
           do    k = 0, grid_points(3)-3
@@ -185,7 +185,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      The last two rows in this grid block are a bit different, 
+!      The last two rows in this grid block are a bit different,
 !      since they do not have two more rows available for the
 !      elimination of off-diagonal entries
 !---------------------------------------------------------------------
@@ -218,7 +218,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      do the u+c and the u-c factors               
+!      do the u+c and the u-c factors
 !---------------------------------------------------------------------
           do    k = 0, grid_points(3)-3
              k1 = k  + 1
@@ -295,7 +295,7 @@
 
 
 !---------------------------------------------------------------------
-!                         BACKSUBSTITUTION 
+!                         BACKSUBSTITUTION
 !---------------------------------------------------------------------
 
           k  = grid_points(3)-2
@@ -316,7 +316,7 @@
 
 !---------------------------------------------------------------------
 !      Whether or not this is the last processor, we always have
-!      to complete the back-substitution 
+!      to complete the back-substitution
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
@@ -369,6 +369,3 @@
 
        return
        end
-
-
-

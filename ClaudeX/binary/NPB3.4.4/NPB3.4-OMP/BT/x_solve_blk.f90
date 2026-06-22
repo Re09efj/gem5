@@ -8,15 +8,15 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!     
+!
 !     Performs line solves in X direction by first factoring
-!     the block-tridiagonal matrix into an upper triangular matrix, 
+!     the block-tridiagonal matrix into an upper triangular matrix,
 !     and then performing back substitution to solve for the unknow
-!     vectors of each line.  
-!     
+!     vectors of each line.
+!
 !     Make sure we treat elements zero to cell_size in the direction
 !     of the sweep.
-!     
+!
 !---------------------------------------------------------------------
 
       use bt_data
@@ -84,7 +84,7 @@
                tmp2 = tmp1 * tmp1
                tmp3 = tmp1 * tmp2
 !---------------------------------------------------------------------
-!     
+!
 !---------------------------------------------------------------------
                fjac(jb,1,1,ip) = 0.0d+00
                fjac(jb,1,2,ip) = 1.0d+00
@@ -145,7 +145,7 @@
                njac(jb,3,5,ip) =   0.0d+00
 
                njac(jb,4,1,ip) = - c3c4 * tmp2 * u(4,i,j,k)
-               njac(jb,4,2,ip) =   0.0d+00 
+               njac(jb,4,2,ip) =   0.0d+00
                njac(jb,4,3,ip) =   0.0d+00
                njac(jb,4,4,ip) =   c3c4 * tmp1
                njac(jb,4,5,ip) =   0.0d+00
@@ -178,7 +178,7 @@
 
                lhsa(jb,1,1,1) = - tmp2 * fjac(jb,1,1,im)  &
      &              - tmp1 * njac(jb,1,1,im)  &
-     &              - tmp1 * dx1 
+     &              - tmp1 * dx1
                lhsa(jb,1,2,1) = - tmp2 * fjac(jb,1,2,im)  &
      &              - tmp1 * njac(jb,1,2,im)
                lhsa(jb,1,3,1) = - tmp2 * fjac(jb,1,3,im)  &
@@ -206,7 +206,7 @@
      &              - tmp1 * njac(jb,3,2,im)
                lhsa(jb,3,3,1) = - tmp2 * fjac(jb,3,3,im)  &
      &              - tmp1 * njac(jb,3,3,im)  &
-     &              - tmp1 * dx3 
+     &              - tmp1 * dx3
                lhsa(jb,3,4,1) = - tmp2 * fjac(jb,3,4,im)  &
      &              - tmp1 * njac(jb,3,4,im)
                lhsa(jb,3,5,1) = - tmp2 * fjac(jb,3,5,im)  &
@@ -343,10 +343,10 @@
 
 !---------------------------------------------------------------------
 !     performs guaussian elimination on this cell.
-!     
-!     assumes that unpacking routines for non-first cells 
+!
+!     assumes that unpacking routines for non-first cells
 !     preload C' and rhs' from previous cell.
-!     
+!
 !     assumed send happens outside this routine, but that
 !     c'(IMAX) and rhs'(IMAX) will be sent to next cell
 !---------------------------------------------------------------------
@@ -368,7 +368,7 @@
 
 !---------------------------------------------------------------------
 !     begin inner most do loop
-!     do all the elements of the cell unless last 
+!     do all the elements of the cell unless last
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
@@ -462,6 +462,3 @@
 
       return
       end
-
-
-

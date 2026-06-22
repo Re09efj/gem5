@@ -18,8 +18,8 @@
 !$omp parallel default(shared) private(i,j,k,m,rho_inv,aux,uijk,up1,um1,  &
 !$omp&   vijk,vp1,vm1,wijk,wp1,wm1)
 !---------------------------------------------------------------------
-!      compute the reciprocal of density, and the kinetic energy, 
-!      and the speed of sound. 
+!      compute the reciprocal of density, and the kinetic energy,
+!      and the speed of sound.
 !---------------------------------------------------------------------
 
 !$omp do schedule(static) collapse(2)
@@ -47,9 +47,9 @@
 !$omp end do nowait
 
 !---------------------------------------------------------------------
-! copy the exact forcing term to the right hand side;  because 
+! copy the exact forcing term to the right hand side;  because
 ! this forcing term is known, we can store it on the whole grid
-! including the boundary                   
+! including the boundary
 !---------------------------------------------------------------------
 
 !$omp do schedule(static) collapse(2)
@@ -65,7 +65,7 @@
 !$omp end do
 
 !---------------------------------------------------------------------
-!      compute xi-direction fluxes 
+!      compute xi-direction fluxes
 !---------------------------------------------------------------------
 !$omp master
        if (timeron) call timer_start(t_rhsx)
@@ -126,7 +126,7 @@
              end do
 
 !---------------------------------------------------------------------
-!      add fourth order xi-direction dissipation               
+!      add fourth order xi-direction dissipation
 !---------------------------------------------------------------------
              i = 1
              do    m = 1, 5
@@ -171,7 +171,7 @@
        if (timeron) call timer_stop(t_rhsx)
 
 !---------------------------------------------------------------------
-!      compute eta-direction fluxes 
+!      compute eta-direction fluxes
 !---------------------------------------------------------------------
        if (timeron) call timer_start(t_rhsy)
 !$omp end master
@@ -227,7 +227,7 @@
 
 
 !---------------------------------------------------------------------
-!      add fourth order eta-direction dissipation         
+!      add fourth order eta-direction dissipation
 !---------------------------------------------------------------------
 
           if (j .eq. 1) then
@@ -247,7 +247,7 @@
      &                      4.0d0*u(m,i,j+1,k) + u(m,i,j+2,k))
              end do
           end do
- 
+
           else if (j .eq. ny2-1) then
           do     i = 1, nx2
              do     m = 1, 5
@@ -283,7 +283,7 @@
        if (timeron) call timer_stop(t_rhsy)
 
 !---------------------------------------------------------------------
-!      compute zeta-direction fluxes 
+!      compute zeta-direction fluxes
 !---------------------------------------------------------------------
        if (timeron) call timer_start(t_rhsz)
 !$omp end master
@@ -339,7 +339,7 @@
              end do
 
 !---------------------------------------------------------------------
-!      add fourth order zeta-direction dissipation                
+!      add fourth order zeta-direction dissipation
 !---------------------------------------------------------------------
 
           if (k .eq. 1) then
@@ -359,7 +359,7 @@
      &                      4.0d0*u(m,i,j,k+1) + u(m,i,j,k+2))
              end do
           end do
- 
+
           else if (k .eq. grid_points(3)-3) then
           do     i = 1, grid_points(1)-2
              do     m = 1, 5
@@ -408,10 +408,6 @@
 !$omp end do nowait
 !$omp end parallel
         if (timeron) call timer_stop(t_rhs)
-   
+
        return
        end
-
-
-
-

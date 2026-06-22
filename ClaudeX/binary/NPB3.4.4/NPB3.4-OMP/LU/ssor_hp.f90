@@ -27,11 +27,11 @@
       external timer_read
       double precision timer_read
 
- 
+
 !---------------------------------------------------------------------
 !   begin pseudo-time stepping iterations
 !---------------------------------------------------------------------
-      tmp = 1.0d+00 / ( omega * ( 2.0d+00 - omega ) ) 
+      tmp = 1.0d+00 / ( omega * ( 2.0d+00 - omega ) )
 
       do i = 1, t_last
          call timer_clear(i)
@@ -41,7 +41,7 @@
 !   compute the steady-state residuals
 !---------------------------------------------------------------------
       call rhs
- 
+
 !---------------------------------------------------------------------
 !   compute the L2 norms of newton iteration residuals
 !---------------------------------------------------------------------
@@ -49,12 +49,12 @@
      &             ist, iend, jst, jend,  &
      &             rsd, rsdnm )
 
- 
+
       do i = 1, t_last
          call timer_clear(i)
       end do
       call timer_start(1)
- 
+
 !---------------------------------------------------------------------
 !   the timestep loop
 !---------------------------------------------------------------------
@@ -68,7 +68,7 @@
             if (niter .gt. 1) write( *, 200) istep
  200        format(' Time step ', i4)
          endif
- 
+
 !---------------------------------------------------------------------
 !   perform SSOR iteration
 !---------------------------------------------------------------------
@@ -103,7 +103,7 @@
 !   form the lower triangular part of the jacobian matrix
 !---------------------------------------------------------------------
                call jacld(j, k)
- 
+
 !---------------------------------------------------------------------
 !   perform the lower triangular solution
 !---------------------------------------------------------------------
@@ -173,7 +173,7 @@
          if (timeron) call timer_stop(t_add)
 !$omp end master
 !$omp end parallel
- 
+
 !---------------------------------------------------------------------
 !   compute the max-norms of newton iteration corrections
 !---------------------------------------------------------------------
@@ -189,12 +189,12 @@
 !                write (*,'(i5,f15.6)') istep,delunm(5)
 !            end if
          end if
- 
+
 !---------------------------------------------------------------------
 !   compute the steady-state residuals
 !---------------------------------------------------------------------
          call rhs
- 
+
 !---------------------------------------------------------------------
 !   compute the max-norms of newton iteration residuals
 !---------------------------------------------------------------------
@@ -223,17 +223,17 @@
 !            end if
             go to 900
          end if
- 
+
       end do
   900 continue
- 
+
       call timer_stop(1)
       maxtime= timer_read(1)
- 
+
 
 
       return
-      
+
  1001 format (1x/5x,'pseudo-time SSOR iteration no.=',i4/)
  1004 format (1x/1x,'convergence was achieved after ',i4,  &
      &   ' pseudo-time steps' )
@@ -257,5 +257,5 @@
      & 'fourth pde = ',1pe12.5/,  &
      & 1x,'RMS-norm of steady-state residual for ',  &
      & 'fifth pde  = ',1pe12.5)
- 
+
       end

@@ -1,12 +1,12 @@
 !---------------------------------------------------------
-      subroutine convect(ifmortar)  
+      subroutine convect(ifmortar)
 !---------------------------------------------------------
 !     Advance the convection term using 4th order RK
-!     1.ta1 is solution from last time step 
+!     1.ta1 is solution from last time step
 !     2.the heat source is considered part of d/dx
 !     3.trhs is right hand side for the diffusion equation
 !     4.tmor is solution on mortar points, which will be used
-!       as the initial guess when advancing the diffusion term 
+!       as the initial guess when advancing the diffusion term
 !---------------------------------------------------------
 
       use ua_data
@@ -25,7 +25,7 @@
       if (timeron) call timer_start(t_convect)
       pidivalpha = dacos(-1.d0)/alpha
       alpha2     = alpha*alpha
-      dtime2     = dtime/2.d0 
+      dtime2     = dtime/2.d0
       rdtime     = 1.d0/dtime
       subtime(1) = time
       subtime(2) = time+dtime2
@@ -86,7 +86,7 @@
 
             end do
           end do
-        end do        
+        end do
 
         do k = 1, lx1
           do j = 1, lx1
@@ -118,7 +118,7 @@
               tempa(i,j,k)=ta1(i,j,k,iel)+dtime2*rk2(i,j,k)
             end do
           end do
-        end do        
+        end do
 
         do k = 1, lx1
           do j = 1, lx1
@@ -150,7 +150,7 @@
               temp(i,j,k)=ta1(i,j,k,iel)+dtime*rk3(i,j,k)
             end do
           end do
-        end do        
+        end do
 
         do k = 1, lx1
           do j = 1, lx1
@@ -183,7 +183,7 @@
      &                   rk2(i,j,k)+2.d0*rk3(i,j,k)+rk4(i,j,k))
             end do
           end do
-        end do        
+        end do
 
 !.......apply boundary condition
         do iside=1,nsides
@@ -191,7 +191,7 @@
             call facev(tempa,iside,0.0d0)
           end if
         end do
-          
+
         do k=1,lx1
           do j=1,lx1
             do i=1,lx1
@@ -202,7 +202,7 @@
           end do
         end do
 
-      end do 
+      end do
 !$OMP END PARALLEL DO
 
 !.....get mortar for intial guess for CG
@@ -224,4 +224,3 @@
 
       return
       end
-

@@ -1,6 +1,7 @@
 import json
 import os
 import re
+
 import m5
 from m5.objects import *
 
@@ -297,11 +298,15 @@ m5.instantiate()
 m5.simulate()
 m5.stats.dump()
 
+from utility.grapher import generate_core_stats_graph
+
 # --- 結果表示・保存 ---
 from utility.rawTxtReader import rawTxtReader
 from utility.reformer import text_to_csv
-from utility.grapher import generate_core_stats_graph
-rawTxtReader(os.path.join(m5.options.outdir,"stats.txt"),NUM_NODES)
+
+rawTxtReader(os.path.join(m5.options.outdir, "stats.txt"), NUM_NODES)
 save_config("experiment_config.txt")
-csv_path = text_to_csv(os.path.join(m5.options.outdir,"stats.txt"))
-generate_core_stats_graph(csv_path,NUM_NODES,BIG_CORES_PER_NODE,SMALL_CORES_PER_NODE)
+csv_path = text_to_csv(os.path.join(m5.options.outdir, "stats.txt"))
+generate_core_stats_graph(
+    csv_path, NUM_NODES, BIG_CORES_PER_NODE, SMALL_CORES_PER_NODE
+)

@@ -35,11 +35,11 @@
             call lhsinit(nx2+1, lhs, lhsp, lhsm)
 
 !---------------------------------------------------------------------
-! Computes the left hand side for the three x-factors  
+! Computes the left hand side for the three x-factors
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!      first fill the lhs for the u-eigenvalue                   
+!      first fill the lhs for the u-eigenvalue
 !---------------------------------------------------------------------
              do  i = 0, grid_points(1)-1
                 ru1 = c3c4*rho_i(i,j,k)
@@ -59,14 +59,14 @@
              end do
 
 !---------------------------------------------------------------------
-!      add fourth order dissipation                             
+!      add fourth order dissipation
 !---------------------------------------------------------------------
 
              i = 1
              lhs(3,i) = lhs(3,i) + comz5
              lhs(4,i) = lhs(4,i) - comz4
              lhs(5,i) = lhs(5,i) + comz1
-  
+
              lhs(2,i+1) = lhs(2,i+1) - comz4
              lhs(3,i+1) = lhs(3,i+1) + comz6
              lhs(4,i+1) = lhs(4,i+1) - comz4
@@ -91,8 +91,8 @@
              lhs(3,i+1) = lhs(3,i+1) + comz5
 
 !---------------------------------------------------------------------
-!      subsequently, fill the other factors (u+c), (u-c) by adding to 
-!      the first  
+!      subsequently, fill the other factors (u+c), (u-c) by adding to
+!      the first
 !---------------------------------------------------------------------
              do   i = 1, nx2
                 lhsp(1,i) = lhs(1,i)
@@ -112,11 +112,11 @@
              end do
 
 !---------------------------------------------------------------------
-!                          FORWARD ELIMINATION  
+!                          FORWARD ELIMINATION
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!      perform the Thomas algorithm; first, FORWARD ELIMINATION     
+!      perform the Thomas algorithm; first, FORWARD ELIMINATION
 !---------------------------------------------------------------------
 
              do    i = 0, grid_points(1)-3
@@ -147,7 +147,7 @@
              end do
 
 !---------------------------------------------------------------------
-!      The last two rows in this grid block are a bit different, 
+!      The last two rows in this grid block are a bit different,
 !      since they do not have two more rows available for the
 !      elimination of off-diagonal entries
 !---------------------------------------------------------------------
@@ -169,7 +169,7 @@
      &                      lhs(2,i1)*rhs(m,i,j,k)
              end do
 !---------------------------------------------------------------------
-!            scale the last row immediately 
+!            scale the last row immediately
 !---------------------------------------------------------------------
              fac2             = 1.d0/lhs(3,i1)
              do    m = 1, 3
@@ -177,7 +177,7 @@
              end do
 
 !---------------------------------------------------------------------
-!      do the u+c and the u-c factors                 
+!      do the u+c and the u-c factors
 !---------------------------------------------------------------------
 
              do    i = 0, grid_points(1)-3
@@ -254,7 +254,7 @@
 
 
 !---------------------------------------------------------------------
-!                         BACKSUBSTITUTION 
+!                         BACKSUBSTITUTION
 !---------------------------------------------------------------------
 
 
@@ -298,11 +298,9 @@
        if (timeron) call timer_stop(t_xsolve)
 
 !---------------------------------------------------------------------
-!      Do the block-diagonal inversion          
+!      Do the block-diagonal inversion
 !---------------------------------------------------------------------
        call ninvr
 
        return
        end
-
-

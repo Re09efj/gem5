@@ -20,7 +20,7 @@
 !$omp&   vijk,vp1,vm1,wijk,wp1,wm1)
 
 !---------------------------------------------------------------------
-!     compute the reciprocal of density, and the kinetic energy, 
+!     compute the reciprocal of density, and the kinetic energy,
 !     and the speed of sound.
 !---------------------------------------------------------------------
 !$omp do schedule(static) collapse(2)
@@ -43,9 +43,9 @@
 !$omp end do nowait
 
 !---------------------------------------------------------------------
-! copy the exact forcing term to the right hand side;  because 
+! copy the exact forcing term to the right hand side;  because
 ! this forcing term is known, we can store it on the whole grid
-! including the boundary                   
+! including the boundary
 !---------------------------------------------------------------------
 
 !$omp do schedule(static) collapse(2)
@@ -65,7 +65,7 @@
       if (timeron) call timer_start(t_rhsx)
 !$omp end master
 !---------------------------------------------------------------------
-!     compute xi-direction fluxes 
+!     compute xi-direction fluxes
 !---------------------------------------------------------------------
 !$omp do schedule(static) collapse(2)
       do k = 1, grid_points(3)-2
@@ -123,7 +123,7 @@
             enddo
 
 !---------------------------------------------------------------------
-!     add fourth order xi-direction dissipation               
+!     add fourth order xi-direction dissipation
 !---------------------------------------------------------------------
             i = 1
             do m = 1, 5
@@ -147,7 +147,7 @@
      &                    u(m,i+2,j,k) )
                enddo
             enddo
-         
+
             i = grid_points(1)-3
             do m = 1, 5
                rhs(m,i,j,k) = rhs(m,i,j,k) - dssp *  &
@@ -170,7 +170,7 @@
       if (timeron) call timer_start(t_rhsy)
 !$omp end master
 !---------------------------------------------------------------------
-!     compute eta-direction fluxes 
+!     compute eta-direction fluxes
 !---------------------------------------------------------------------
 !$omp do schedule(static) collapse(2)
       do k = 1, grid_points(3)-2
@@ -223,7 +223,7 @@
             enddo
 
 !---------------------------------------------------------------------
-!     add fourth order eta-direction dissipation         
+!     add fourth order eta-direction dissipation
 !---------------------------------------------------------------------
             if (j .eq. 1) then
                do i = 1, grid_points(1)-2
@@ -242,7 +242,7 @@
      &                    4.0d0*u(m,i,j+1,k) + u(m,i,j+2,k))
                enddo
                enddo
-         
+
             else if (j .eq. grid_points(2)-3) then
                do i = 1, grid_points(1)-2
                do m = 1, 5
@@ -280,7 +280,7 @@
       if (timeron) call timer_start(t_rhsz)
 !$omp end master
 !---------------------------------------------------------------------
-!     compute zeta-direction fluxes 
+!     compute zeta-direction fluxes
 !---------------------------------------------------------------------
 !$omp do schedule(static) collapse(2)
       do k = 1, grid_points(3)-2
@@ -334,7 +334,7 @@
             enddo
 
 !---------------------------------------------------------------------
-!     add fourth order zeta-direction dissipation                
+!     add fourth order zeta-direction dissipation
 !---------------------------------------------------------------------
             if (k.eq.1) then
                do i = 1, grid_points(1)-2
@@ -409,7 +409,3 @@
 
       return
       end
-
-
-
-

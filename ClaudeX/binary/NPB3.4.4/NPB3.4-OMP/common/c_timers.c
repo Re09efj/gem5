@@ -101,4 +101,3 @@ int check_timer_flag( void )
 
     return timer_on;
 }
-

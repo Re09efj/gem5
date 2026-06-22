@@ -61,4 +61,3 @@
       x = dble(Lx)
       return
       end
-

@@ -142,7 +142,7 @@
          class = 'U'
       endif
 
-      write( *,1000 ) 
+      write( *,1000 )
       write( *,1001 ) na
       write( *,1002 ) niter
 !$    write( *,1003 ) omp_get_max_threads()
@@ -167,7 +167,7 @@
       zeta    = randlc( tran, amult )
 
 !---------------------------------------------------------------------
-!  
+!
 !---------------------------------------------------------------------
       call makea(naa, nzz, a, colidx, rowstr,  &
      &           firstrow, lastrow, firstcol, lastcol,  &
@@ -180,7 +180,7 @@
 !        values of j used in indexing rowstr go from 1 --> lastrow-firstrow+1
 !        values of colidx which are col indexes go from firstcol --> lastcol
 !        So:
-!        Shift the col index vals from actual (firstcol --> lastcol ) 
+!        Shift the col index vals from actual (firstcol --> lastcol )
 !        to local, i.e., (1 --> lastcol-firstcol+1)
 !---------------------------------------------------------------------
 !$omp do
@@ -246,9 +246,9 @@
 !  Normalize z to obtain x
 !---------------------------------------------------------------------
 !$omp do
-         do j=1, lastcol-firstcol+1      
-            x(j) = norm_temp3*z(j)    
-         enddo                           
+         do j=1, lastcol-firstcol+1
+            x(j) = norm_temp3*z(j)
+         enddo
 !$omp end do nowait
 !$omp end parallel
 
@@ -260,7 +260,7 @@
 !  set starting vector to (1, 1, .... 1)
 !---------------------------------------------------------------------
 !
-!  
+!
 !
 !$omp parallel do default(shared) private(i)
       do i = 1, na+1
@@ -327,9 +327,9 @@
 !  Normalize z to obtain x
 !---------------------------------------------------------------------
 !$omp do
-         do j=1, lastcol-firstcol+1      
-            x(j) = norm_temp3*z(j)    
-         enddo                           
+         do j=1, lastcol-firstcol+1
+            x(j) = norm_temp3*z(j)
+         enddo
 !$omp end do nowait
 !$omp end parallel
 
@@ -363,7 +363,7 @@
  202        format(' Error is   ', E20.13)
          else
             verified = .FALSE.
-            write(*, 300) 
+            write(*, 300)
             write(*, 301) zeta
             write(*, 302) zeta_verify_value
  300        format(' VERIFICATION FAILED')
@@ -441,17 +441,17 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!  Floaging point arrays here are named as in NPB1 spec discussion of 
+!  Floaging point arrays here are named as in NPB1 spec discussion of
 !  CG algorithm
 !---------------------------------------------------------------------
- 
+
       use cg_data
       implicit none
 
       integer   j
       integer   cgit, cgitmax
       integer(kz) k
-!C    integer(kz) i, iresidue  
+!C    integer(kz) i, iresidue
 
       double precision   d, sum, rho, rho0, alpha, beta, rnorm, suml
 
@@ -509,10 +509,10 @@
 !  The partition submatrix-vector multiply: use workspace w
 !---------------------------------------------------------------------
 !
-!  NOTE: this version of the multiply is actually (slightly: maybe %5) 
-!        faster on the sp2 on 16 nodes than is the unrolled-by-2 version 
-!        below.   On the Cray t3d, the reverse is true, i.e., the 
-!        unrolled-by-two version is some 10% faster.  
+!  NOTE: this version of the multiply is actually (slightly: maybe %5)
+!        faster on the sp2 on 16 nodes than is the unrolled-by-2 version
+!        below.   On the Cray t3d, the reverse is true, i.e., the
+!        unrolled-by-two version is some 10% faster.
 !        The unrolled-by-8 version below is significantly faster
 !        on the Cray t3d - overall speed of code is 1.5 times faster.
 !
@@ -527,7 +527,7 @@
 !$omp end do
 
 !C          do j=1,lastrow-firstrow+1
-!C             i = rowstr(j) 
+!C             i = rowstr(j)
 !C             iresidue = mod( rowstr(j+1)-i, 2 )
 !C             suml = 0.d0
 !C             if( iresidue .eq. 1 )  &
@@ -540,7 +540,7 @@
 !C          enddo
 
 !C          do j=1,lastrow-firstrow+1
-!C             i = rowstr(j) 
+!C             i = rowstr(j)
 !C             iresidue = mod( rowstr(j+1)-i, 8 )
 !C             suml = 0.d0
 !C             do k=i,i+iresidue-1
@@ -584,7 +584,7 @@
             z(j) = z(j) + alpha*p(j)
             r(j) = r(j) - alpha*q(j)
 !         enddo
-            
+
 !---------------------------------------------------------------------
 !  rho = r.r
 !  Now, obtain the norm of r: First, sum squares of r elements locally...
@@ -633,7 +633,7 @@
 !---------------------------------------------------------------------
 !$omp do reduction(+:sum)
       do j=1, lastcol-firstcol+1
-         suml = x(j) - r(j)         
+         suml = x(j) - r(j)
          sum  = sum + suml*suml
       enddo
 !$omp end do nowait
@@ -1102,6 +1102,3 @@
       return
       end
 !-------end   of vecset-----------------------------
-
-
-

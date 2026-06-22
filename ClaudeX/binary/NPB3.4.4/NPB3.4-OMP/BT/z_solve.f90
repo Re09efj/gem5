@@ -8,10 +8,10 @@
 
 !---------------------------------------------------------------------
 !     Performs line solves in Z direction by first factoring
-!     the block-tridiagonal matrix into an upper triangular matrix, 
+!     the block-tridiagonal matrix into an upper triangular matrix,
 !     and then performing back substitution to solve for the unknow
-!     vectors of each line.  
-!     
+!     vectors of each line.
+!
 !     Make sure we treat elements zero to cell_size in the direction
 !     of the sweep.
 !---------------------------------------------------------------------
@@ -23,7 +23,7 @@
 
       integer i, j, k, m, n, ksize
       double precision tmp1, tmp2, tmp3
-      
+
 !---------------------------------------------------------------------
 !---------------------------------------------------------------------
 
@@ -33,7 +33,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!     This function computes the left hand side for the three z-factors   
+!     This function computes the left hand side for the three z-factors
 !---------------------------------------------------------------------
 
       ksize = grid_points(3)-1
@@ -59,14 +59,14 @@
                fjac(1,5,k) = 0.0d+00
 
                fjac(2,1,k) = - ( u(2,i,j,k)*u(4,i,j,k) )   &
-     &              * tmp2 
+     &              * tmp2
                fjac(2,2,k) = u(4,i,j,k) * tmp1
                fjac(2,3,k) = 0.0d+00
                fjac(2,4,k) = u(2,i,j,k) * tmp1
                fjac(2,5,k) = 0.0d+00
 
                fjac(3,1,k) = - ( u(3,i,j,k)*u(4,i,j,k) )  &
-     &              * tmp2 
+     &              * tmp2
                fjac(3,2,k) = 0.0d+00
                fjac(3,3,k) = u(4,i,j,k) * tmp1
                fjac(3,4,k) = u(3,i,j,k) * tmp1
@@ -74,17 +74,17 @@
 
                fjac(4,1,k) = - (u(4,i,j,k)*u(4,i,j,k) * tmp2 )   &
      &              + c2 * qs(i,j,k)
-               fjac(4,2,k) = - c2 *  u(2,i,j,k) * tmp1 
+               fjac(4,2,k) = - c2 *  u(2,i,j,k) * tmp1
                fjac(4,3,k) = - c2 *  u(3,i,j,k) * tmp1
                fjac(4,4,k) = ( 2.0d+00 - c2 )  &
-     &              *  u(4,i,j,k) * tmp1 
+     &              *  u(4,i,j,k) * tmp1
                fjac(4,5,k) = c2
 
                fjac(5,1,k) = ( c2 * 2.0d0 * square(i,j,k)   &
      &              - c1 * u(5,i,j,k) )  &
      &              * u(4,i,j,k) * tmp2
                fjac(5,2,k) = - c2 * ( u(2,i,j,k)*u(4,i,j,k) )  &
-     &              * tmp2 
+     &              * tmp2
                fjac(5,3,k) = - c2 * ( u(3,i,j,k)*u(4,i,j,k) )  &
      &              * tmp2
                fjac(5,4,k) = c1 * ( u(5,i,j,k) * tmp1 )  &
@@ -143,7 +143,7 @@
 
                lhs(1,1,aa,k) = - tmp2 * fjac(1,1,k-1)  &
      &              - tmp1 * njac(1,1,k-1)  &
-     &              - tmp1 * dz1 
+     &              - tmp1 * dz1
                lhs(1,2,aa,k) = - tmp2 * fjac(1,2,k-1)  &
      &              - tmp1 * njac(1,2,k-1)
                lhs(1,3,aa,k) = - tmp2 * fjac(1,3,k-1)  &
@@ -171,7 +171,7 @@
      &              - tmp1 * njac(3,2,k-1)
                lhs(3,3,aa,k) = - tmp2 * fjac(3,3,k-1)  &
      &              - tmp1 * njac(3,3,k-1)  &
-     &              - tmp1 * dz3 
+     &              - tmp1 * dz3
                lhs(3,4,aa,k) = - tmp2 * fjac(3,4,k-1)  &
      &              - tmp1 * njac(3,4,k-1)
                lhs(3,5,aa,k) = - tmp2 * fjac(3,5,k-1)  &
@@ -308,10 +308,10 @@
 
 !---------------------------------------------------------------------
 !     performs guaussian elimination on this cell.
-!     
-!     assumes that unpacking routines for non-first cells 
+!
+!     assumes that unpacking routines for non-first cells
 !     preload C' and rhs' from previous cell.
-!     
+!
 !     assumed send happens outside this routine, but that
 !     c'(KMAX) and rhs'(KMAX) will be sent to next cell.
 !---------------------------------------------------------------------
@@ -332,13 +332,13 @@
 
 !---------------------------------------------------------------------
 !     begin inner most do loop
-!     do all the elements of the cell unless last 
+!     do all the elements of the cell unless last
 !---------------------------------------------------------------------
             do k=1,ksize-1
 
 !---------------------------------------------------------------------
 !     subtract A*lhs_vector(k-1) from lhs_vector(k)
-!     
+!
 !     rhs(k) = rhs(k) - A*rhs(k-1)
 !---------------------------------------------------------------------
                call matvec_sub(lhs(1,1,aa,k),  &

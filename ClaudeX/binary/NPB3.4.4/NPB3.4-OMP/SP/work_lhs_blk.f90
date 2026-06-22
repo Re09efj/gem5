@@ -64,7 +64,6 @@
              lhsm(j,5,i) = 0.0d0
           end do
        end do
- 
+
        return
        end
-

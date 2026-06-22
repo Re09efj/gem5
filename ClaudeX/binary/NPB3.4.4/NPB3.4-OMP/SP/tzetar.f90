@@ -8,7 +8,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!   block-diagonal matrix-vector multiplication                       
+!   block-diagonal matrix-vector multiplication
 !---------------------------------------------------------------------
 
        use sp_data
@@ -39,7 +39,7 @@
                 r2 = rhs(2,i,j,k)
                 r3 = rhs(3,i,j,k)
                 r4 = rhs(4,i,j,k)
-                r5 = rhs(5,i,j,k)      
+                r5 = rhs(5,i,j,k)
 
                 uzik1 = u(1,i,j,k)
                 btuz  = bt * uzik1

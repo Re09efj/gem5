@@ -32,33 +32,84 @@ STRATEGIES = {
     # ─── Packed ────────────────────────────────────────────────
     # Node0 P-core → Node0 E-core の順に詰める（Node0 内で完結）
     "Packed": [
-        0,  1,  2,  3,  4,  5,  6,  7,   # threads  0- 7: Node0 (P→E)
-        0,  1,  2,  3,  4,  5,  6,  7,   # threads  8-15: 折り返し（通常未使用）
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,  # threads  0- 7: Node0 (P→E)
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,  # threads  8-15: 折り返し（通常未使用）
     ],
-
     # ─── Scatter ───────────────────────────────────────────────
     # Node0/Node1 を交互に割り当て、メモリ帯域を両ノードに分散
     "Scatter": [
-        0,  8,  1,  9,  2, 10,  3, 11,   # threads  0- 7: P-core インターリーブ
-        4, 12,  5, 13,  6, 14,  7, 15,   # threads  8-15: E-core インターリーブ
+        0,
+        8,
+        1,
+        9,
+        2,
+        10,
+        3,
+        11,  # threads  0- 7: P-core インターリーブ
+        4,
+        12,
+        5,
+        13,
+        6,
+        14,
+        7,
+        15,  # threads  8-15: E-core インターリーブ
     ],
-
     # ─── HPO（Heuristic Priority Ordering）────────────────────
     # P-core を全優先。Node0 P → Node1 P → Node0 E → Node1 E の順
     # スレッド数が 4 以下なら全て Node0 P-core に収まる
     "HPO": [
-        0,  1,  2,  3,   # threads 0-3: Node0 P-core（4スレッドまでここで完結）
-        8,  9, 10, 11,   # threads 4-7: Node1 P-core（5スレッド目からこちら）
-        4,  5,  6,  7,   # threads 8-11: Node0 E-core
-       12, 13, 14, 15,   # threads12-15: Node1 E-core
+        0,
+        1,
+        2,
+        3,  # threads 0-3: Node0 P-core（4スレッドまでここで完結）
+        8,
+        9,
+        10,
+        11,  # threads 4-7: Node1 P-core（5スレッド目からこちら）
+        4,
+        5,
+        6,
+        7,  # threads 8-11: Node0 E-core
+        12,
+        13,
+        14,
+        15,  # threads12-15: Node1 E-core
     ],
-
     # ─── SPO（Scheduling Priority Ordering）暫定 ──────────────
     # スケジューリング優先度の協調制御。cpu_map は後で設計予定。
     # 暫定として Scatter と同じ配置を使用する。
     "SPO": [
-        0,  8,  1,  9,  2, 10,  3, 11,   # threads  0- 7: Scatter と同じ（暫定）
-        4, 12,  5, 13,  6, 14,  7, 15,   # threads  8-15: 同上
+        0,
+        8,
+        1,
+        9,
+        2,
+        10,
+        3,
+        11,  # threads  0- 7: Scatter と同じ（暫定）
+        4,
+        12,
+        5,
+        13,
+        6,
+        14,
+        7,
+        15,  # threads  8-15: 同上
     ],
 }
 
@@ -67,28 +118,52 @@ MPO_MAPS = {
     # CG: SpMV で全スレッドが共有密ベクトル z/p を読む。
     # first-touch によりこれらは Node0 に確保されるため Node0 先詰め。
     "CG": [
-        0,  1,  2,  3,   # threads 0-3: Node0 P-core（z/p がここにある）
-        8,  9, 10, 11,   # threads 4-7: Node1 P-core（帯域補強）
-        4,  5,  6,  7,   # threads 8-11: Node0 E-core
-       12, 13, 14, 15,   # threads12-15: Node1 E-core
+        0,
+        1,
+        2,
+        3,  # threads 0-3: Node0 P-core（z/p がここにある）
+        8,
+        9,
+        10,
+        11,  # threads 4-7: Node1 P-core（帯域補強）
+        4,
+        5,
+        6,
+        7,  # threads 8-11: Node0 E-core
+        12,
+        13,
+        14,
+        15,  # threads12-15: Node1 E-core
     ],
     # MG: 3D格子をスラブ分割。隣接スラブを持つスレッドが境界で通信するため
     # 隣接スレッドペアを同一ノードに配置してノード内通信を最大化する。
     # (T0,T1)→Node0, (T2,T3)→Node1, (T4,T5)→Node0, ...
     "MG": [
-        0,  1,  8,  9,   # threads 0-3: T0,T1=Node0P / T2,T3=Node1P
-        2,  3, 10, 11,   # threads 4-7: T4,T5=Node0P / T6,T7=Node1P
-        4,  5, 12, 13,   # threads 8-11: E-core ペア
-        6,  7, 14, 15,   # threads12-15: E-core ペア
+        0,
+        1,
+        8,
+        9,  # threads 0-3: T0,T1=Node0P / T2,T3=Node1P
+        2,
+        3,
+        10,
+        11,  # threads 4-7: T4,T5=Node0P / T6,T7=Node1P
+        4,
+        5,
+        12,
+        13,  # threads 8-11: E-core ペア
+        6,
+        7,
+        14,
+        15,  # threads12-15: E-core ペア
     ],
 }
 
 STRATEGY_DESC = {
-    "Packed":  "全スレッド → Node0 集中 (P→E順)",
+    "Packed": "全スレッド → Node0 集中 (P→E順)",
     "Scatter": "ノード間インターリーブ (帯域分散)",
-    "HPO":     "P-core 優先: Node0 P → Node1 P → E-core",
-    "MPO":     "メモリ親和性優先 (ワークロード依存: CG=Node0先詰め / MG=隣接ペア同ノード)",
-    "SPO":     "スケジューリング優先度協調制御 (暫定: Scatter 配置)",
+    "HPO": "P-core 優先: Node0 P → Node1 P → E-core",
+    "MPO": "メモリ親和性優先 (ワークロード依存: CG=Node0先詰め / MG=隣接ペア同ノード)",
+    "SPO": "スケジューリング優先度協調制御 (暫定: Scatter 配置)",
 }
 
 
@@ -97,7 +172,9 @@ def get_cpu_map(strategy: str, workload: str) -> list:
     if strategy == "MPO":
         key = workload.upper()
         if key not in MPO_MAPS:
-            print(f"[WARNING] MPO map for '{workload}' 未定義。CG 配置を使用します。")
+            print(
+                f"[WARNING] MPO map for '{workload}' 未定義。CG 配置を使用します。"
+            )
             key = "CG"
         return MPO_MAPS[key]
     if strategy not in STRATEGIES:
@@ -151,13 +228,14 @@ def recompile_workload(workload: str, bench_class: str = "S") -> None:
     print(f"[compile] {workload} Class {bench_class} 完了")
 
 
-def compile_strategy(strategy_name: str, cpu_map: list,
-                     workload: str, bench_class: str = "S") -> str:
+def compile_strategy(
+    strategy_name: str, cpu_map: list, workload: str, bench_class: str = "S"
+) -> str:
     """patch → compile → バイナリをストラテジー名付きでコピーして返す。
     orchestrator が並列 gem5 実行のために各ストラテジーごとに独立バイナリを作る。"""
     patch_cpu_map(cpu_map, workload)
     recompile_workload(workload, bench_class)
-    wl  = workload.lower()
+    wl = workload.lower()
     src = os.path.join(NPB_BIN_DIR, f"{wl}.{bench_class}.x")
     dst = os.path.join(NPB_BIN_DIR, f"{wl}.{bench_class}.{strategy_name}.x")
     shutil.copy2(src, dst)

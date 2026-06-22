@@ -11,42 +11,54 @@ import os
 import subprocess
 from datetime import datetime
 
-from utility.cpu_affinity  import get_cpu_map, STRATEGY_DESC, patch_cpu_map, recompile_workload, NPB_BIN_DIR
-from utility.stats_reader  import parse_node_stats, print_summary
-from utility.grapher       import generate_numa_graph
 from utility.config_writer import save_affinity_config
+from utility.cpu_affinity import (
+    NPB_BIN_DIR,
+    STRATEGY_DESC,
+    get_cpu_map,
+    patch_cpu_map,
+    recompile_workload,
+)
+from utility.grapher import generate_numa_graph
+from utility.stats_reader import (
+    parse_node_stats,
+    print_summary,
+)
 
 # ============================================================
 # 実験設定（ここを編集して実験を変更する）
 # ============================================================
-WORKLOAD    = "CG"        # CG / MG
-STRATEGY    = "Scatter"   # Packed / Scatter / HPO / MPO / SPO
-BENCH_CLASS = "S"         # S / W / A / B / C / D
+WORKLOAD = "CG"  # CG / MG
+STRATEGY = "Scatter"  # Packed / Scatter / HPO / MPO / SPO
+BENCH_CLASS = "S"  # S / W / A / B / C / D
 NUM_THREADS = 2
 
 # カスタム cpu_map を使う場合は 16 個の CPU ID を列挙する（None でストラテジーを使用）
-CUSTOM_MAP  = None
+CUSTOM_MAP = None
 # ============================================================
 
-GEM5        = "/home/hiragahama/gem5/build/X86/gem5.opt"
-MYEXP       = "/home/hiragahama/gem5/ClaudeX/gem5_sim.py"
+GEM5 = "/home/hiragahama/gem5/build/X86/gem5.opt"
+MYEXP = "/home/hiragahama/gem5/ClaudeX/gem5_sim.py"
 CLAUDEX_DIR = "/home/hiragahama/gem5/ClaudeX"
 OUTPUT_BASE = "/home/hiragahama/gem5/ClaudeX/Outputs"
 
 NUM_NODES = 2
-BIG_CPN   = 4
-SML_CPN   = 4
+BIG_CPN = 4
+SML_CPN = 4
 
 
 def run_gem5(binary: str, strategy: str, num_threads: int) -> str:
     now = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_dir = os.path.join(
-        OUTPUT_BASE, f"{WORKLOAD}_{BENCH_CLASS}_{strategy}_{num_threads}TH_{now}"
+        OUTPUT_BASE,
+        f"{WORKLOAD}_{BENCH_CLASS}_{strategy}_{num_threads}TH_{now}",
     )
     os.makedirs(output_dir, exist_ok=True)
 
     cmd = [
-        GEM5, "-d", output_dir,
+        GEM5,
+        "-d",
+        output_dir,
         MYEXP,
         f"--strategy={strategy}",
         f"--num-threads={num_threads}",
@@ -60,14 +72,16 @@ def run_gem5(binary: str, strategy: str, num_threads: int) -> str:
 
 
 def main():
-    cpu_map       = CUSTOM_MAP if CUSTOM_MAP else get_cpu_map(STRATEGY, WORKLOAD)
+    cpu_map = CUSTOM_MAP if CUSTOM_MAP else get_cpu_map(STRATEGY, WORKLOAD)
     strategy_name = "custom" if CUSTOM_MAP else STRATEGY
-    wl            = WORKLOAD.lower()
-    binary        = os.path.join(NPB_BIN_DIR, f"{wl}.{BENCH_CLASS}.x")
+    wl = WORKLOAD.lower()
+    binary = os.path.join(NPB_BIN_DIR, f"{wl}.{BENCH_CLASS}.x")
 
     print(f"\n[設定]")
     print(f"  ワークロード : {WORKLOAD}")
-    print(f"  ストラテジー : {strategy_name}  ({STRATEGY_DESC.get(strategy_name, '')})")
+    print(
+        f"  ストラテジー : {strategy_name}  ({STRATEGY_DESC.get(strategy_name, '')})"
+    )
     print(f"  スレッド数   : {NUM_THREADS}")
     print(f"  クラス       : {BENCH_CLASS}")
     print(f"  cpu_map      : {cpu_map}")
@@ -77,12 +91,28 @@ def main():
 
     output_dir = run_gem5(binary, strategy_name, NUM_THREADS)
 
-    save_affinity_config(output_dir, strategy_name, WORKLOAD, BENCH_CLASS,
-                         cpu_map, NUM_THREADS, NUM_NODES, BIG_CPN, SML_CPN)
+    save_affinity_config(
+        output_dir,
+        strategy_name,
+        WORKLOAD,
+        BENCH_CLASS,
+        cpu_map,
+        NUM_THREADS,
+        NUM_NODES,
+        BIG_CPN,
+        SML_CPN,
+    )
 
     node_stats = parse_node_stats(output_dir, NUM_NODES)
-    generate_numa_graph(output_dir, node_stats, strategy_name,
-                        cpu_map, NUM_THREADS, WORKLOAD, BENCH_CLASS)
+    generate_numa_graph(
+        output_dir,
+        node_stats,
+        strategy_name,
+        cpu_map,
+        NUM_THREADS,
+        WORKLOAD,
+        BENCH_CLASS,
+    )
     print_summary(node_stats, cpu_map, NUM_THREADS)
 
     print(f"\n[完了] {output_dir}")

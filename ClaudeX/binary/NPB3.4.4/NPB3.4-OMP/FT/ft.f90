@@ -71,9 +71,9 @@
 
 
 !---------------------------------------------------------------------
-! Run the entire problem once to make sure all data is touched. 
-! This reduces variable startup costs, which is important for such a 
-! short benchmark. The other NPB 2 implementations are similar. 
+! Run the entire problem once to make sure all data is touched.
+! This reduces variable startup costs, which is important for such a
+! short benchmark. The other NPB 2 implementations are similar.
 !---------------------------------------------------------------------
       do i = 1, t_max
          call timer_clear(i)
@@ -90,7 +90,7 @@
 
 !---------------------------------------------------------------------
 ! Start over from the beginning. Note that all operations must
-! be timed, in contrast to other benchmarks. 
+! be timed, in contrast to other benchmarks.
 !---------------------------------------------------------------------
       do i = 1, t_max
          call timer_clear(i)
@@ -223,8 +223,8 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-! Fill in array u0 with initial conditions from 
-! random number generator 
+! Fill in array u0 with initial conditions from
+! random number generator
 !---------------------------------------------------------------------
 
       use ft_data
@@ -234,7 +234,7 @@
       double complex u0(d1+1, d2, d3)
       integer k, j
       double precision x0, start, an, dummy, starts(nz)
-      
+
 
       start = seed
 !---------------------------------------------------------------------
@@ -249,14 +249,14 @@
          dummy = randlc(start, an)
          starts(k) = start
       end do
-      
+
 !---------------------------------------------------------------------
 ! Go through by z planes filling in one square at a time.
 !---------------------------------------------------------------------
 !$omp parallel do default(shared) private(k,j,x0)
-      do k = 1, dims(3) 
+      do k = 1, dims(3)
          x0 = starts(k)
-         do j = 1, dims(2) 
+         do j = 1, dims(2)
             call vranlc(2*nx, x0, a, u0(1, j, k))
          end do
       end do
@@ -297,7 +297,7 @@
       do while (n .gt. 1)
          n2 = n/2
          if (n2 * 2 .eq. n) then
-            dummy = randlc(q, q) 
+            dummy = randlc(q, q)
             n = n2
          else
             dummy = randlc(r, q)
@@ -352,15 +352,15 @@
 ! Set up info for blocking of ffts and transposes.  This improves
 ! performance on cache-based systems. Blocking involves
 ! working on a chunk of the problem at a time, taking chunks
-! along the first, second, or third dimension. 
+! along the first, second, or third dimension.
 !
 ! - In cffts1 blocking is on 2nd dimension (with fft on 1st dim)
 ! - In cffts2/3 blocking is on 1st dimension (with fft on 2nd and 3rd dims)
 
-! Since 1st dim is always in processor, we'll assume it's long enough 
+! Since 1st dim is always in processor, we'll assume it's long enough
 ! (default blocking factor is 16 so min size for 1st dim is 16)
-! The only case we have to worry about is cffts1 in a 2d decomposition. 
-! so the blocking factor should not be larger than the 2nd dimension. 
+! The only case we have to worry about is cffts1 in a 2d decomposition.
+! so the blocking factor should not be larger than the 2nd dimension.
 !---------------------------------------------------------------------
 
       fftblock = fftblock_default
@@ -371,7 +371,7 @@
       return
       end
 
-      
+
 !---------------------------------------------------------------------
 !---------------------------------------------------------------------
 
@@ -381,8 +381,8 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-! compute function from local (i,j,k) to ibar^2+jbar^2+kbar^2 
-! for time evolution exponent. 
+! compute function from local (i,j,k) to ibar^2+jbar^2+kbar^2
+! for time evolution exponent.
 !---------------------------------------------------------------------
 
       use ft_data
@@ -394,9 +394,9 @@
       double precision ap
 
 !---------------------------------------------------------------------
-! basically we want to convert the fortran indices 
-!   1 2 3 4 5 6 7 8 
-! to 
+! basically we want to convert the fortran indices
+!   1 2 3 4 5 6 7 8
+! to
 !   0 1 2 3 -4 -3 -2 -1
 ! The following magic formula does the trick:
 ! mod(i-1+n/2, n) - n/2
@@ -528,7 +528,7 @@
                   y1(j,i) = x(i,j+jj,k)
                enddo
             enddo
-            
+
             call cfftz (is, logd1, d1, y1, y2)
 
 
@@ -578,7 +578,7 @@
            enddo
 
            call cfftz (is, logd2, d2, y1, y2)
-           
+
            do j = 1, d2
               do i = 1, fftblock
                  xout(i+ii,j,k) = y1(i,j)
@@ -648,7 +648,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-! compute the roots-of-unity array that will be used for subsequent FFTs. 
+! compute the roots-of-unity array that will be used for subsequent FFTs.
 !---------------------------------------------------------------------
 
       use ft_data
@@ -670,16 +670,16 @@
 
       do j = 1, m
          t = pi / ln
-         
+
          do i = 0, ln - 1
             ti = i * t
             u(i+ku) = dcmplx (cos (ti), sin(ti))
          enddo
-         
+
          ku = ku + ln
          ln = 2 * ln
       enddo
-      
+
       return
       end
 
@@ -693,10 +693,10 @@
 
 !---------------------------------------------------------------------
 !   Computes NY N-point complex-to-complex FFTs of X using an algorithm due
-!   to Swarztrauber.  X is both the input and the output array, while Y is a 
-!   scratch array.  It is assumed that N = 2^M.  Before calling CFFTZ to 
-!   perform FFTs, the array U must be initialized by calling CFFTZ with IS 
-!   set to 0 and M set to MX, where MX is the maximum value of M for any 
+!   to Swarztrauber.  X is both the input and the output array, while Y is a
+!   scratch array.  It is assumed that N = 2^M.  Before calling CFFTZ to
+!   perform FFTs, the array U must be initialized by calling CFFTZ with IS
+!   set to 0 and M set to MX, where MX is the maximum value of M for any
 !   subsequent call.
 !---------------------------------------------------------------------
 
@@ -855,7 +855,7 @@
       end do
 
       chk = chk/ntotal_f
-      
+
       write (*, 30) i, chk
  30   format (' T =',I5,5X,'Checksum =',1P2D22.12)
       sums(i) = chk
@@ -938,7 +938,7 @@
          csum_ref(4) = dcmplx(5.077892868474D+02, 5.101336130759D+02)
          csum_ref(5) = dcmplx(5.085233095391D+02, 5.104914655194D+02)
          csum_ref(6) = dcmplx(5.091487099959D+02, 5.107917842803D+02)
-      
+
       else if (d1 .eq. 512 .and.  &
      &    d2 .eq. 256 .and.  &
      &    d3 .eq. 256 .and.  &
@@ -1113,7 +1113,7 @@
 
       endif
 
-         
+
       if (class .ne. 'U') then
          if (verified) then
             write(*,2000)
@@ -1127,5 +1127,3 @@
 
       return
       end
-
-

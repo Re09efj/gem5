@@ -47,7 +47,7 @@
 
 ! This doesn't work, because the compiler does the calculation in 32
 ! bits and overflows. No standard way (without f90 stuff) to specify
-! that the rhs should be done in 64 bit arithmetic. 
+! that the rhs should be done in 64 bit arithmetic.
 !      parameter(i246m1=2**46-1)
 
       parameter(d2m46=0.5d0**46)
@@ -64,4 +64,3 @@
 
       return
       end
-

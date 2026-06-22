@@ -10,7 +10,7 @@
 
 !---------------------------------------------------------------------
 ! The following include file is generated automatically by the
-! "setparams" utility. It defines 
+! "setparams" utility. It defines
 !      problem_size:  12, 64, 102, 162 (for class T, A, B, C)
 !      dt_default:    default time step for this problem size if no
 !                     config file
@@ -108,7 +108,7 @@
       parameter (IMAXP=IMAX/2*2,JMAXP=JMAX/2*2)
 
 !
-!   To improve cache performance, first two dimensions padded by 1 
+!   To improve cache performance, first two dimensions padded by 1
 !   for even number sizes only
 !
       allocate (  &
@@ -148,11 +148,10 @@
       implicit none
 
       integer ios
- 
+
       deallocate (u, us, vs, ws, qs, rho_i,  &
      &            speed, square, rhs, forcing,  &
      &            stat = ios)
 
       return
       end
-

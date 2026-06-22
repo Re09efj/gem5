@@ -141,7 +141,7 @@
      &           - dt * tz1 * ( - c34 * tmp2 * u(2,i,j,k-1) )
                a(2,2,i) = - dt * tz2 * ( u(4,i,j,k-1) * tmp1 )  &
      &           - dt * tz1 * c34 * tmp1  &
-     &           - dt * tz1 * dz2 
+     &           - dt * tz1 * dz2
                a(2,3,i) = 0.0d+00
                a(2,4,i) = - dt * tz2 * ( u(2,i,j,k-1) * tmp1 )
                a(2,5,i) = 0.0d+00
@@ -296,7 +296,7 @@
      &              * ( - c2 * ( u(3,i-1,j,k) * tmp1 ) )
                c(2,4,i) = - dt * tx2  &
      &              * ( - c2 * ( u(4,i-1,j,k) * tmp1 ) )
-               c(2,5,i) = - dt * tx2 * c2 
+               c(2,5,i) = - dt * tx2 * c2
 
                c(3,1,i) = - dt * tx2  &
      &              * ( - ( u(2,i-1,j,k) * u(3,i-1,j,k) ) * tmp2 )  &

@@ -16,4 +16,3 @@ echo ' ***************************************************************'
 echo ' * Remember to edit the file config/make.def for site specific *'
 echo ' * information as described in the README file                 *'
 echo ' ***************************************************************'
-

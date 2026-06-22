@@ -14,4 +14,3 @@
 !$omp threadprivate( tmorl, mormull, myid, nwthreads )
 
       end module tmorwork
-

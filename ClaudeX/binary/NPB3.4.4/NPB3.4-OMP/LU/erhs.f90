@@ -211,7 +211,7 @@
      &                         + rsd(3,i,j,k) * rsd(3,i,j,k)  &
      &                         + rsd(4,i,j,k) * rsd(4,i,j,k) )  &
      &                      / rsd(1,i,j,k)
-               flux(2,j) = rsd(2,i,j,k) * u31 
+               flux(2,j) = rsd(2,i,j,k) * u31
                flux(3,j) = rsd(3,i,j,k) * u31 + c2 *  &
      &                       ( rsd(5,i,j,k) - q )
                flux(4,j) = rsd(4,i,j,k) * u31
@@ -334,8 +334,8 @@
      &                         + rsd(3,i,j,k) * rsd(3,i,j,k)  &
      &                         + rsd(4,i,j,k) * rsd(4,i,j,k) )  &
      &                      / rsd(1,i,j,k)
-               flux(2,k) = rsd(2,i,j,k) * u41 
-               flux(3,k) = rsd(3,i,j,k) * u41 
+               flux(2,k) = rsd(2,i,j,k) * u41
+               flux(3,k) = rsd(3,i,j,k) * u41
                flux(4,k) = rsd(4,i,j,k) * u41 + c2 *  &
      &                         ( rsd(5,i,j,k) - q )
                flux(5,k) = ( c1 * rsd(5,i,j,k) - c2 * q ) * u41

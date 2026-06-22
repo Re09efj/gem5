@@ -16,7 +16,7 @@
       call nr_init_omp(ijel_new,n2,0)
 
 !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(iel,i,iside,jface,cb,ntemp,  &
-!$OMP& ii1,ii2) 
+!$OMP& ii1,ii2)
 !$OMP DO
       do iel=1,nelt
         i=mt_to_id(iel)
@@ -44,7 +44,7 @@
             ijel_new(1,iside,iel)=ijel(1,iside,i)
             ijel_new(2,iside,iel)=ijel(2,iside,i)
             sje_new(1,1,iside,iel)=id_to_mt(ntemp)
-         
+
           else if(cb.eq.3) then
             do ii2=1,2
               do ii1=1,2
@@ -59,8 +59,8 @@
             sje_new(1,1,iside,iel)=0
             sje_new(1,2,iside,iel)=0
             sje_new(2,1,iside,iel)=0
-            sje_new(2,2,iside,iel)=0       
-          end if 
+            sje_new(2,2,iside,iel)=0
+          end if
 
         end do
 
@@ -82,8 +82,8 @@
         id_to_mt(iel)=iel
         tree(iel)=treenew(iel)
       end do
-!$OMP ENDDO 
+!$OMP ENDDO
 !$OMP END PARALLEL
 
       return
-      end 
+      end

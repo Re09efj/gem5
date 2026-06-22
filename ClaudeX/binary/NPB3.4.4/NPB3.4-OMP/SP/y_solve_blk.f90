@@ -49,11 +49,11 @@
           end do
 
 !---------------------------------------------------------------------
-! Computes the left hand side for the three y-factors   
+! Computes the left hand side for the three y-factors
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!      first fill the lhs for the u-eigenvalue         
+!      first fill the lhs for the u-eigenvalue
 !---------------------------------------------------------------------
 
           do  j = 0, grid_points(2)-1
@@ -67,7 +67,7 @@
      &                           dy1)
              end do
           end do
- 
+
           do  j = 1, grid_points(2)-2
              do  ib = 1, bsize
                 lhs(ib,1,j) =  0.0d0
@@ -79,7 +79,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      add fourth order dissipation                             
+!      add fourth order dissipation
 !---------------------------------------------------------------------
 
           do  ib = 1, bsize
@@ -87,7 +87,7 @@
              lhs(ib,3,j) = lhs(ib,3,j) + comz5
              lhs(ib,4,j) = lhs(ib,4,j) - comz4
              lhs(ib,5,j) = lhs(ib,5,j) + comz1
-       
+
              j = 2
              lhs(ib,2,j) = lhs(ib,2,j) - comz4
              lhs(ib,3,j) = lhs(ib,3,j) + comz6
@@ -119,7 +119,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      subsequently, do the other two factors                    
+!      subsequently, do the other two factors
 !---------------------------------------------------------------------
           do    j = 1, grid_points(2)-2
              do  ib = 1, bsize
@@ -143,7 +143,7 @@
 
 
 !---------------------------------------------------------------------
-!                          FORWARD ELIMINATION  
+!                          FORWARD ELIMINATION
 !---------------------------------------------------------------------
 
           do    j = 0, grid_points(2)-3
@@ -180,7 +180,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      The last two rows in this grid block are a bit different, 
+!      The last two rows in this grid block are a bit different,
 !      since they do not have two more rows available for the
 !      elimination of off-diagonal entries
 !---------------------------------------------------------------------
@@ -205,7 +205,7 @@
              rhsx(ib,3,j1) = rhsx(ib,3,j1) -  &
      &                      lhs(ib,2,j1)*rhsx(ib,3,j)
 !---------------------------------------------------------------------
-!            scale the last row immediately 
+!            scale the last row immediately
 !---------------------------------------------------------------------
              fac2      = 1.d0/lhs(ib,3,j1)
              rhsx(ib,1,j1) = fac2*rhsx(ib,1,j1)
@@ -214,7 +214,7 @@
           end do
 
 !---------------------------------------------------------------------
-!      do the u+c and the u-c factors                 
+!      do the u+c and the u-c factors
 !---------------------------------------------------------------------
           do    j = 0, grid_points(2)-3
              j1 = j  + 1
@@ -282,7 +282,7 @@
              rhsx(ib,5,j1)   = rhsx(ib,5,j1) -  &
      &                    lhsm(ib,2,j1)*rhsx(ib,5,j)
 !---------------------------------------------------------------------
-!               Scale the last row immediately 
+!               Scale the last row immediately
 !---------------------------------------------------------------------
              rhsx(ib,4,j1)   = rhsx(ib,4,j1)/lhsp(ib,3,j1)
              rhsx(ib,5,j1)   = rhsx(ib,5,j1)/lhsm(ib,3,j1)
@@ -290,7 +290,7 @@
 
 
 !---------------------------------------------------------------------
-!                         BACKSUBSTITUTION 
+!                         BACKSUBSTITUTION
 !---------------------------------------------------------------------
 
           j  = grid_points(2)-2
@@ -360,5 +360,3 @@
 
        return
        end
-
-

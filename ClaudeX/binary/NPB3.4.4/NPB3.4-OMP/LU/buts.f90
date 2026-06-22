@@ -28,7 +28,7 @@
       integer nx, ny, nz
       double precision  omega
 !---------------------------------------------------------------------
-!   To improve cache performance, second two dimensions padded by 1 
+!   To improve cache performance, second two dimensions padded by 1
 !   for even number sizes only.  Only needed in v.
 !---------------------------------------------------------------------
       double precision  v( 5,ldmx/2*2+1, ldmy/2*2+1, ldmz),  &
@@ -229,6 +229,6 @@
 
         enddo
 
- 
+
       return
       end

@@ -8,7 +8,7 @@
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!  verification routine                         
+!  verification routine
 !---------------------------------------------------------------------
 
         use, intrinsic :: ieee_arithmetic, only : ieee_is_nan
@@ -294,7 +294,7 @@
         endif
 
 !---------------------------------------------------------------------
-!    verification test for residuals if gridsize is one of 
+!    verification test for residuals if gridsize is one of
 !    the defined grid sizes above (class .ne. 'U')
 !---------------------------------------------------------------------
 
@@ -302,10 +302,10 @@
 !    Compute the difference of solution values and the known reference values.
 !---------------------------------------------------------------------
         do m = 1, 5
-           
-           xcrdif(m) = dabs((xcr(m)-xcrref(m))/xcrref(m)) 
+
+           xcrdif(m) = dabs((xcr(m)-xcrref(m))/xcrref(m))
            xcedif(m) = dabs((xce(m)-xceref(m))/xceref(m))
-           
+
         enddo
 
 !---------------------------------------------------------------------
@@ -318,20 +318,20 @@
            write (*,2000) epsilon
  2000      format(' accuracy setting for epsilon = ', E20.13)
            verified = (dabs(dt-dtref) .le. epsilon)
-           if (.not.verified) then  
+           if (.not.verified) then
               class = 'U'
               write (*,1000) dtref
  1000         format(' DT does not match the reference value of ',   &
      &                 E15.8)
            endif
-        else 
+        else
            write(*, 1995)
  1995      format(' Unknown class')
         endif
 
 
         if (class .ne. 'U') then
-           write (*, 2001) 
+           write (*, 2001)
         else
            write (*, 2005)
         endif
@@ -344,7 +344,7 @@
            else if ((.not.ieee_is_nan(xcrdif(m))) .and.  &
      &              xcrdif(m) .le. epsilon) then
               write (*,2011) m,xcr(m),xcrref(m),xcrdif(m)
-           else 
+           else
               verified = .false.
               write (*,2010) m,xcr(m),xcrref(m),xcrdif(m)
            endif
@@ -357,7 +357,7 @@
         endif
  2002   format(' Comparison of RMS-norms of solution error')
  2006   format(' RMS-norms of solution error')
-        
+
         do m = 1, 5
            if (class .eq. 'U') then
               write(*, 2015) m, xce(m)
@@ -369,11 +369,11 @@
               write (*,2010) m,xce(m),xceref(m),xcedif(m)
            endif
         enddo
-        
+
  2010   format(' FAILURE: ', i2, E20.13, E20.13, E20.13)
  2011   format('          ', i2, E20.13, E20.13, E20.13)
  2015   format('          ', i2, E20.13)
-        
+
         if (class .eq. 'U') then
            write(*, 2022)
            write(*, 2023)

@@ -13,4 +13,3 @@ void wtime(double *t)
    if (sec < 0) sec = tv.tv_sec;
    *t = (tv.tv_sec - sec) + 1.0e-6*tv.tv_usec;
 }
-

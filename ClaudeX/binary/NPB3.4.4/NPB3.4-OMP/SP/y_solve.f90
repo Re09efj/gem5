@@ -35,11 +35,11 @@
             call lhsinit(ny2+1, lhs, lhsp, lhsm)
 
 !---------------------------------------------------------------------
-! Computes the left hand side for the three y-factors   
+! Computes the left hand side for the three y-factors
 !---------------------------------------------------------------------
 
 !---------------------------------------------------------------------
-!      first fill the lhs for the u-eigenvalue         
+!      first fill the lhs for the u-eigenvalue
 !---------------------------------------------------------------------
 
              do  j = 0, grid_points(2)-1
@@ -50,7 +50,7 @@
      &                           dymax + ru1,  &
      &                           dy1)
              end do
-            
+
              do  j = 1, grid_points(2)-2
                 lhs(1,j) =  0.0d0
                 lhs(2,j) = -dtty2 * cv(j-1) - dtty1 * rhov(j-1)
@@ -60,14 +60,14 @@
              end do
 
 !---------------------------------------------------------------------
-!      add fourth order dissipation                             
+!      add fourth order dissipation
 !---------------------------------------------------------------------
 
              j = 1
              lhs(3,j) = lhs(3,j) + comz5
              lhs(4,j) = lhs(4,j) - comz4
              lhs(5,j) = lhs(5,j) + comz1
-       
+
              lhs(2,j+1) = lhs(2,j+1) - comz4
              lhs(3,j+1) = lhs(3,j+1) + comz6
              lhs(4,j+1) = lhs(4,j+1) - comz4
@@ -92,7 +92,7 @@
              lhs(3,j+1) = lhs(3,j+1) + comz5
 
 !---------------------------------------------------------------------
-!      subsequently, do the other two factors                    
+!      subsequently, do the other two factors
 !---------------------------------------------------------------------
              do    j = 1, grid_points(2)-2
                 lhsp(1,j) = lhs(1,j)
@@ -113,7 +113,7 @@
 
 
 !---------------------------------------------------------------------
-!                          FORWARD ELIMINATION  
+!                          FORWARD ELIMINATION
 !---------------------------------------------------------------------
 
              do    j = 0, grid_points(2)-3
@@ -144,7 +144,7 @@
              end do
 
 !---------------------------------------------------------------------
-!      The last two rows in this grid block are a bit different, 
+!      The last two rows in this grid block are a bit different,
 !      since they do not have two more rows available for the
 !      elimination of off-diagonal entries
 !---------------------------------------------------------------------
@@ -166,7 +166,7 @@
      &                      lhs(2,j1)*rhs(m,i,j,k)
              end do
 !---------------------------------------------------------------------
-!            scale the last row immediately 
+!            scale the last row immediately
 !---------------------------------------------------------------------
              fac2      = 1.d0/lhs(3,j1)
              do    m = 1, 3
@@ -174,7 +174,7 @@
              end do
 
 !---------------------------------------------------------------------
-!      do the u+c and the u-c factors                 
+!      do the u+c and the u-c factors
 !---------------------------------------------------------------------
              do    j = 0, grid_points(2)-3
                 j1 = j  + 1
@@ -243,14 +243,14 @@
              rhs(m,i,j1,k)   = rhs(m,i,j1,k) -  &
      &                    lhsm(2,j1)*rhs(m,i,j,k)
 !---------------------------------------------------------------------
-!               Scale the last row immediately 
+!               Scale the last row immediately
 !---------------------------------------------------------------------
              rhs(4,i,j1,k)   = rhs(4,i,j1,k)/lhsp(3,j1)
              rhs(5,i,j1,k)   = rhs(5,i,j1,k)/lhsm(3,j1)
 
 
 !---------------------------------------------------------------------
-!                         BACKSUBSTITUTION 
+!                         BACKSUBSTITUTION
 !---------------------------------------------------------------------
 
              j  = grid_points(2)-2
@@ -297,5 +297,3 @@
 
        return
        end
-
-
