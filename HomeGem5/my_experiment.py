@@ -1,9 +1,6 @@
 import json
 import os
 import re
-
-from utility.mover import *
-
 import m5
 from m5.objects import *
 
@@ -39,6 +36,7 @@ parser.add_argument("--strategy", type=str, default="Scatter")
 parser.add_argument("--num-threads", type=int, default=2)
 parser.add_argument("--binary", type=str, default=BINARY_PATH)
 parser.add_argument("--num-nodes", type=int, default=NUM_NODES)
+parser.add_argument("--output-path", type=str)
 args = parser.parse_args(sys.argv[1:])
 
 STRATEGY = args.strategy
@@ -160,6 +158,14 @@ def compute_active_indices(strategy, num_threads):
             :num_threads
         ]
 
+    elif strategy == "SPO":
+        # スケジューリング優先度協調制御（暫定: Scatter と同じ配置）
+        indices = []
+        for i in range(num_threads // 2):
+            indices.append(i)
+            indices.append(i + CORES_PER_NODE)
+        return indices[:num_threads]
+
     else:
         raise ValueError(f"Unknown STRATEGY: {strategy}")
 
@@ -198,16 +204,16 @@ def save_config(path):
 def read_mem_stats(stats_file, num_nodes):
     """単一membus構成では mem_ctrl の名前が変わるので、
     両ノードのmem_ctrlを名前で拾って表示する。"""
-    with open(stats_file) as f:
-        content = f.read()
-    for i in range(num_nodes):
-        name = f"mem_ctrl{i}"
-        reads = re.search(rf"system\.{name}\.readReqs\s+(\d+)", content)
-        writes = re.search(rf"system\.{name}\.writeReqs\s+(\d+)", content)
-        print(
-            f"node{i} ({name}): reads={reads.group(1) if reads else 0}, "
-            f"writes={writes.group(1) if writes else 0}"
-        )
+    # with open(stats_file) as f:
+    #     content = f.read()
+    # for i in range(num_nodes):
+    #     name = f"mem_ctrl{i}"
+    #     reads = re.search(rf"system\.{name}\.readReqs\s+(\d+)", content)
+    #     writes = re.search(rf"system\.{name}\.writeReqs\s+(\d+)", content)
+    #     print(
+    #         f"node{i} ({name}): reads={reads.group(1) if reads else 0}, "
+    #         f"writes={writes.group(1) if writes else 0}"
+    #     )
 
 
 # ============================================================
@@ -292,6 +298,10 @@ m5.simulate()
 m5.stats.dump()
 
 # --- 結果表示・保存 ---
-read_mem_stats("m5out/stats.txt", NUM_NODES)
-save_config("m5out/experiment_config.txt")
-move_outputs_to_timestamped_dir(STRATEGY, NUM_THREADS)
+from utility.rawTxtReader import rawTxtReader
+from utility.reformer import text_to_csv
+from utility.grapher import generate_core_stats_graph
+rawTxtReader(os.path.join(m5.options.outdir,"stats.txt"),NUM_NODES)
+save_config("experiment_config.txt")
+csv_path = text_to_csv(os.path.join(m5.options.outdir,"stats.txt"))
+generate_core_stats_graph(csv_path,NUM_NODES,BIG_CORES_PER_NODE,SMALL_CORES_PER_NODE)

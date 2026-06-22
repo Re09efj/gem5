@@ -48,8 +48,4 @@ def text_to_csv(stats_file_path):
     output_path = os.path.join(os.path.dirname(stats_file_path), "stats.csv")
     
     df.to_csv(output_path, index=False)
-    try:
-        from utility.grapher import generate_core_stats_graph
-        generate_core_stats_graph(output_path)
-    except Exception as e:
-        print(f"⚠️ グラフ生成中にエラーが発生しました: {e}")
+    return output_path

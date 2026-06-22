@@ -2,7 +2,7 @@ import json
 import os
 import re
 
-from utility.mover import *
+from utility.rawTxtReader import *
 
 import m5
 from m5.objects import *
@@ -306,4 +306,4 @@ m5.stats.dump()
 # --- 結果表示・保存 ---
 read_node_stats("m5out/stats.txt", NUM_NODES)
 save_config("m5out/experiment_config.txt")
-move_outputs_to_timestamped_dir(STRATEGY, NUM_THREADS)
+# move_outputs_to_timestamped_dir(STRATEGY, NUM_THREADS)

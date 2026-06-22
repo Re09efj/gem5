@@ -3,7 +3,7 @@ import os
 from m5.objects import *
 from pathlib import Path
 import sys
-from utility.mover import *
+from HomeGem5.utility.rawTxtReader import *
 
 # ============================================================
 # 設定

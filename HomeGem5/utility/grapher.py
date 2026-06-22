@@ -3,8 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def generate_core_stats_graph(csv_path):
+def generate_core_stats_graph(csv_path,nn,bcpn,scpn):
     print("[*] Generating graph from CSV...")
+    print(csv_path)
+    df = pd.read_csv(csv_path)
     
     if not os.path.exists(csv_path):
         print(f"❌ [Grapher Error] CSVファイルが見つかりません: {csv_path}")
@@ -12,9 +14,9 @@ def generate_core_stats_graph(csv_path):
         
     df = pd.read_csv(csv_path)
     
-    NUM_NODES         = 2
-    CORES_PER_NODE    = 8  # Big4 + Small4
-    BIG_CORES_PER_NODE = 4
+    NUM_NODES         = nn
+    CORES_PER_NODE    = bcpn+scpn
+    BIG_CORES_PER_NODE = bcpn
 
     cpi_data    = []
     cycles_data = []
@@ -22,8 +24,8 @@ def generate_core_stats_graph(csv_path):
     for node_id in range(NUM_NODES):
         for cpu_id in range(CORES_PER_NODE):
             label     = f"N{node_id}-{'Big' if cpu_id < BIG_CORES_PER_NODE else 'Small'}{cpu_id}"
-            stat_base = f"system.node{node_id}.cpus{cpu_id}"
-
+            # stat_base = f"system.node{node_id}.cpus{cpu_id}"
+            stat_base = f"system.cpus{cpu_id}"
             cpi_row = df[df["stat_name"] == f"{stat_base}.cpi"]
             if not cpi_row.empty:
                 cpi_data.append({
@@ -85,4 +87,4 @@ def generate_core_stats_graph(csv_path):
     plt.savefig(output_graph_path, dpi=150)
     plt.close()
     
-    print(f"✨ グラフの自動生成に成功しました！ -> {output_graph_path}")
+    print(f"✨ グラフの自動生成に成功しました！")

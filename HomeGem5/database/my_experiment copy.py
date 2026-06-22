@@ -4,7 +4,7 @@ from m5.objects import *
 from pathlib import Path
 import sys
 import json
-from utility.mover import *
+from utility.rawTxtReader import *
 
 # ============================================================
 # 設定
